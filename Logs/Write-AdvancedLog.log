@@ -1,0 +1,4 @@
+Timestamp | Script | Type | Message
+2026-02-24 12:43:39 | Script: Write-AdvancedLog | INFO: This is a test INFO log entry (text only).
+2026-02-24 12:43:05 | Script: Write-AdvancedLog | INFO: This is a test INFO log entry (text only).
+

@@ -1,0 +1,37 @@
+<#
+.Synopsis
+   Short description
+.DESCRIPTION
+   Long description
+.EXAMPLE
+   Example of how to use this cmdlet
+.EXAMPLE
+   Another example of how to use this cmdlet
+.INPUTS
+   Inputs to this cmdlet (if any)
+.Parameter
+   Parameter used in this file
+.OUTPUTS
+   Output from this cmdlet (if any)
+.NOTES
+   Author: Kenneth Tipton
+   Company: TNC
+   Date: [CurrentDate]
+   Time: [CurrentTime]
+   Time Zone: [TIMEZONE]
+   Function Or Application: [ScriptType]
+   Version: 1.0.0
+   Website: (https://www.tnandc.com)
+   Is AI Used: [IsAIUsed]
+   AI Used: [AIUsed]
+    
+   Copyright (c) [CurrentYear]
+   Licensed under the [LicenseName] License. 
+   Full text available at: [URLToLicense]
+
+   Overide Variables
+   Overide Filename: 
+   Overide Log Filename: 
+   Overide Text Log File Path:
+   Overide Log Type: # 
+#>

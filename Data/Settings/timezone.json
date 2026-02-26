@@ -1,0 +1,362 @@
+[
+  {
+    "WindowsTimeZoneId": "Dateline Standard Time",
+    "WindowsAbbr": "DST",
+    "LinuxAbbr": "-12",
+    "LinuxTimeZoneIds": ["Etc/GMT+12"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": -12
+  },
+  {
+    "WindowsTimeZoneId": "UTC-11",
+    "WindowsAbbr": "UTC-11",
+    "LinuxAbbr": "-11",
+    "LinuxTimeZoneIds": ["Etc/GMT+11", "Pacific/Pago_Pago", "Pacific/Niue", "Pacific/Midway"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": -11
+  },
+  {
+    "WindowsTimeZoneId": "Hawaiian Standard Time",
+    "WindowsAbbr": "HST",
+    "LinuxAbbr": "HST",
+    "LinuxTimeZoneIds": ["Pacific/Honolulu", "Pacific/Rarotonga", "Pacific/Tahiti"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": -10
+  },
+  {
+    "WindowsTimeZoneId": "Alaskan Standard Time",
+    "WindowsAbbr": "AKST",
+    "LinuxAbbr": "AKST",
+    "LinuxTimeZoneIds": ["America/Anchorage", "America/Juneau", "America/Nome", "America/Sitka", "America/Yakutat"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -9
+  },
+  {
+    "WindowsTimeZoneId": "Pacific Standard Time",
+    "WindowsAbbr": "PST",
+    "LinuxAbbr": "PST",
+    "LinuxTimeZoneIds": ["America/Los_Angeles", "America/Vancouver", "America/Tijuana", "America/Santa_Isabel"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -8
+  },
+  {
+    "WindowsTimeZoneId": "Mountain Standard Time",
+    "WindowsAbbr": "MST",
+    "LinuxAbbr": "MST",
+    "LinuxTimeZoneIds": ["America/Denver", "America/Edmonton", "America/Boise", "America/Cambridge_Bay", "America/Inuvik", "America/Yellowknife", "America/Ojinaga", "America/Chihuahua", "America/Mazatlan"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -7
+  },
+  {
+    "WindowsTimeZoneId": "Central Standard Time",
+    "WindowsAbbr": "CST",
+    "LinuxAbbr": "CST",
+    "LinuxTimeZoneIds": ["America/Chicago", "America/Winnipeg", "America/Regina", "America/Matamoros", "America/Mexico_City", "America/Monterrey", "America/Guatemala", "America/Belize", "America/Costa_Rica", "America/El_Salvador", "America/Managua", "America/Tegucigalpa"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -6
+  },
+  {
+    "WindowsTimeZoneId": "Eastern Standard Time",
+    "WindowsAbbr": "EST",
+    "LinuxAbbr": "EST",
+    "LinuxTimeZoneIds": ["America/New_York", "America/Toronto", "America/Nassau", "America/Montreal", "America/Detroit", "America/Grand_Turk", "America/Iqaluit", "America/Nipigon", "America/Pangnirtung", "America/Thunder_Bay"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -5
+  },
+  {
+    "WindowsTimeZoneId": "Atlantic Standard Time",
+    "WindowsAbbr": "AST",
+    "LinuxAbbr": "AST",
+    "LinuxTimeZoneIds": ["America/Halifax", "America/Glace_Bay", "America/Moncton", "America/Goose_Bay", "America/Thule", "America/Bermuda"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -4
+  },
+  {
+    "WindowsTimeZoneId": "Newfoundland Standard Time",
+    "WindowsAbbr": "NST",
+    "LinuxAbbr": "NST",
+    "LinuxTimeZoneIds": ["America/St_Johns"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": -3.5
+  },
+  {
+    "WindowsTimeZoneId": "Argentina Standard Time",
+    "WindowsAbbr": "ART",
+    "LinuxAbbr": "ART",
+    "LinuxTimeZoneIds": ["America/Argentina/Buenos_Aires", "America/Argentina/Cordoba", "America/Argentina/Salta", "America/Argentina/Jujuy", "America/Argentina/Tucuman", "America/Argentina/Catamarca", "America/Argentina/La_Rioja", "America/Argentina/San_Juan", "America/Argentina/Mendoza", "America/Argentina/San_Luis", "America/Argentina/Rio_Gallegos", "America/Argentina/Ushuaia"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": -3
+  },
+  {
+    "WindowsTimeZoneId": "E. South America Standard Time",
+    "WindowsAbbr": "BRST",
+    "LinuxAbbr": "BRT",
+    "LinuxTimeZoneIds": ["America/Sao_Paulo"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": -3
+  },
+  {
+    "WindowsTimeZoneId": "Greenwich Standard Time",
+    "WindowsAbbr": "GMT",
+    "LinuxAbbr": "GMT",
+    "LinuxTimeZoneIds": ["Atlantic/Reykjavik", "Africa/Abidjan", "Africa/Accra", "Africa/Bamako", "Africa/Banjul", "Africa/Bissau", "Africa/Conakry", "Africa/Dakar", "Africa/Freetown", "Africa/Lome", "Africa/Monrovia", "Africa/Nouakchott", "Africa/Ouagadougou", "Africa/Sao_Tome", "Africa/Timbuktu", "Atlantic/St_Helena"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 0
+  },
+  {
+    "WindowsTimeZoneId": "GMT Standard Time",
+    "WindowsAbbr": "GMT",
+    "LinuxAbbr": "GMT",
+    "LinuxTimeZoneIds": ["Europe/London", "Europe/Guernsey", "Europe/Isle_of_Man", "Europe/Jersey"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 0
+  },
+  {
+    "WindowsTimeZoneId": "Central Europe Standard Time",
+    "WindowsAbbr": "CET",
+    "LinuxAbbr": "CET",
+    "LinuxTimeZoneIds": ["Europe/Budapest"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 1
+  },
+  {
+    "WindowsTimeZoneId": "Romance Standard Time",
+    "WindowsAbbr": "CET",
+    "LinuxAbbr": "CET",
+    "LinuxTimeZoneIds": ["Europe/Paris", "Europe/Brussels", "Europe/Copenhagen", "Europe/Madrid", "Europe/Monaco"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 1
+  },
+  {
+    "WindowsTimeZoneId": "W. Europe Standard Time",
+    "WindowsAbbr": "CET",
+    "LinuxAbbr": "CET",
+    "LinuxTimeZoneIds": ["Europe/Berlin", "Europe/Andorra", "Europe/Vienna", "Europe/Zurich", "Europe/Gibraltar", "Europe/Rome", "Europe/Luxembourg", "Europe/Malta", "Europe/Oslo", "Europe/Stockholm"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 1
+  },
+  {
+    "WindowsTimeZoneId": "Central European Standard Time",
+    "WindowsAbbr": "CET",
+    "LinuxAbbr": "CET",
+    "LinuxTimeZoneIds": ["Europe/Warsaw", "Europe/Prague", "Europe/Belgrade", "Europe/Bratislava", "Europe/Ljubljana", "Europe/Podgorica", "Europe/Sarajevo", "Europe/Skopje", "Europe/Zagreb"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 1
+  },
+  {
+    "WindowsTimeZoneId": "E. Europe Standard Time",
+    "WindowsAbbr": "EET",
+    "LinuxAbbr": "EET",
+    "LinuxTimeZoneIds": ["Europe/Bucharest", "Europe/Chisinau"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 2
+  },
+  {
+    "WindowsTimeZoneId": "Egypt Standard Time",
+    "WindowsAbbr": "EET",
+    "LinuxAbbr": "EET",
+    "LinuxTimeZoneIds": ["Africa/Cairo"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 2
+  },
+  {
+    "WindowsTimeZoneId": "South Africa Standard Time",
+    "WindowsAbbr": "SAST",
+    "LinuxAbbr": "SAST",
+    "LinuxTimeZoneIds": ["Africa/Johannesburg", "Africa/Maseru", "Africa/Mbabane"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 2
+  },
+  {
+    "WindowsTimeZoneId": "Israel Standard Time",
+    "WindowsAbbr": "IST",
+    "LinuxAbbr": "IST",
+    "LinuxTimeZoneIds": ["Asia/Jerusalem"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 2
+  },
+  {
+    "WindowsTimeZoneId": "Arab Standard Time",
+    "WindowsAbbr": "AST",
+    "LinuxAbbr": "AST",
+    "LinuxTimeZoneIds": ["Asia/Riyadh", "Asia/Bahrain", "Asia/Kuwait", "Asia/Qatar"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 3
+  },
+  {
+    "WindowsTimeZoneId": "Russian Standard Time",
+    "WindowsAbbr": "MSK",
+    "LinuxAbbr": "MSK",
+    "LinuxTimeZoneIds": ["Europe/Moscow", "Europe/Simferopol", "Europe/Volgograd"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 3
+  },
+  {
+    "WindowsTimeZoneId": "Iran Standard Time",
+    "WindowsAbbr": "IRST",
+    "LinuxAbbr": "IRST",
+    "LinuxTimeZoneIds": ["Asia/Tehran"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 2
+  },
+  {
+    "WindowsTimeZoneId": "Arabian Standard Time",
+    "WindowsAbbr": "GST",
+    "LinuxAbbr": "GST",
+    "LinuxTimeZoneIds": ["Asia/Dubai", "Asia/Muscat"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 3
+  },
+  {
+    "WindowsTimeZoneId": "Afghanistan Standard Time",
+    "WindowsAbbr": "AFT",
+    "LinuxAbbr": "AFT",
+    "LinuxTimeZoneIds": ["Asia/Kabul"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 3.5
+  },
+  {
+    "WindowsTimeZoneId": "India Standard Time",
+    "WindowsAbbr": "IST",
+    "LinuxAbbr": "IST",
+    "LinuxTimeZoneIds": ["Asia/Kolkata", "Asia/Calcutta"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 5.5
+  },
+  {
+    "WindowsTimeZoneId": "Nepal Standard Time",
+    "WindowsAbbr": "NPT",
+    "LinuxAbbr": "NPT",
+    "LinuxTimeZoneIds": ["Asia/Kathmandu"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 5.75
+  },
+  {
+    "WindowsTimeZoneId": "China Standard Time",
+    "WindowsAbbr": "CST",
+    "LinuxAbbr": "CST",
+    "LinuxTimeZoneIds": ["Asia/Shanghai", "Asia/Chongqing", "Asia/Harbin", "Asia/Urumqi"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 8
+  },
+  {
+    "WindowsTimeZoneId": "Tokyo Standard Time",
+    "WindowsAbbr": "JST",
+    "LinuxAbbr": "JST",
+    "LinuxTimeZoneIds": ["Asia/Tokyo"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 9
+  },
+  {
+    "WindowsTimeZoneId": "Korea Standard Time",
+    "WindowsAbbr": "KST",
+    "LinuxAbbr": "KST",
+    "LinuxTimeZoneIds": ["Asia/Seoul"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 9
+  },
+  {
+    "WindowsTimeZoneId": "AUS Eastern Standard Time",
+    "WindowsAbbr": "AEST",
+    "LinuxAbbr": "AEST",
+    "LinuxTimeZoneIds": ["Australia/Sydney", "Australia/Melbourne", "Australia/Hobart"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 10
+  },
+  {
+    "WindowsTimeZoneId": "AUS Central Standard Time",
+    "WindowsAbbr": "ACST",
+    "LinuxAbbr": "ACST",
+    "LinuxTimeZoneIds": ["Australia/Adelaide", "Australia/Darwin"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 9.5
+  },
+  {
+    "WindowsTimeZoneId": "AUS Western Standard Time",
+    "WindowsAbbr": "AWST",
+    "LinuxAbbr": "AWST",
+    "LinuxTimeZoneIds": ["Australia/Perth"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 8
+  },
+  {
+    "WindowsTimeZoneId": "New Zealand Standard Time",
+    "WindowsAbbr": "NZST",
+    "LinuxAbbr": "NZST",
+    "LinuxTimeZoneIds": ["Pacific/Auckland", "Pacific/Chatham"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 12
+  },
+  {
+    "WindowsTimeZoneId": "Fiji Standard Time",
+    "WindowsAbbr": "FJT",
+    "LinuxAbbr": "FJT",
+    "LinuxTimeZoneIds": ["Pacific/Fiji"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 12
+  },
+  {
+    "WindowsTimeZoneId": "Tonga Standard Time",
+    "WindowsAbbr": "TOT",
+    "LinuxAbbr": "TOT",
+    "LinuxTimeZoneIds": ["Pacific/Tongatapu"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 13
+  },
+  {
+    "WindowsTimeZoneId": "Samoa Standard Time",
+    "WindowsAbbr": "WSST",
+    "LinuxAbbr": "WSST",
+    "LinuxTimeZoneIds": ["Pacific/Apia"],
+    "UsesDaylightSavingTime": true,
+    "DaylightAdjustmentMinutes": 60,
+    "GMTOffsetHours": 13
+  },
+  {
+    "WindowsTimeZoneId": "UTC",
+    "WindowsAbbr": "UTC",
+    "LinuxAbbr": "UTC",
+    "LinuxTimeZoneIds": ["Etc/UTC", "Etc/GMT"],
+    "UsesDaylightSavingTime": false,
+    "DaylightAdjustmentMinutes": 0,
+    "GMTOffsetHours": 0
+  }
+]
