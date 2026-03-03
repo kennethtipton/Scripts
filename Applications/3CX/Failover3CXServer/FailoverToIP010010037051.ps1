@@ -33,16 +33,17 @@
    Full text available at: https://opensource.org/licenses/MIT
 #>
 
-# Import Write-AdvancedLog function
-. "$PSScriptRoot\..\..\..\..\Functions\Write-AdvancedLog.ps1"
-
 [CmdletBinding()]
 param(
     [string]$Zone = "3cx.us",
-    [string]$RecordName = "siptest",
+    [string]$RecordName = "srv010010037051",
     [string]$NewAlias = "srv010010037051.generationsgaither.com",
     [string]$DnsServer = "srv010010037041.generationsgaither.com"
 )
+
+# Import Write-AdvancedLog function
+
+. ..\..\..\Functions\Write-AdvancedLog.ps1
 
 try {
     Write-Verbose "Connecting to DNS server $DnsServer for zone $Zone and record $RecordName."
