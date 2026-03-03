@@ -29,7 +29,7 @@
     Author: Kenneth Tipton
     Company: TNC
     Date: 2026-03-03
-    Time: 22:45:00
+    Time: 23:27:00
     Time Zone: Central Standard Time
     Function Or Application: Application
     Version: 3.0.0
@@ -41,11 +41,11 @@
     Licensed under the MIT License.
     Full text available at: https://opensource.org/licenses/MIT
 
-    Overide Variables
-    Overide Filename:
-    Overide Log Filename:
-    Overide Text Log File Path:
-    Overide Log Type:
+    Override Variables
+    Override Filename:
+    Override Log Filename:
+    Override Text Log File Path:
+    Override Log Type:
 
     Dependencies:
         Pode module     (Install-Module Pode     -Scope CurrentUser)
@@ -155,8 +155,46 @@ try {
         else {
             # ── One tab per log file ───────────────────────────────────────────
             $tabs = @($logFiles) | ForEach-Object {
-                $fn = $_.Name
-                $bn = $_.BaseName
+                $fn          = $_.Name
+                $bn          = $_.BaseName
+                # Embed the full path as a literal so no $using: is needed inside the
+                # route-handler scriptblock (nested $using: only resolves the caller
+                # scope of Start-PodeServer, not variables defined inside it).
+                $escapedPath = (Join-Path -Path $logPath -ChildPath $fn) -replace "'", "''"
+
+                $tableScript = [scriptblock]::Create(@"
+`$fullPath = '$escapedPath'
+if (-not (Test-Path -Path `$fullPath -PathType Leaf)) { return }
+
+# Read up to the last 5000 lines for performance. For very large
+# log files consider reducing this limit or implementing incremental reads.
+`$lines = Get-Content -Path `$fullPath -Tail 5000
+foreach (`$line in `$lines) {
+    `$entry = ConvertFrom-LogLine -Line `$line
+    if (`$null -eq `$entry) { continue }
+
+    [PSCustomObject]@{
+        Timestamp = `$entry.Timestamp
+        Type      = `$entry.Type
+        Script    = `$entry.Script
+        Message   = `$entry.Message
+        # Raw is included (not shown as column) so WebEvent.Data has it
+        Raw       = `$entry.Raw
+        # Detail button - WebEvent.Data contains all row fields
+        ' '       = New-PodeWebButton -Name 'Details' -Icon 'Eye' -Colour Light -ScriptBlock {
+            `$d = `$WebEvent.Data
+            @(
+                [PSCustomObject]@{ Field = 'Timestamp'; Value = `$d['Timestamp'] }
+                [PSCustomObject]@{ Field = 'Type';      Value = `$d['Type']      }
+                [PSCustomObject]@{ Field = 'Script';    Value = `$d['Script']    }
+                [PSCustomObject]@{ Field = 'Message';   Value = `$d['Message']   }
+                [PSCustomObject]@{ Field = 'Raw';       Value = `$d['Raw']       }
+            ) | Update-PodeWebTable -Name 'DetailTable'
+            Show-PodeWebModal -Name 'LogEntryDetail'
+        }
+    }
+}
+"@)
 
                 New-PodeWebTab -Name $bn -Content @(
                     New-PodeWebTable -Name "LogTable_$bn" -Sort -SimpleFilter -Compact `
@@ -167,39 +205,7 @@ try {
                             Initialize-PodeWebTableColumn -Key 'Message'   -Width 8
                             Initialize-PodeWebTableColumn -Key ' '         -Width 1
                         ) `
-                        -ScriptBlock {
-                            $fullPath = Join-Path -Path $using:logPath -ChildPath $using:fn
-                            if (-not (Test-Path -Path $fullPath -PathType Leaf)) { return }
-
-                            # Read up to the last 5000 lines for performance. For very large
-                            # log files consider reducing this limit or implementing incremental reads.
-                            $lines = Get-Content -Path $fullPath -Tail 5000
-                            foreach ($line in $lines) {
-                                $entry = ConvertFrom-LogLine -Line $line
-                                if ($null -eq $entry) { continue }
-
-                                [PSCustomObject]@{
-                                    Timestamp = $entry.Timestamp
-                                    Type      = $entry.Type
-                                    Script    = $entry.Script
-                                    Message   = $entry.Message
-                                    # Raw is included (not shown as column) so $WebEvent.Data has it
-                                    Raw       = $entry.Raw
-                                    # Detail button — $WebEvent.Data contains all row fields
-                                    ' '       = New-PodeWebButton -Name 'Details' -Icon 'Eye' -Colour Light -ScriptBlock {
-                                        $d = $WebEvent.Data
-                                        @(
-                                            [PSCustomObject]@{ Field = 'Timestamp'; Value = $d['Timestamp'] }
-                                            [PSCustomObject]@{ Field = 'Type';      Value = $d['Type']      }
-                                            [PSCustomObject]@{ Field = 'Script';    Value = $d['Script']    }
-                                            [PSCustomObject]@{ Field = 'Message';   Value = $d['Message']   }
-                                            [PSCustomObject]@{ Field = 'Raw';       Value = $d['Raw']       }
-                                        ) | Update-PodeWebTable -Name 'DetailTable'
-                                        Show-PodeWebModal -Name 'LogEntryDetail'
-                                    }
-                                }
-                            }
-                        }
+                        -ScriptBlock $tableScript
                 )
             }
 
