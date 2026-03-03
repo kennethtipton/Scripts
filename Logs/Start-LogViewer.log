@@ -1,9 +1,15 @@
 Timestamp | Script | Type | Message
+2026-03-03 16:33:51 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A Using variable cannot be retrieved. A Using variable can be used only with Invoke-Command, Start-Job, or InlineScript in the script workflow. When it is used with Invoke-Command, the Using variable is valid only if the script block is invoked on a remote computer.
+2026-03-03 16:33:50 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer server on port 8080. LogPath: C:\Scripts\Logs
+2026-03-03 16:33:50 | Script: Start-LogViewer.ps1 | INFO: Pode module imported successfully.
 2026-02-24 13:12:57 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
 2026-02-24 13:11:58 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
 2026-02-24 13:09:03 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
 2026-02-24 13:01:41 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
 2026-02-24 12:59:33 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+
+
+
 
 
 

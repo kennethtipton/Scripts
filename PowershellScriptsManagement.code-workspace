@@ -2,7 +2,8 @@
     "folders": [
         {"name": "PowershellScriptsManagement", "path": "."},
         {"name": "Failover Script for 3CX Servers", "path": ".\\Applications\\3CX\\Failover3CXServer"},
-        {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"}
+        {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"},
+        {"name": "Powershell Script Pode.WEB Log Viewer", "path": ".\\Applications\\OpenSource\\PowershellSCriptManagmentLogViewer"}
     ],
     "settings": {
         "chat.tools.terminal.autoApprove": {
