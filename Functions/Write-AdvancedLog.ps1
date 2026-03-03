@@ -1,32 +1,55 @@
 <#
 .SYNOPSIS
-   Advanced logging function for PowerShell scripts.
+    Advanced logging function for PowerShell scripts.
 .DESCRIPTION
-   Writes log entries to a text log file (newest entry at the top) and/or to the Windows Event Log. If WriteEventLog is specified, both logs are written.
-   Supports custom event log name/source, works with PowerShell 5 and 7+.
-   Verbose output available via -Verbose switch.
+    Writes log entries to a text log file (newest entry at the top) and/or to the Windows
+    Event Log. If WriteEventLog is specified, both logs are written. Supports custom event
+    log name/source, works with PowerShell 5 and 7+. Verbose output available via -Verbose switch.
+.PARAMETER Message
+    The log message to write. Mandatory.
+.PARAMETER ScriptName
+    The name of the script generating the log entry. Defaults to the calling script name.
+.PARAMETER LogType
+    The log level: 'INFO', 'WARNING', or 'ERROR'. Defaults to 'INFO'.
+.PARAMETER LogFile
+    Optional. Full path to the log file. If not specified, defaults to Logs folder under root.
+.PARAMETER WriteEventLog
+    Switch to also write the log entry to the Windows Event Log.
+.PARAMETER EventLogName
+    The name of the Windows Event Log. Defaults to 'Managed Powershell Scripts'.
+.PARAMETER EventSource
+    The event source name for the Windows Event Log. Defaults to 'ManagedPSScripts'.
 .EXAMPLE
-   Write-AdvancedLog -Message "Install completed" -ScriptName "MyApp.ps1" -LogType "INFO"
+    PS> Write-AdvancedLog -Message "Install completed" -ScriptName "MyApp.ps1" -LogType "INFO"
 .EXAMPLE
-   Write-AdvancedLog -Message "Critical error" -ScriptName "MyApp.ps1" -LogType "ERROR" -WriteEventLog -EventLogName "CustomLog" -EventSource "CustomSource"
+    PS> Write-AdvancedLog -Message "Critical error" -ScriptName "MyApp.ps1" -LogType "ERROR" -WriteEventLog -EventLogName "CustomLog" -EventSource "CustomSource"
 .INPUTS
-   [string] Message
+    [string] Message, [string] ScriptName, [string] LogType, [string] LogFile, [switch] WriteEventLog, [string] EventLogName, [string] EventSource
 .OUTPUTS
-   None
+    None
 .NOTES
-   Author: Kenneth Tipton
-   Company: TNC, Inc
-   Date: 2026-01-15
-   Time: 21:25:30 CST
-   Time Zone: CST
-   Function Or Application: Function
-   Version: 1.0.0.0
-   Website: (https://www.tnandc.com)
-   Is AI Used: True
-   AI Used: GitHub Copilot
-   Copyright (c) 2026
-   Licensed under the MIT License.
-   Full text available at: https://opensource.org/licenses/MIT
+    Author: Kenneth Tipton
+    Company: TNC
+    Date: 2026-01-15
+    Time: 21:25:30
+    Time Zone: Central Standard Time
+    Function Or Application: Function
+    Version: 1.0.0
+    Website: (https://www.tnandc.com)
+    Is AI Used: True
+    AI Used: GitHub Copilot
+
+    Copyright (c) 2026
+    Licensed under the MIT License.
+    Full text available at: https://opensource.org/licenses/MIT
+
+    Overide Variables
+    Overide Filename:
+    Overide Log Filename:
+    Overide Text Log File Path:
+    Overide Log Type:
+.LINK
+    https://www.tnandc.com
 #>
 
 function Write-AdvancedLog {
@@ -153,7 +176,7 @@ function Write-AdvancedLog {
 }
 
 # Example footer for function testing:
-# Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "INFO" -Verbose
-Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -LogType "INFO"
-# Write-AdvancedLog -Message "This is a test ERROR log entry (event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "ERROR" -WriteEventLog -Verbose
-# Write-AdvancedLog -Message "This is a test WARNING log entry (custom event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "WARNING" -WriteEventLog -EventLogName "CustomPSScriptLog" -EventSource "CustomPSSource" -Verbose
+# PS> Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "INFO" -Verbose
+# PS> Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -LogType "INFO"
+# PS> Write-AdvancedLog -Message "This is a test ERROR log entry (event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "ERROR" -WriteEventLog -Verbose
+# PS> Write-AdvancedLog -Message "This is a test WARNING log entry (custom event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "WARNING" -WriteEventLog -EventLogName "CustomPSScriptLog" -EventSource "CustomPSSource" -Verbose
