@@ -4,6 +4,10 @@
         {"name": "Failover Script for 3CX Servers", "path": ".\\Applications\\3CX\\Failover3CXServer"},
         {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"}
     ],
-    "settings": {},
+    "settings": {
+        "chat.tools.terminal.autoApprove": {
+            "Test-Path": true
+        }
+    },
     "name": "PowershellScriptsManagement"
 }
