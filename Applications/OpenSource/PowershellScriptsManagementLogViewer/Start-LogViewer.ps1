@@ -168,14 +168,54 @@ try {
                     $currentFullPath = $_.FullName
 
                     New-PodeWebTab -Name $currentBaseName -Layouts @(
-                        New-PodeWebTable -Name "LogTable_$currentBaseName" -Sort -SimpleFilter -Compact `
+                        New-PodeWebTable -Name "LogTable_$currentBaseName" -Sort -SimpleFilter -Compact -Click -DataColumn 'Raw' `
                             -ArgumentList $currentFullPath `
                             -Columns @(
                                 Initialize-PodeWebTableColumn -Key 'Timestamp' -Width 3
                                 Initialize-PodeWebTableColumn -Key 'Type'      -Width 1
                                 Initialize-PodeWebTableColumn -Key 'Script'    -Width 2
                                 Initialize-PodeWebTableColumn -Key 'Message'   -Width 8
+                                Initialize-PodeWebTableColumn -Key 'Raw'       -Hide
                             ) `
+                            -ClickScriptBlock ({
+                                try {
+                                    $rawValue = [string]$WebEvent.Data['value']
+                                    if ([string]::IsNullOrWhiteSpace($rawValue)) {
+                                        return
+                                    }
+
+                                    $rawValue = $rawValue.Trim()
+                                    $timestamp = ''
+                                    $script    = ''
+                                    $type      = 'UNPARSED'
+                                    $message   = $rawValue
+
+                                    if ($rawValue -match '^(?<Timestamp>[^|]+)\s\|\sScript:\s*(?<Script>[^|]+)\s\|\s(?<Type>[^:]+):\s*(?<Message>.*)$') {
+                                        $timestamp = $Matches['Timestamp'].Trim()
+                                        $script    = $Matches['Script'].Trim()
+                                        $type      = $Matches['Type'].Trim().ToUpper()
+                                        $message   = $Matches['Message'].Trim()
+                                    }
+
+                                    $detailRows = @(
+                                        [PSCustomObject]@{ Field = 'Timestamp'; Value = $timestamp }
+                                        [PSCustomObject]@{ Field = 'Type';      Value = $type }
+                                        [PSCustomObject]@{ Field = 'Script';    Value = $script }
+                                        [PSCustomObject]@{ Field = 'Message';   Value = $message }
+                                        [PSCustomObject]@{ Field = 'Raw';       Value = $rawValue }
+                                    )
+
+                                    return @(
+                                        ($detailRows | Update-PodeWebTable -Name 'DetailTable')
+                                        (Show-PodeWebModal -Name 'LogEntryDetail')
+                                    )
+                                }
+                                catch {
+                                    if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
+                                        Write-AdvancedLog -Message "Details click handler error: $_" -ScriptName $MyInvocation.MyCommand.Name -LogType 'ERROR'
+                                    }
+                                }
+                            }.GetNewClosure()) `
                             -ScriptBlock ({
                                 param($LogFilePath)
                                 try {
@@ -210,6 +250,7 @@ try {
                                             Type      = $type
                                             Script    = $script
                                             Message   = $message
+                                            Raw       = $trimmed
                                         }
                                     }
                                 }
