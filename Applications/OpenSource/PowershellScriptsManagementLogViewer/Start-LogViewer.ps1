@@ -84,6 +84,10 @@ catch {
 
 Write-AdvancedLog -Message "Starting Log Viewer (Pode.Web) on port $Port. LogPath: $LogPath" -ScriptName $MyInvocation.MyCommand.Name -LogType 'INFO'
 
+# Capture parameter values for use in server scriptblocks.
+$ServerPort = $Port
+$ServerLogPath = $LogPath
+
 # Helper: parse "TYPE: message" field from a pipe-delimited log line.
 # Returns a hashtable with keys Type and Message.
 # Defined outside Start-PodeServer so it can be dot-sourced into route scriptblocks.
@@ -123,14 +127,14 @@ function ConvertFrom-LogLine {
 
 try {
     Start-PodeServer {
-        Add-PodeEndpoint -Address * -Port $using:Port -Protocol Http
+        Add-PodeEndpoint -Address * -Port $ServerPort -Protocol Http
 
         Use-PodeWebTemplates -Title 'PowerShell Script Log Viewer' -Theme Dark
 
         # ── Detail modal ───────────────────────────────────────────────────────
         # DetailTable is initially empty; populated via Update-PodeWebTable when
         # the "Details" button on a log row is clicked.
-        New-PodeWebModal -Name 'LogEntryDetail' -Title 'Log Entry Detail' -Content @(
+        New-PodeWebModal -Name 'LogEntryDetail' -DisplayName 'Log Entry Detail' -Content @(
             New-PodeWebTable -Name 'DetailTable' -Compact -ScriptBlock {
                 # Intentionally empty — content is set dynamically by the row button.
             } -Columns @(
@@ -142,72 +146,86 @@ try {
         } -SubmitText 'Close'
 
         # ── Discover log files at startup ──────────────────────────────────────
-        $logPath  = $using:LogPath
+        $logPath  = $ServerLogPath
         $logFiles = Get-ChildItem -Path $logPath -Filter '*.log' -ErrorAction SilentlyContinue |
                     Sort-Object Name
 
         if (-not $logFiles -or @($logFiles).Count -eq 0) {
             # No log files found — show an informational page
-            Add-PodeWebPage -Name 'Log Viewer' -Title 'Log Viewer' -Homepage -Icon 'file-text' -Content @(
-                New-PodeWebAlert -Type Warning -Value "No .log files found in: $logPath"
-            )
+            Add-PodeWebPage -Name 'Log Viewer' -Title 'Log Viewer' -Icon 'file-text' -ArgumentList $logPath -ScriptBlock {
+                param($PageLogPath)
+                New-PodeWebAlert -Type Warning -Value "No .log files found in: $PageLogPath"
+            }
         }
         else {
-            # ── One tab per log file ───────────────────────────────────────────
-            $tabs = @($logFiles) | ForEach-Object {
-                $fn = $_.Name
-                $bn = $_.BaseName
+            Add-PodeWebPage -Name 'Log Viewer' -Title 'Log Viewer' -Icon 'file-text' -ArgumentList $logPath -ScriptBlock {
+                param($PageLogPath)
+                $pageLogFiles = Get-ChildItem -Path $PageLogPath -Filter '*.log' -ErrorAction SilentlyContinue | Sort-Object Name
 
-                New-PodeWebTab -Name $bn -Content @(
-                    New-PodeWebTable -Name "LogTable_$bn" -Sort -SimpleFilter -Compact `
-                        -Columns @(
-                            Initialize-PodeWebTableColumn -Key 'Timestamp' -Width 3
-                            Initialize-PodeWebTableColumn -Key 'Type'      -Width 1
-                            Initialize-PodeWebTableColumn -Key 'Script'    -Width 2
-                            Initialize-PodeWebTableColumn -Key 'Message'   -Width 8
-                            Initialize-PodeWebTableColumn -Key ' '         -Width 1
-                        ) `
-                        -ScriptBlock {
-                            $fullPath = Join-Path -Path $using:logPath -ChildPath $using:fn
-                            if (-not (Test-Path -Path $fullPath -PathType Leaf)) { return }
+                $tabs = @($pageLogFiles) | ForEach-Object {
+                    $currentFileName = $_.Name
+                    $currentBaseName = $_.BaseName
+                    $currentFullPath = $_.FullName
 
-                            # Read up to the last 5000 lines for performance. For very large
-                            # log files consider reducing this limit or implementing incremental reads.
-                            $lines = Get-Content -Path $fullPath -Tail 5000
-                            foreach ($line in $lines) {
-                                $entry = ConvertFrom-LogLine -Line $line
-                                if ($null -eq $entry) { continue }
+                    New-PodeWebTab -Name $currentBaseName -Layouts @(
+                        New-PodeWebTable -Name "LogTable_$currentBaseName" -Sort -SimpleFilter -Compact `
+                            -ArgumentList $currentFullPath `
+                            -Columns @(
+                                Initialize-PodeWebTableColumn -Key 'Timestamp' -Width 3
+                                Initialize-PodeWebTableColumn -Key 'Type'      -Width 1
+                                Initialize-PodeWebTableColumn -Key 'Script'    -Width 2
+                                Initialize-PodeWebTableColumn -Key 'Message'   -Width 8
+                            ) `
+                            -ScriptBlock ({
+                                param($LogFilePath)
+                                try {
+                                    if ([string]::IsNullOrWhiteSpace($LogFilePath)) { return }
+                                    if (-not (Test-Path -Path $LogFilePath -PathType Leaf)) { return }
 
-                                [PSCustomObject]@{
-                                    Timestamp = $entry.Timestamp
-                                    Type      = $entry.Type
-                                    Script    = $entry.Script
-                                    Message   = $entry.Message
-                                    # Raw is included (not shown as column) so $WebEvent.Data has it
-                                    Raw       = $entry.Raw
-                                    # Detail button — $WebEvent.Data contains all row fields
-                                    ' '       = New-PodeWebButton -Name 'Details' -Icon 'Eye' -Colour Light -ScriptBlock {
-                                        $d = $WebEvent.Data
-                                        @(
-                                            [PSCustomObject]@{ Field = 'Timestamp'; Value = $d['Timestamp'] }
-                                            [PSCustomObject]@{ Field = 'Type';      Value = $d['Type']      }
-                                            [PSCustomObject]@{ Field = 'Script';    Value = $d['Script']    }
-                                            [PSCustomObject]@{ Field = 'Message';   Value = $d['Message']   }
-                                            [PSCustomObject]@{ Field = 'Raw';       Value = $d['Raw']       }
-                                        ) | Update-PodeWebTable -Name 'DetailTable'
-                                        Show-PodeWebModal -Name 'LogEntryDetail'
+                                    # Read up to the last 5000 lines for performance. For very large
+                                    # log files consider reducing this limit or implementing incremental reads.
+                                    $lines = Get-Content -Path $LogFilePath -Tail 5000 -ErrorAction Stop
+                                    foreach ($line in $lines) {
+                                        $trimmed = [string]$line
+                                        if ([string]::IsNullOrWhiteSpace($trimmed)) { continue }
+
+                                        $trimmed = $trimmed.Trim()
+                                        if ($trimmed -eq 'Timestamp | Script | Type | Message') { continue }
+
+                                        if ($trimmed -match '^(?<Timestamp>[^|]+)\s\|\sScript:\s*(?<Script>[^|]+)\s\|\s(?<Type>[^:]+):\s*(?<Message>.*)$') {
+                                            $timestamp = $Matches['Timestamp'].Trim()
+                                            $script    = $Matches['Script'].Trim()
+                                            $type      = $Matches['Type'].Trim().ToUpper()
+                                            $message   = $Matches['Message'].Trim()
+                                        }
+                                        else {
+                                            $timestamp = ''
+                                            $script    = ''
+                                            $type      = 'UNPARSED'
+                                            $message   = $trimmed
+                                        }
+
+                                        [PSCustomObject]@{
+                                            Timestamp = $timestamp
+                                            Type      = $type
+                                            Script    = $script
+                                            Message   = $message
+                                        }
                                     }
                                 }
-                            }
-                        }
-                )
-            }
+                                catch {
+                                    if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
+                                        Write-AdvancedLog -Message "Table rendering error for '$LogFilePath': $_" -ScriptName $MyInvocation.MyCommand.Name -LogType 'ERROR'
+                                    }
+                                }
+                            }.GetNewClosure())
+                    )
+                }
 
-            Add-PodeWebPage -Name 'Log Viewer' -Title 'Log Viewer' -Homepage -Icon 'file-text' -Content @(
                 New-PodeWebCard -Name 'LogViewerCard' -Content @(
                     New-PodeWebTabs -Tabs $tabs
                 )
-            )
+            }
         }
     }
 }

@@ -7,7 +7,8 @@
     ],
     "settings": {
         "chat.tools.terminal.autoApprove": {
-            "Test-Path": true
+            "Test-Path": true,
+            ".\\Start-LogViewer.ps1": true
         }
     },
     "name": "PowershellScriptsManagement"
