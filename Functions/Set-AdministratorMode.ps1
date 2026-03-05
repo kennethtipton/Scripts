@@ -41,12 +41,36 @@ function Set-AdministratorMode {
     [CmdletBinding()]
     param()
 
+    $writeAdvancedLogPath = Join-Path -Path $PSScriptRoot -ChildPath 'Write-AdvancedLog.ps1'
+    if (Test-Path -Path $writeAdvancedLogPath) {
+        . $writeAdvancedLogPath
+    }
+
+    function Write-AdminModeLog {
+        param(
+            [Parameter(Mandatory = $true)]
+            [string]$Message,
+            [ValidateSet('INFO', 'WARNING', 'ERROR')]
+            [string]$LogType = 'INFO'
+        )
+
+        if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
+            try {
+                Write-AdvancedLog -Message $Message -ScriptName 'Set-AdministratorMode.ps1' -LogType $LogType
+            }
+            catch {
+                Write-Verbose "Write-AdvancedLog failed: $($_.Exception.Message)"
+            }
+        }
+        Write-Verbose $Message
+    }
+
     try {
         # Check if the current session is running as Administrator
         $currentIdentity = [Security.Principal.WindowsIdentity]::GetCurrent()
         $principal = New-Object Security.Principal.WindowsPrincipal($currentIdentity)
         if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-            Write-Verbose "Script is not running as Administrator. Attempting to relaunch with elevated privileges..."
+            Write-AdminModeLog -Message 'Session is not elevated. Attempting relaunch with administrator privileges.' -LogType 'WARNING'
             # Relaunch the script as Administrator
             $psi = New-Object System.Diagnostics.ProcessStartInfo
             $psi.FileName = 'powershell.exe'
@@ -54,18 +78,21 @@ function Set-AdministratorMode {
             $psi.Verb = 'runas'
             try {
                 [System.Diagnostics.Process]::Start($psi) | Out-Null
+                Write-AdminModeLog -Message 'Relaunch request sent successfully.' -LogType 'INFO'
             }
             catch {
+                Write-AdminModeLog -Message "Failed to relaunch with administrator privileges: $($_.Exception.Message)" -LogType 'ERROR'
                 Write-Error "Failed to relaunch script as Administrator. $_"
                 throw
             }
             exit 0
         }
         else {
-            Write-Verbose "Script is already running as Administrator."
+            Write-AdminModeLog -Message 'Session is already running with administrator privileges.' -LogType 'INFO'
         }
     }
     catch {
+        Write-AdminModeLog -Message "Set-AdministratorMode failed: $($_.Exception.Message)" -LogType 'ERROR'
         Write-Error "Set-AdministratorMode failed: $_"
         throw
     }

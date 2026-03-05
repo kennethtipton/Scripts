@@ -1,0 +1,1120 @@
+<?xml version="1.0"?>
+<doc xmlns:tcx="http://www.3cx.com">
+  <header>
+    <type>phone-template</type>
+    <version>150001</version>
+    <time>2019-11-06 15:00:00</time>
+    <name>Cisco SIP Phone</name>
+    <url>https://www.3cx.com/sip-phones/cisco-spa/</url>
+    <templatetype>preferred</templatetype>
+    <models>
+      <model ua="SPA302" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-302</model>
+      <model ua="SPA303" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-303</model>
+      <model ua="SPA501G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-501G</model>
+      <model ua="SPA502G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-502G</model>
+      <model ua="SPA504G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-504G</model>
+      <model ua="SPA508G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-508G</model>
+      <model ua="SPA509G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-509G</model>
+      <model ua="SPA512G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-512G</model>
+      <model ua="SPA514G" defaultlogo="cisco50xg.bmp" logowidth="128" logoheight="64" logobitdepth="1">Cisco SPA-514G</model>
+    </models>
+    <description>Cisco SIP Phone</description>
+    <parsers>
+      <parser>BLF</parser>
+    </parsers>
+    <rebootParams>
+      <event-name>reboot</event-name>
+    </rebootParams>
+    <resyncParams>
+      <event-name>check-sync</event-name>
+    </resyncParams>
+    <firmwareParams>
+      <event-name>check-sync</event-name>
+    </firmwareParams>
+    <interfaceLink>http://%%PHONE_IP%%</interfaceLink>
+    <AllowedNetworkConfig>
+      <option value="LOCALLAN">1</option>
+      <option value="REMOTESTUN">0</option>
+      <option value="SBC">0</option>
+    </AllowedNetworkConfig>
+    <AllowWebPasswordChange>1</AllowWebPasswordChange>
+    <AllowSSLProvisioning>0</AllowSSLProvisioning>
+    <dst variableName="dstEnableDisable" enable="Yes" disable="No">
+    </dst>
+    <languages>
+      <!--The first entry is the selected entry in management console-->
+      <option value="English-US">
+        <item name="langwebUI">English-US</item>
+      </option>
+      <option value="Espanol">
+        <item name="langwebUI">Espanol</item>
+      </option>
+      <option value="Deutsch">
+        <item name="langwebUI">Deutsch</item>
+      </option>
+      <option value="Italiano">
+        <item name="langwebUI">Italiano</item>
+      </option>
+      <option value="Francais">
+        <item name="langwebUI">Francais</item>
+      </option>
+      <option value="Portuguese">
+        <item name="langwebUI">Portuguese</item>
+      </option>
+      <option value="Nederlands">
+        <item name="langwebUI">Dutch</item>
+      </option>
+      <option value="Danish">
+        <item name="langwebUI">Danish</item>
+      </option>
+      <option value="Swedish">
+        <item name="langwebUI">Swedish</item>
+      </option>
+      <option value="Norwegian">
+        <item name="langwebUI">Norwegian</item>
+      </option>
+      <option value="Russian">
+        <item name="langwebUI">Russian</item>
+      </option>
+      <option value="Turkish">
+        <item name="langwebUI">Turkish</item>
+      </option>
+    </languages>
+    <timezoneParams param="time_timezone_linksys">
+      <!--The first entry is the selected entry in management console-->
+      <option value="GMT-05:00" zone="-5:00" id="0" displaytext="GMT-5:00 (US Eastern Time, New York)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-12:00" id="118" zone="-12:00" displaytext="GMT-12:00 (International Date Line West)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT-11:00" id="117" zone="-11:00" displaytext="GMT-11:00 (Midway Island, Samoa)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT-10:00" zone="-10:00" id="1" displaytext="GMT-10:00 (US Hawaiian Time)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT-09:00" id="3" zone="-9:00" displaytext="GMT-9:00 (US Alaska Time)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-08:00" zone="-8:00" id="6" displaytext="GMT-8:00 (US Pacific Time, Los Angeles)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-07:00" zone="-7:00" id="9" displaytext="GMT-7:00 (US Mountain Time, Denver)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-06:00" id="14" zone="-6:00" displaytext="GMT-6:00 (US Central Time, Chicago)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">9</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">2</item>
+      </option>
+      <option value="GMT-04:00" id="18" zone="-4:00" displaytext="GMT-4:00 (Venezuela)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT-04:00" id="16" zone="-4:00" displaytext="GMT-4:00 (Halifax,Saint John)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-03:30" id="25" zone="-3:30" displaytext="GMT-3:30 (Newfoundland)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">11</item>
+        <item name="dstendday">1</item>
+      </option>
+      <option value="GMT-03:00" id="26" zone="-3:00" displaytext="GMT-3:00 (Greenland)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">28</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">24</item>
+      </option>
+      <option value="GMT-02:00" zone="-2:00" id="123" displaytext="GMT-2:00 (Mid-Atlantic)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT-01:00" id="31" zone="-1:00" displaytext="GMT-1:00 (Azores, Cape Verdi Is.)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">29</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">25</item>
+      </option>
+      <option value="GMT" id="36" zone="0:00" displaytext="GMT(London, Dublin, Edinburgh, Lisbon, Casablanca)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">29</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">25</item>
+      </option>
+      <option value="GMT" id="126" zone="0:00" displaytext="GMT Iceland (Reykjavik, Monrovia)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">29</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">25</item>
+      </option>
+      <option value="GMT+01:00" id="46" zone="1:00" displaytext="GMT+1:00 (Paris,Amsterdam, Berlin, Rome, Vienna, Madrid, Warsaw, Brussels)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">29</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">25</item>
+      </option>
+      <option value="GMT+02:00" id="71" zone="2:00" displaytext="GMT+2:00 (Israel, Athens, Helsinki, Buchrest)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">29</item>
+        <item name="dstendmonth">10</item>
+        <item name="dstendday">25</item>
+      </option>
+      <option value="GMT+02:00" id="69" zone="2:00" displaytext="GMT+2:00 (Cairo)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+03:00" id="79" zone="3:00" displaytext="GMT+3:00 (Istanbul)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+03:00" id="83" zone="3:00" displaytext="GMT+3:00 (Moscow, Kuwait, Baghdad, Nairobi)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+03:30" id="84" zone="3:30" displaytext="GMT+3:30 (Tehran)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">3</item>
+        <item name="dststartday">21</item>
+        <item name="dstendmonth">9</item>
+        <item name="dstendday">21</item>
+      </option>
+      <option value="GMT+04:00" id="90" zone="4:00" displaytext="GMT+4:00 (Abu Dhabi, Baku)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+04:30" id="91" zone="4:30" displaytext="GMT+4:30 (Kabul)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+05:00" id="94" zone="5:00" displaytext="GMT+5:00 (Islamabad, Ekaterinburg, Karachi, Tashkent)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+05:30" id="96" zone="5:30" displaytext="GMT+5:30 (Chennai, New Delhi, Mumbai)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+05:45" id="97" zone="5:45" displaytext="GMT+5:45 (Kathmandu)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+06:00" id="98" zone="6:00" displaytext="GMT+6:00 (Almaty, Astana. Dhaka, Novosibirsk)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+06:30" id="100" zone="6:30" displaytext="GMT+6:30 (Rangoon)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+07:00" id="102" zone="7:00" displaytext="GMT+7:00 (Bankok, Jakarta, Hanoi, Krasnoyarsk)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+08:00" id="104" zone="8:00" displaytext="GMT+8:00 (Beijing, Singapore, Taipei, Kuala Lumpur, Irkutsk, Perth)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+09:00" id="107" zone="9:00" displaytext="GMT+9:00 (Japan, Korea, Yakutsk)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+09:30" id="108" zone="9:30" displaytext="GMT+9:30 (Adelaide)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">10</item>
+        <item name="dststartday">4</item>
+        <item name="dstendmonth">4</item>
+        <item name="dstendday">5</item>
+      </option>
+      <option value="GMT+09:30" id="109" zone="9:30" displaytext="GMT+9:30 (Darwin)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">10</item>
+        <item name="dststartday">1</item>
+        <item name="dstendmonth">4</item>
+        <item name="dstendday">2</item>
+      </option>
+      <option value="GMT+10:00" id="110" zone="10:00" displaytext="GMT+10:00 (Sydney, Melbourne, Canberra, Hobart)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">10</item>
+        <item name="dststartday">6</item>
+        <item name="dstendmonth">4</item>
+        <item name="dstendday">7</item>
+      </option>
+      <option value="GMT+10:00" id="111" zone="10:00" displaytext="GMT+10:00 (Brisbane, Guam)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">10</item>
+        <item name="dststartday">2</item>
+        <item name="dstendmonth">4</item>
+        <item name="dstendday">3</item>
+      </option>
+      <option value="GMT+11:00" id="115" zone="11:00" displaytext="GMT+11:00 (Magadan, Solomon Is., New Caledonia)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">
+        </item>
+        <item name="dststartmonth">
+        </item>
+        <item name="dststartday">
+        </item>
+        <item name="dstendmonth">
+        </item>
+        <item name="dstendday">
+        </item>
+      </option>
+      <option value="GMT+12:00" id="116" zone="12:00" displaytext="GMT+12:00 (Auckland, Wellington)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">9</item>
+        <item name="dststartday">27</item>
+        <item name="dstendmonth">4</item>
+        <item name="dstendday">5</item>
+      </option>
+      <option value="GMT+12:00" id="117" zone="12:00" displaytext="GMT+12:00 (Fiji)">
+        <item name="dstenabled">1</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">11</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">1</item>
+        <item name="dstendday">12</item>
+      </option>
+      <option value="GMT+13:00" id="119" zone="13:00" displaytext="GMT+13:00 (Nuku'alofa)">
+        <item name="dstenabled">0</item>
+        <item name="dstoffsethours">1</item>
+        <item name="dststartmonth">11</item>
+        <item name="dststartday">8</item>
+        <item name="dstendmonth">1</item>
+        <item name="dstendday">12</item>
+      </option>
+    </timezoneParams>
+    <Codecspriorities>
+      <Codecspriority variableName="codec1" priority="1">
+        <!--The first entry is the selected entry in management console-->
+        <option value="G711u">G711u</option>
+        <option value="G711a">G711a</option>
+        <option value="G729a">G729a</option>
+        <option value="G722">G722</option>
+      </Codecspriority>
+      <Codecspriority variableName="codec2" priority="2">
+        <!--The first entry is the selected entry in management console-->
+        <option value="G711a">G711a</option>
+        <option value="G711u">G711u</option>
+        <option value="G729a">G729a</option>
+        <option value="G722">G722</option>
+      </Codecspriority>
+      <Codecspriority variableName="codec3" priority="3">
+        <!--The first entry is the selected entry in management console-->
+        <option value="G722">G722</option>
+        <option value="G711u">G711u</option>
+        <option value="G711a">G711a</option>
+        <option value="G729a">G729a</option>
+      </Codecspriority>
+    </Codecspriorities>
+  </header>
+  <blftype>
+    <extension>
+      <value>fnc=sd+blf+cp;sub=</value>
+    </extension>
+    <linekey enabled="false">
+      <value>
+      </value>
+    </linekey>
+    <speeddial>
+      <value>fnc=sd;ext=</value>
+    </speeddial>
+    <customspeeddial>
+      <value>fnc=sd;ext=</value>
+    </customspeeddial>
+    <queuelogin>
+      <value>fnc=sd;ext=</value>
+    </queuelogin>
+    <profilestatus>
+      <value>fnc=sd;ext=</value>
+    </profilestatus>
+    <parkextension>
+      <value>fnc=sd+blf;sub=</value>
+    </parkextension>
+  </blftype>
+  <data>
+    <device>
+      <type>phone</type>
+      <field name="Name">Cisco SIP Phone</field>
+      <deviceconfig filename="%%mac_address%%.xml"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+{IF ua=SPA512G}
+  {SET $uagroup="UCGroup1"}
+{ENDIF}
+{IF ua=SPA514G}
+  {SET $uagroup="UCGroup1"}
+{ENDIF}
+<flat-profile>
+
+<!--########################################################-->
+<!--###           SIP Settings for Identity 1            ###-->
+<!--###  Note: Access phone xml param console via        ###-->
+<!--###           http://ip/admin/spacfg.xml             ###-->
+<!--########################################################-->
+
+<!--# The "Line_Enable_1_" field enables or disables Identity 1 on the phone. Valid values are "Yes"==Enable Identity; "No"==Disable Identity. The provisioning template sets the value to "Yes"==Enable Identity.-->
+<Line_Enable_1_ group="Ext_1/General">Yes</Line_Enable_1_>
+
+<!--# The "Referor_Bye_Delay_1_" field specifies the time that the cisco phone will track the call after a transfer. Default value is 4-->
+<Referor_Bye_Delay_1_ group="Ext_1/SIP_Settings">0</Referor_Bye_Delay_1_>
+
+<!--# The Extension Number must be specified in the "User_ID_1" field. The "extension_number" variable will be replaced by the Extension's Extension Number.-->
+<User_ID_1_ group="Ext_1/Subscriber_Information">%%extension_number%%</User_ID_1_>
+
+<!--# The "Use_Auth_ID_1_" field enables or disables the phone to use the Authentication ID to register itself with 3CXPS. Valid values are "Yes"==Register Using Authentication ID; "No"==Do Not Register Using Authentication ID. The provisioning template sets the value to "Yes"==Register Using Authentication ID.-->
+<Use_Auth_ID_1_ group="Ext_1/Subscriber_Information">Yes</Use_Auth_ID_1_>
+
+<!--# The Authentication ID must be specified in the "Auth_ID_1_" field. The "extension_auth_id" variable will be replaced by the Extension's Authentication ID.-->
+<Auth_ID_1_ group="Ext_1/Subscriber_Information">%%extension_auth_id%%</Auth_ID_1_>
+
+<!--# The Authentication Password must be specified in the "Password_1_" field. The "extension_auth_pw" variable will be replaced by the Extension's Authentication Password.-->
+<Password_1_ group="Ext_1/Subscriber_Information">%%extension_auth_pw%%</Password_1_>
+
+<!--# The "Display_Name_1_" field contains the Caller Name which the phone will send to 3CXPS. The "extension_first_name" and "extension_last_name" variables will be replaced by the Extension's First Name and Last Name.-->
+<Display_Name_1_ group="Ext_1/Subscriber_Information">%%extension_first_name%% %%extension_last_name%%</Display_Name_1_>
+
+<!--# The "Register_1_" field specifies whether the phone should register with the SIP Registrar - in this case 3CXPS. Valid values are "Yes"==Register with SIP Registrar; "No"==Do Not Register With SIP Registrar. The provisioning template sets this value to "Yes"==Register with SIP Registrar to enable interaction with 3CXPS.-->
+<Register_1_ group="Ext_1/Proxy_and_Registration">Yes</Register_1_>
+
+<!--# The "Use_Outbound_Proxy_1_" field specifies whether the phone should use an Outbound Proxy to deliver outgoing SIP messages. Valid values are "Yes"==Use Outbound Proxy; "No"==Do Not Use Outbound Proxy. The provisioning template sets the value to "No"==Do Not Use Outbound Proxy.-->
+<Use_Outbound_Proxy_1_ group="Ext_1/Proxy_and_Registration">No</Use_Outbound_Proxy_1_>
+
+<!--# The "DNS_SRV_Auto_Prefix_1_" field specifies whether the phone should make DNS lookups for SRV records when attempting to contact the Proxy or the Outbound Proxy. Valid values are "Yes"==Make DNS Lookups For SRV Records; "No"==Do Not Make DNS Lookups for SRV Records. The provisioning template sets the value to "No"==Do Not Make DNS Lookups for SRV Records.-->
+<DNS_SRV_Auto_Prefix_1_ group="Ext_1/Proxy_and_Registration">No</DNS_SRV_Auto_Prefix_1_>
+
+<!--# The "Register_Expires_1_" field specifies the length of time (in seconds) the phone will be registered with 3CXPS. The phone will attempt to re-register with 3CXPS before this time expires. The provisioning template sets the value to 900 (15 minutes). Valid values are any positive integer.-->
+<Register_Expires_1_ group="Ext_1/Proxy_and_Registration">120</Register_Expires_1_>
+
+<!--# The "Dial_Plan_1_" field specifies which number combinations are allowed. Since 3CXPS takes all necessary routing decisions directly, the dialplan is set to "[x*]." to allow any sequence of keys to be dialed and sent to 3CXPS.-->
+<Dial_Plan_1_ group="Ext_1/Dial_Plan">[x*].</Dial_Plan_1_>
+
+<!--########################################################-->
+<!--###    Audio Codec Settings for Identity 1           ###-->
+<!--########################################################-->
+
+<Preferred_Codec_1_ group="Ext_1/Audio_Configuration">%%codec1%%</Preferred_Codec_1_>
+<Use_Pref_Codec_Only_1_ group="Ext_1/Audio_Configuration">No</Use_Pref_Codec_Only_1_>
+<Second_Preferred_Codec_1_ group="Ext_1/Audio_Configuration">%%codec2%%</Second_Preferred_Codec_1_>
+<Third_Preferred_Codec_1_ group="Ext_1/Audio_Configuration">%%codec3%%</Third_Preferred_Codec_1_>
+<G729a_Enable_1_ group="Ext_1/Audio_Configuration">Yes</G729a_Enable_1_>
+<G722_Enable_1_ group="Ext_1/Audio_Configuration">Yes</G722_Enable_1_>
+
+<!--########################################################-->
+<!--###     Network Location Setting for Identity 1      ###-->
+<!--########################################################-->
+
+<!--######################### LAN  #########################-->
+<!--# The "Proxy_1_" field contains the ip address and SIP port of the SIP Registrar and Proxy - in this case 3CXPS. The "pbx_ip" and "param::sipport" variables will be replaced by the IP Address and SIP Port of 3CXPS.-->
+<Proxy_1_ group="Ext_1/Proxy_and_Registration">%%pbx_ip%%:%%param::sipport%%</Proxy_1_>
+
+<!--# Local SIP Port for the phone (SIP) #-->
+<SIP_Port_1_ group="Ext_1/SIP_Settings">5060</SIP_Port_1_>
+
+<!--# Audio Default Port Range (SDP/RTP) #-->
+<RTP_Port_Min group="SIP/RTP_Parameters">16384</RTP_Port_Min>
+<RTP_Port_Max group="SIP/RTP_Parameters">16538</RTP_Port_Max>
+
+<!--# STUN Server Default Sertting #-->
+<STUN_Enable group="SIP/NAT_Support_Parameters">No</STUN_Enable>
+<STUN_Test_Enable group="SIP/NAT_Support_Parameters">No</STUN_Test_Enable>
+<STUN_Server group="SIP/NAT_Support_Parameters"></STUN_Server>
+
+<!--# NAT Default Sertting #-->
+<NAT_Mapping_Enable_1_ group="Ext_1/NAT_Settings">No</NAT_Mapping_Enable_1_>
+<NAT_Keep_Alive_Intvl group="SIP/NAT_Support_Parameters">15</NAT_Keep_Alive_Intvl>
+<NAT_Keep_Alive_Enable_1_ group="Ext_1/NAT_Settings">No</NAT_Keep_Alive_Enable_1_>
+
+<!--# SPM Default Sertting #-->
+<Use_Outbound_Proxy_1_ group="Ext_1/Proxy_and_Registration">No</Use_Outbound_Proxy_1_>
+<Use_OB_Proxy_In_Dialog_1_ group="Ext_1/Proxy_and_Registration">Yes</Use_OB_Proxy_In_Dialog_1_>
+<Outbound_Proxy_1_ group="Ext_1/Proxy_and_Registration"></Outbound_Proxy_1_>
+
+<!--# Firmware Update #-->
+<Upgrade_Enable group="Provisioning/Firmware_Upgrade">Yes</Upgrade_Enable>
+{IF $uagroup=UCGroup1}
+	<Upgrade_Rule group="Provisioning/Firmware_Upgrade">%%PROVLINKLOCAL%%/firmware/cisco/spa51x-7-6-1.bin</Upgrade_Rule>
+{ELSE}
+	<Upgrade_Rule group="Provisioning/Firmware_Upgrade">%%PROVLINKLOCAL%%/firmware/cisco/spa50x-30x-7-6-1.bin</Upgrade_Rule>
+{ENDIF}
+<Upgrade_Error_Retry_Delay group="Provisioning/Firmware_Upgrade">259200</Upgrade_Error_Retry_Delay>
+
+<!--# Logo Provisioning #-->
+<BMP_Picture_Download_URL group="Phone/General">%%PROVLINKLOCAL%%/%%logo%%</BMP_Picture_Download_URL> 
+<Select_Logo group="Phone/General">BMP Picture</Select_Logo> 
+<Select_Background_Picture group="Phone/General">BMP Picture</Select_Background_Picture> 
+
+<!--# Provisioning Update Link #-->
+<Profile_Rule group="Provisioning/Configuration_Profile">%%PROVLINKLOCAL%%/$MA.xml</Profile_Rule>
+
+<!--# The "XML_Directory_Service_Name" and "XML_Directory_Service_URL" fields define the name and the provisioning location for the phone to retrieve the 3CX Company Phonebook.-->
+<XML_Directory_Service_Name group="Phone/XML_Service">3CX Phone Book</XML_Directory_Service_Name>
+<XML_Directory_Service_URL group="Phone/XML_Service">%%PROVLINKLOCAL%%/cisco_phonebook.xml</XML_Directory_Service_URL>
+
+<!--# Language Update Link #-->
+<Dictionary_Server_Script group="Regional/Miscellaneous">serv=%%PROVLINKLOCAL%%/firmware/cisco/;d0=English-US;x0=spa50x_30x_en_v756.xml;d1=Espanol;x1=spa50x_30x_es_v756.xml;d2=Deutsch;x2=spa50x_30x_de_v756.xml;d3=Italiano;x3=spa50x_30x_it_v756.xml;d4=Francais;x4=spa50x_30x_fr_v756.xml;d5=Portuguese;x5=spa50x_30x_pt_v756.xml;d6=Dutch;x6=spa50x_30x_nl_v756.xml;d7=Danish;x7=spa50x_30x_dk_v756.xml;d8=Swedish;x8=spa50x_30x_se_v756.xml;d9=Norwegian;x9=spa50x_30x_no_v756.xml;d10=Russian;x10=spa50x_30x_ru_v756.xml;d11=Turkish;x11=spa50x_30x_tr_v756.xml</Dictionary_Server_Script>
+<Language_Selection group="Regional/Miscellaneous">%%langwebUI%%</Language_Selection>
+<Default_Character_Encoding group="Regional/Miscellaneous">UTF-8</Default_Character_Encoding>
+
+<!--# Registraion and Subscribtion timerouts/renewal #-->
+<!--# The field specifies the length of time (in seconds) the phone will be registered with 3CXPS. The phone will attempt to re-register with 3CXPS before this time expires. -->
+<Register_Expires_1_ group="Ext_1/Proxy_and_Registration">120</Register_Expires_1_>
+<Subscribe_Expires group="Attendant_Console/General">300</Subscribe_Expires>
+
+<!--# Rport and Received handing for invalid NAT configuration #-->
+<Handle_VIA_received group="SIP/NAT_Support_Parameters">No</Handle_VIA_received>
+<Handle_VIA_rport group="SIP/NAT_Support_Parameters">No</Handle_VIA_rport>
+<Insert_VIA_received group="SIP/NAT_Support_Parameters">No</Insert_VIA_received>
+<Insert_VIA_rport group="SIP/NAT_Support_Parameters">No</Insert_VIA_rport>
+
+
+
+
+<!--########################################################-->
+<!--###          Generic SIP Or Phone Settings           ###-->
+<!--########################################################-->
+
+<!--# The "Station_Name" field contains the a name to identify the phone - typically visible at the top of the LCD display in later firmware versions. The "extension_first_name" and "extension_last_name" variables will be replaced by the Extension's First Name and Last Name.-->
+<Station_Name group="Phone/General">%%extension_first_name%% %%extension_last_name%%</Station_Name>
+
+<!--# The "Reorder_Delay" field defines after how many seconds the phone will play a Reorder Tone (fast busy) after the remote caller hangs up. Valid values a 0-254, and 255 which means that the phone will NOT play a Reorder Tone after the remote caller hangs up.-->
+<Reorder_Delay group="Regional/Control_Timer_Values__sec_">255</Reorder_Delay>
+
+<!--# The "Programmable_softkey_enable" enables the function of changing the function of the programmable call keys-->
+<Programmable_Softkey_Enable group="Phone/Programmable_Softkeys">Yes</Programmable_Softkey_Enable>
+
+<!--# The "Connected_Key_List" field defines which soft keys are visible while a call is connected. This template configured them to present the more commonly used functions in the main screen-->
+<Connected_Key_List group="Phone/Programmable_Softkeys">confLx|7;flash|7;xferLx|2;conf|3;xfer|4;toggle|4;redial|5;dir|6;bxfer|1;park|8;phold</Connected_Key_List>
+
+<!--# The "Interdigit_Long_Timer" specifies the maximum time (in seconds) allowed between dialed digits, when there is no match in the dialplan. Since the dialplan set by the provisioning template is "[x*]." (so any sequence will match), this is set to the default value of 10 seconds.-->
+<Interdigit_Long_Timer group="Regional/Control_Timer_Values__sec_">12</Interdigit_Long_Timer>
+
+<!--# The "Interdigit_Short_Timer" specifies the maximum time (in seconds) allowed between dialed digits, when there is a match in the dialplan. The provisioning template sets this value to 10 seconds.-->
+<Interdigit_Short_Timer group="Regional/Control_Timer_Values__sec_">10</Interdigit_Short_Timer>
+
+<!--########################################################-->
+<!--###                   SIP/SIP Parameters             ###-->
+<!--########################################################-->
+
+<!--This requires firmware spa50x-30x-7-4-8a and upwards. This parameter improves blind transfers via speed dials.--> 
+<Keep_Referee_When_REFER_Failed group="SIP/SIP_Parameters">Yes</Keep_Referee_When_REFER_Failed>
+
+<!--########################################################-->
+<!--###                   RTP Settings                   ###-->
+<!--########################################################-->
+
+<!--# The "RTP_Packet_Size" field specifies the packetization rate for each RTP packet delivering audio. Valid values are from 0.010 to 0.160 (in steps of 0.010). The provisioning template sets the value to 0.020 to ensure correct interaction with other phones, gateways, and voip providers which do not support non-standard values.-->
+<RTP_Packet_Size group="SIP/RTP_Parameters">0.020</RTP_Packet_Size>
+
+<!--########################################################-->
+<!--### VoiceMail and Message Waiting Indicator Settings ###-->
+<!--########################################################-->
+
+<!--# The "Message_Waiting_1_" field specifies whether to activate the MWI lamp when a new message arrives. Valid values are "Yes"==Activate Lamp When New Message Arrives; "No"==Do Not Activate Lamp When New Message Arrives. The provisioning template sets the value to "Yes"==Activate Lamp When New Message Arrives.-->
+<Message_Waiting_1_ group="Ext_1/Call_Feature_Settings"></Message_Waiting_1_>
+
+<!--# The "Mailbox_ID_1_" field specifies the which identity represents the VoiceMail account at the Registrar - in this case 3CXPS. Since with 3CXPS the Extension Number represents the identity of both phone AND VoiceMail, this value must be the same as the Extension Number. The "extension_number" variable will be replaced with the phone's Extension Number.-->
+<Mailbox_ID_1_ group="Ext_1/Call_Feature_Settings">%%extension_number%%</Mailbox_ID_1_>
+
+<!--# The "Voice_Mail_Number" field contains the destination number for the VoiceMail service. The "vm_number" variable will be replacd by the 3CXPS VoiceMail Menu Extension Number.-->
+<Voice_Mail_Number group="Phone/General">%%vm_number%%</Voice_Mail_Number>
+
+<!--# The "Voice_Mail_Subscribe_Interval_1_" field specifies the Interval timeout to subscribe for message wait indicator.-->
+<Voice_Mail_Subscribe_Interval_1_ group="Ext_1/Call_Feature_Settings">180</Voice_Mail_Subscribe_Interval_1_>
+
+<!--########################################################-->
+<!--###         Provisioning Settings - Stage 2          ###-->
+<!--########################################################-->
+
+<!--# Linksys Provisioning is a 2-stage process. The phone will, by default after a factory reset, search for a configuration file "SPAxxx.cfg" (where xxx is the model number, so for example, for a Linksys SPA-962, the filename would be "spa962.cfg"). Since we need each phone to have a different extension number, in stage 2 we need to define a "<mac_address>.xml" file that instructs the phone to retrieve its own settings.-->
+  
+<!--# The "Resync_Periodic" field defines the interval (in seconds) between 1 provisioning cycle and the next-->
+<Resync_Periodic group="Provisioning/Configuration_Profile"></Resync_Periodic>
+
+<!--#The "Resync_At__HHmm_" field defines the time the phone will check and resync with the 3CX Provisioning server.This is set at 2AM-->
+<Resync_At__HHmm_ group="Provisioning/Configuration_Profile">0200</Resync_At__HHmm_>
+  
+<!--# The "User_Configurable_Resync" field defines whether a user can manually adjust the Provisioning Server from the Phone Keys directly. Valid values are "Yes"==Allow Adjustment of Provisioning Server from Phone; "No"==Do Not Allow Adjustment of Provisioning Server from Phone. The provisioning template sets the value to "Yes"==Allow Adjustment of Provisioning Server from Phone.-->
+<User_Configurable_Resync group="Provisioning/Configuration_Profile">Yes</User_Configurable_Resync>
+
+
+<!--########################################################-->
+<!--###             Remote Reboot Settings               ###-->
+<!--########################################################-->
+
+<!--# The "Auth_Resync-Reboot_1_" field specifies whether a remote request to SIP Identity 1 on the phone to reboot should be authenticated. Valid values are "Yes"==Require Authentication for Remote Reboot; "No"==Do Not Require Authentication for Remote Reboot. The provisioning template sets the value to "No"==Do Not Require Authentication for Remote Reboot.-->
+<Auth_Resync-Reboot_1_ group="Ext_1/SIP_Settings">No</Auth_Resync-Reboot_1_>
+
+<!--# The "Blind_Attn-Xfer_Enable_1_" field specifies whether the phone should deliver an Attended Transfer request using the Blind Transfer mechanism instead. Valid values are "Yes"==Use Blind Transfer Mechanism for Attended Transfer Requests; "No"==Do Not Use Blind Transfer Mechanism for Attended Transfer Requests. The provisioning template sets the value to "Yes"==Use Blind Transfer Mechanism for Attended Transfer Requests.-->
+<Blind_Attn-Xfer_Enable_1_ group="Ext_1/Call_Feature_Settings">Yes</Blind_Attn-Xfer_Enable_1_>
+
+<!--########################################################-->
+<!--###              Time and DST Settings               ###-->
+<!--########################################################-->
+
+<Primary_NTP_Server group="System/Optional_Network_Configuration">%%param::time_ntp_server%%</Primary_NTP_Server>
+<Time_Zone group="Regional/Miscellaneous">%%param::time_timezone_linksys%%</Time_Zone>
+<Daylight_Saving_Time_Enable group="Regional/Miscellaneous">%%dstenabled%%</Daylight_Saving_Time_Enable>
+<Daylight_Saving_Time_Rule group="Regional/Miscellaneous">start=%%dststartmonth%%/%%dststartday%%/0;end=%%dstendmonth%%/%%dstendday%%/0;save=%%dstoffsethours%%</Daylight_Saving_Time_Rule>
+
+    <!--########################################################-->
+    <!--###       Distinctive ringing                        ###-->
+    <!--########################################################-->
+	
+	<!--# Setting for distinctive ringing base on alert info -->  
+	<!--# info=external call from external line (no reformatting has been applied)-->
+	<!--# info=international call from external line, reformatting detected international call-->
+	<!--# info=national call from external line, reformatting detected national call-->
+	<!--# info=local call from external line, reformatting detected local call-->
+	<!--# info=queue call from queue-->
+	<!--# info=ivr call from IVR-->
+	
+	<Ring1 group="Phone/Ring_Tone">h=Classic-1;w=3;c=1</Ring1> 
+	<Ring2 group="Phone/Ring_Tone">h=external;w=3;c=3</Ring2>
+	<Ring3 group="Phone/Ring_Tone">h=queue;w=2;c=3</Ring3> 
+	<Ring4 group="Phone/Ring_Tone">h=ivr;w=4;c=3</Ring4> 
+
+<!--########################################################-->
+<!--###              Networking V-LAN                    ###-->
+<!--########################################################-->	
+
+<!--#VLAN ID Tagging on or off for the SW Port (802.1q).#-->	
+<Enable_VLAN group="System/VLAN_Settings">No</Enable_VLAN> 
+<!--#VLAN ID (0..4095) Which sets the ID number for the VLAN SW Port (802.1q).#-->	
+<VLAN_ID group="System/VLAN_Settings">1</VLAN_ID> 
+<!--#VLAN ID Tagging on or off for the PC Port (802.1q).#-->	
+<Enable_PC_Port_VLAN_Tagging group="System/VLAN_Settings">No</Enable_PC_Port_VLAN_Tagging> 
+<!--#VLAN ID (0..4095) Which sets the ID number for the PC Port  (802.1q).#-->	
+<PC_Port_VLAN_ID group="System/VLAN_Settings">1</PC_Port_VLAN_ID> 
+<!--#Sets the Priority of the PC Port to the Phones Switch Port (802.1q).#-->	
+<PC_Port_VLAN_Highest_Priority group="System/VLAN_Settings">No Limit</PC_Port_VLAN_Highest_Priority> 
+	
+<!--########################################################-->
+<!--###                 Other Settings                   ###-->
+<!--########################################################-->
+
+<Group_Paging_Script group="Phone/Multiple_Paging_Group_Parameters"></Group_Paging_Script>
+
+<!--########################################################-->
+<!--###                  DND  Settings                   ###-->
+<!--########################################################-->
+
+<PSK_1 group="Phone/Programmable_Softkeys">fnc=sd;ext=%%param::DIALCODEPROFILE%%2;nme=dnd;ext2=%%param::DIALCODEPROFILE%%0;nme2=-dnd</PSK_1>
+<DND_Act_Code group="Regional/Vertical_Service_Activation_Codes"></DND_Act_Code>
+<DND_Deact_Code group="Regional/Vertical_Service_Activation_Codes"></DND_Deact_Code>
+<Service_Annc_Base_Number group="Regional/Vertical_Service_Announcement_Codes"></Service_Annc_Base_Number>
+<Service_Annc_Extension_Codes group="Regional/Vertical_Service_Announcement_Codes">DDT:2;DDF:0</Service_Annc_Extension_Codes>
+<DND_Serv group="Phone/Supplementary_Services">Yes</DND_Serv>
+<Service_Annc_Serv group="Phone/Supplementary_Services">Yes</Service_Annc_Serv>
+
+{IF ua=SPA504G}
+<Idle_Key_List group="Phone/Programmable_Softkeys">em_login|1;acd_login|1;acd_logout|1;astate|2;avail|3;unavail|3;redial|5;dir|6;cfwd|7;psk1|8;lcr|9;pickup|10;gpickup|11;unpark|12;guestIn|13;guestOut|13;em_logout</Idle_Key_List>
+{ELSE}
+<Idle_Key_List group="Phone/Programmable_Softkeys">em_login|1;acd_login|1;acd_logout|1;astate|2;avail|3;unavail|3;redial|5;dir|6;cfwd|7;psk1|8;lcr|9;pickup|10;gpickup|11;unpark|12;em_logout</Idle_Key_List>
+{ENDIF}
+
+<!--########################################################-->
+<!--####              Phone Web Admin password           ###-->
+<!--########################################################-->
+
+<Admin_Passwd group="System/System_Configuration">%%DESKPHONE_PASSWORD%%</Admin_Passwd>
+
+<!--########################################################-->
+<!--###                  Line Key Setting                ###-->
+<!--########################################################-->
+
+<Extension_1_ group="Phone/Line_Key_1">1</Extension_1_> 
+<Short_Name_1_ group="Phone/Line_Key_1">%%extension_number%%</Short_Name_1_> 
+<Share_Call_Appearance_1_ group="Phone/Line_Key_1">private</Share_Call_Appearance_1_> 
+<Extended_Function_1_ group="Phone/Line_Key_1"></Extended_Function_1_> 
+
+<Extension_2_ group="Phone/Line_Key_2">1</Extension_2_> 
+<Short_Name_2_ group="Phone/Line_Key_2">%%extension_number%%</Short_Name_2_> 
+<Share_Call_Appearance_2_ group="Phone/Line_Key_2">private</Share_Call_Appearance_2_> 
+<Extended_Function_2_ group="Phone/Line_Key_2"></Extended_Function_2_>
+
+<!--########################################################-->
+<!--###                  BLF Settings                    ###-->
+<!--########################################################-->
+
+<!--# The "Unit_1_Key_1" field contains a string value which specifies the type of functionality to assign to the first key on the SPA-932 Sidecar unit, and which extension number to monitor. The provisioning template sets the value to "fnc=sd+blf+cp;sub=blf1@%%pbx_ip%%;nme=100" - unless BLF is not being used for the key, in which case the value will be blank.-->
+<!--# The string value contains 2 sections, separated by a ";" character.-->
+<!--# The first section must contain "fnc=sd+blf+cp" - which basically means SpeedDial + BLF + CallPickup.-->
+<!--# The second section must contain the extension identity for whose notifications the phone will subscribe, in the format "sub=blf1@%%pbx_ip%%" - where the variables "blf1" and "pbx_ip" will be replaced by the extension number chosen from the 3CX Management Console, and the IP Address of the 3CXPS machine.-->
+<!--# The second key is identified by the "Unit_1_Key_2" field, and will contain "sub=blf2@%%pbx_ip%%" (note reference to the "blf2" variable); the third key is identified by the "Unit_1_Key_3" field  and will contain "sub=blf3@%%pbx_ip%%" (note reference to the "blf3" variable); and so on.-->
+
+<Unit_1_Enable group="Attendant_Console/General">NO</Unit_1_Enable>
+<Unit_2_Enable group="Attendant_Console/General">NO</Unit_2_Enable> 
+<Server_Type group="Attendant_Console/General">RFC3265_4235</Server_Type>
+<Attendant_Console_Call_Pickup_Code group="Attendant_Console/General"></Attendant_Console_Call_Pickup_Code>
+
+{IF blf1}
+<Extension_3_ group="Phone/Line_Key_3">Disabled</Extension_3_>
+<Share_Call_Appearance_3_ group="Phone/Line_Key_3">private</Share_Call_Appearance_3_>
+<Extended_Function_3_ group="Phone/Line_Key_3">%%value%%%%blf1%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_3_>
+<Short_Name_3_ group="Phone/Line_Key_3">%%blffirstname1%% %%blflastname1%%</Short_Name_3_>
+{ELSE}
+<Extension_3_ group="Phone/Line_Key_3">1</Extension_3_>
+<Share_Call_Appearance_3_ group="Phone/Line_Key_3">private</Share_Call_Appearance_3_>
+<Extended_Function_3_ group="Phone/Line_Key_3"></Extended_Function_3_>
+<Short_Name_3_ group="Phone/Line_Key_3">%%extension_number%%</Short_Name_3_>
+{ENDIF}
+
+{IF blf2}
+<Extension_4_ group="Phone/Line_Key_4">Disabled</Extension_4_>
+<Share_Call_Appearance_4_ group="Phone/Line_Key_4">private</Share_Call_Appearance_4_>
+<Extended_Function_4_ group="Phone/Line_Key_4">%%value%%%%blf2%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_4_>
+<Short_Name_4_ group="Phone/Line_Key_4">%%blffirstname2%% %%blflastname2%%</Short_Name_4_>
+{ELSE}
+<Extension_4_ group="Phone/Line_Key_4">1</Extension_4_>
+<Share_Call_Appearance_4_ group="Phone/Line_Key_4">private</Share_Call_Appearance_4_>
+<Extended_Function_4_ group="Phone/Line_Key_4"></Extended_Function_4_>
+<Short_Name_4_ group="Phone/Line_Key_4">%%extension_number%%</Short_Name_4_>
+{ENDIF}
+
+{IF blf3}
+<Extension_5_ group="Phone/Line_Key_5">Disabled</Extension_5_>
+<Share_Call_Appearance_5_ group="Phone/Line_Key_5">private</Share_Call_Appearance_5_>
+<Extended_Function_5_ group="Phone/Line_Key_5">%%value%%%%blf3%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_5_>
+<Short_Name_5_ group="Phone/Line_Key_5">%%blffirstname3%% %%blflastname3%%</Short_Name_5_>
+{ELSE}
+<Extension_5_ group="Phone/Line_Key_5">1</Extension_5_>
+<Share_Call_Appearance_5_ group="Phone/Line_Key_5">private</Share_Call_Appearance_5_>
+<Extended_Function_5_ group="Phone/Line_Key_5"></Extended_Function_5_>
+<Short_Name_5_ group="Phone/Line_Key_5">%%extension_number%%</Short_Name_5_>
+{ENDIF}
+
+{IF blf4}
+<Extension_6_ group="Phone/Line_Key_6">Disabled</Extension_6_>
+<Share_Call_Appearance_6_ group="Phone/Line_Key_6">private</Share_Call_Appearance_6_>
+<Extended_Function_6_ group="Phone/Line_Key_6">%%value%%%%blf4%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_6_>
+<Short_Name_6_ group="Phone/Line_Key_6">%%blffirstname4%% %%blflastname4%%</Short_Name_6_>
+{ELSE}
+<Extension_6_ group="Phone/Line_Key_6">1</Extension_6_>
+<Share_Call_Appearance_6_ group="Phone/Line_Key_6">private</Share_Call_Appearance_6_>
+<Extended_Function_6_ group="Phone/Line_Key_6"></Extended_Function_6_>
+<Short_Name_6_ group="Phone/Line_Key_6">%%extension_number%%</Short_Name_6_>
+{ENDIF}
+
+{IF blf5}
+<Extension_7_ group="Phone/Line_Key_7">Disabled</Extension_7_>
+<Share_Call_Appearance_7_ group="Phone/Line_Key_7">private</Share_Call_Appearance_7_>
+<Extended_Function_7_ group="Phone/Line_Key_7">%%value%%%%blf5%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_7_>
+<Short_Name_7_ group="Phone/Line_Key_7">%%blffirstname5%% %%blflastname5%%</Short_Name_7_>
+{ELSE}
+<Extension_7_ group="Phone/Line_Key_7">1</Extension_7_>
+<Share_Call_Appearance_7_ group="Phone/Line_Key_7">private</Share_Call_Appearance_7_>
+<Extended_Function_7_ group="Phone/Line_Key_7"></Extended_Function_7_>
+<Short_Name_7_ group="Phone/Line_Key_7">%%extension_number%%</Short_Name_7_>
+{ENDIF}
+
+{IF blf6}
+<Extension_8_ group="Phone/Line_Key_8">Disabled</Extension_8_>
+<Share_Call_Appearance_8_ group="Phone/Line_Key_8">private</Share_Call_Appearance_8_>
+<Extended_Function_8_ group="Phone/Line_Key_8">%%value%%%%blf6%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_8_>
+<Short_Name_8_ group="Phone/Line_Key_8">%%blffirstname6%% %%blflastname6%%</Short_Name_8_>
+{ELSE}
+<Extension_8_ group="Phone/Line_Key_8">1</Extension_8_>
+<Share_Call_Appearance_8_ group="Phone/Line_Key_8">private</Share_Call_Appearance_8_>
+<Extended_Function_8_ group="Phone/Line_Key_8"></Extended_Function_8_>
+<Short_Name_8_ group="Phone/Line_Key_8">%%extension_number%%</Short_Name_8_>
+{ENDIF}
+
+{IF blf7}
+<Extension_9_ group="Phone/Line_Key_9">Disabled</Extension_9_>
+<Share_Call_Appearance_9_ group="Phone/Line_Key_9">private</Share_Call_Appearance_9_>
+<Extended_Function_9_ group="Phone/Line_Key_9">%%value%%%%blf7%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_9_>
+<Short_Name_9_ group="Phone/Line_Key_9">%%blffirstname7%% %%blflastname7%%</Short_Name_9_>
+{ELSE}
+<Extension_9_ group="Phone/Line_Key_9">1</Extension_9_>
+<Share_Call_Appearance_9_ group="Phone/Line_Key_9">private</Share_Call_Appearance_9_>
+<Extended_Function_9_ group="Phone/Line_Key_9"></Extended_Function_9_>
+<Short_Name_9_ group="Phone/Line_Key_9">%%extension_number%%</Short_Name_9_>
+{ENDIF}
+
+{IF blf8}
+<Extension_10_ group="Phone/Line_Key_10">Disabled</Extension_10_>
+<Share_Call_Appearance_10_ group="Phone/Line_Key_10">private</Share_Call_Appearance_10_>
+<Extended_Function_10_ group="Phone/Line_Key_10">%%value%%%%blf8%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_10_>
+<Short_Name_10_ group="Phone/Line_Key_10">%%blffirstname8%% %%blflastname8%%</Short_Name_10_>
+{ELSE}
+<Extension_10_ group="Phone/Line_Key_10">1</Extension_10_>
+<Share_Call_Appearance_10_ group="Phone/Line_Key_10">private</Share_Call_Appearance_10_>
+<Extended_Function_10_ group="Phone/Line_Key_10"></Extended_Function_10_>
+<Short_Name_10_ group="Phone/Line_Key_10">%%extension_number%%</Short_Name_10_>
+{ENDIF}
+
+{IF blf9}
+<Extension_11_ group="Phone/Line_Key_11">Disabled</Extension_11_>
+<Share_Call_Appearance_11_ group="Phone/Line_Key_11">private</Share_Call_Appearance_11_>
+<Extended_Function_11_ group="Phone/Line_Key_11">%%value%%%%blf9%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_11_>
+<Short_Name_11_ group="Phone/Line_Key_11">%%blffirstname9%% %%blflastname9%%</Short_Name_11_>
+{ELSE}
+<Extension_11_ group="Phone/Line_Key_11">1</Extension_11_>
+<Share_Call_Appearance_11_ group="Phone/Line_Key_11">private</Share_Call_Appearance_11_>
+<Extended_Function_11_ group="Phone/Line_Key_11"></Extended_Function_11_>
+<Short_Name_11_ group="Phone/Line_Key_11">%%extension_number%%</Short_Name_11_>
+{ENDIF}
+
+{IF blf10}
+<Extension_12_ group="Phone/Line_Key_12">Disabled</Extension_12_>
+<Share_Call_Appearance_12_ group="Phone/Line_Key_12">private</Share_Call_Appearance_12_>
+<Extended_Function_12_ group="Phone/Line_Key_12">%%value%%%%blf10%%@%%pbx_ip%%:%%param::sipport%%</Extended_Function_12_>
+<Short_Name_12_ group="Phone/Line_Key_12">%%blffirstname10%% %%blflastname10%%</Short_Name_12_>
+{ELSE}
+<Extension_12_ group="Phone/Line_Key_12">1</Extension_12_>
+<Share_Call_Appearance_12_ group="Phone/Line_Key_12">private</Share_Call_Appearance_12_>
+<Extended_Function_12_ group="Phone/Line_Key_12"></Extended_Function_12_>
+<Short_Name_12_ group="Phone/Line_Key_12">%%extension_number%%</Short_Name_12_>
+{ENDIF}
+
+{IF ua=SPA525G}
+<Unit_1_Key_1 group="Att_Console/Unit_1"></Unit_1_Key_1> 
+<Unit_1_Key_2 group="Att_Console/Unit_1"></Unit_1_Key_2> 
+<Unit_1_Key_3 group="Att_Console/Unit_1"></Unit_1_Key_3> 
+<Unit_1_Key_4 group="Att_Console/Unit_1"></Unit_1_Key_4> 
+<Unit_1_Key_5 group="Att_Console/Unit_1"></Unit_1_Key_5> 
+<Unit_1_Key_6 group="Att_Console/Unit_1"></Unit_1_Key_6> 
+<Unit_1_Key_7 group="Att_Console/Unit_1"></Unit_1_Key_7> 
+<Unit_1_Key_8 group="Att_Console/Unit_1"></Unit_1_Key_8> 
+<Unit_1_Key_9 group="Att_Console/Unit_1"></Unit_1_Key_9> 
+<Unit_1_Key_10 group="Att_Console/Unit_1"></Unit_1_Key_10> 
+<Unit_1_Key_11 group="Att_Console/Unit_1"></Unit_1_Key_11> 
+<Unit_1_Key_12 group="Att_Console/Unit_1"></Unit_1_Key_12> 
+<Unit_1_Key_13 group="Att_Console/Unit_1"></Unit_1_Key_13> 
+<Unit_1_Key_14 group="Att_Console/Unit_1"></Unit_1_Key_14> 
+<Unit_1_Key_15 group="Att_Console/Unit_1"></Unit_1_Key_15> 
+<Unit_1_Key_16 group="Att_Console/Unit_1"></Unit_1_Key_16> 
+<Unit_1_Key_17 group="Att_Console/Unit_1"></Unit_1_Key_17> 
+<Unit_1_Key_18 group="Att_Console/Unit_1"></Unit_1_Key_18> 
+<Unit_1_Key_19 group="Att_Console/Unit_1"></Unit_1_Key_19> 
+<Unit_1_Key_20 group="Att_Console/Unit_1"></Unit_1_Key_20> 
+<Unit_1_Key_21 group="Att_Console/Unit_1"></Unit_1_Key_21> 
+<Unit_1_Key_22 group="Att_Console/Unit_1"></Unit_1_Key_22> 
+<Unit_1_Key_23 group="Att_Console/Unit_1"></Unit_1_Key_23> 
+<Unit_1_Key_24 group="Att_Console/Unit_1"></Unit_1_Key_24> 
+<Unit_1_Key_25 group="Att_Console/Unit_1"></Unit_1_Key_25> 
+<Unit_1_Key_26 group="Att_Console/Unit_1"></Unit_1_Key_26> 
+<Unit_1_Key_27 group="Att_Console/Unit_1"></Unit_1_Key_27> 
+<Unit_1_Key_28 group="Att_Console/Unit_1"></Unit_1_Key_28> 
+<Unit_1_Key_29 group="Att_Console/Unit_1"></Unit_1_Key_29> 
+<Unit_1_Key_30 group="Att_Console/Unit_1"></Unit_1_Key_30> 
+<Unit_1_Key_31 group="Att_Console/Unit_1"></Unit_1_Key_31> 
+<Unit_1_Key_32 group="Att_Console/Unit_1"></Unit_1_Key_32> 
+<Unit_2_Key_1 group="Att_Console/Unit_2"></Unit_2_Key_1> 
+<Unit_2_Key_2 group="Att_Console/Unit_2"></Unit_2_Key_2> 
+<Unit_2_Key_3 group="Att_Console/Unit_2"></Unit_2_Key_3> 
+<Unit_2_Key_4 group="Att_Console/Unit_2"></Unit_2_Key_4> 
+<Unit_2_Key_5 group="Att_Console/Unit_2"></Unit_2_Key_5> 
+<Unit_2_Key_6 group="Att_Console/Unit_2"></Unit_2_Key_6> 
+<Unit_2_Key_7 group="Att_Console/Unit_2"></Unit_2_Key_7> 
+<Unit_2_Key_8 group="Att_Console/Unit_2"></Unit_2_Key_8> 
+<Unit_2_Key_9 group="Att_Console/Unit_2"></Unit_2_Key_9> 
+<Unit_2_Key_10 group="Att_Console/Unit_2"></Unit_2_Key_10> 
+<Unit_2_Key_11 group="Att_Console/Unit_2"></Unit_2_Key_11> 
+<Unit_2_Key_12 group="Att_Console/Unit_2"></Unit_2_Key_12> 
+<Unit_2_Key_13 group="Att_Console/Unit_2"></Unit_2_Key_13> 
+<Unit_2_Key_14 group="Att_Console/Unit_2"></Unit_2_Key_14> 
+<Unit_2_Key_15 group="Att_Console/Unit_2"></Unit_2_Key_15> 
+<Unit_2_Key_16 group="Att_Console/Unit_2"></Unit_2_Key_16> 
+<Unit_2_Key_17 group="Att_Console/Unit_2"></Unit_2_Key_17> 
+<Unit_2_Key_18 group="Att_Console/Unit_2"></Unit_2_Key_18> 
+<Unit_2_Key_19 group="Att_Console/Unit_2"></Unit_2_Key_19> 
+<Unit_2_Key_20 group="Att_Console/Unit_2"></Unit_2_Key_20> 
+<Unit_2_Key_21 group="Att_Console/Unit_2"></Unit_2_Key_21> 
+<Unit_2_Key_22 group="Att_Console/Unit_2"></Unit_2_Key_22> 
+<Unit_2_Key_23 group="Att_Console/Unit_2"></Unit_2_Key_23> 
+<Unit_2_Key_24 group="Att_Console/Unit_2"></Unit_2_Key_24> 
+<Unit_2_Key_25 group="Att_Console/Unit_2"></Unit_2_Key_25> 
+<Unit_2_Key_26 group="Att_Console/Unit_2"></Unit_2_Key_26> 
+<Unit_2_Key_27 group="Att_Console/Unit_2"></Unit_2_Key_27> 
+<Unit_2_Key_28 group="Att_Console/Unit_2"></Unit_2_Key_28> 
+<Unit_2_Key_29 group="Att_Console/Unit_2"></Unit_2_Key_29> 
+<Unit_2_Key_30 group="Att_Console/Unit_2"></Unit_2_Key_30> 
+<Unit_2_Key_31 group="Att_Console/Unit_2"></Unit_2_Key_31> 
+<Unit_2_Key_32 group="Att_Console/Unit_2"></Unit_2_Key_32> 
+{ELSE}
+<Unit_1_Key_1 group="Attendant_Console/Unit_1"></Unit_1_Key_1> 
+<Unit_1_Key_2 group="Attendant_Console/Unit_1"></Unit_1_Key_2> 
+<Unit_1_Key_3 group="Attendant_Console/Unit_1"></Unit_1_Key_3> 
+<Unit_1_Key_4 group="Attendant_Console/Unit_1"></Unit_1_Key_4> 
+<Unit_1_Key_5 group="Attendant_Console/Unit_1"></Unit_1_Key_5> 
+<Unit_1_Key_6 group="Attendant_Console/Unit_1"></Unit_1_Key_6> 
+<Unit_1_Key_7 group="Attendant_Console/Unit_1"></Unit_1_Key_7> 
+<Unit_1_Key_8 group="Attendant_Console/Unit_1"></Unit_1_Key_8> 
+<Unit_1_Key_9 group="Attendant_Console/Unit_1"></Unit_1_Key_9> 
+<Unit_1_Key_10 group="Attendant_Console/Unit_1"></Unit_1_Key_10> 
+<Unit_1_Key_11 group="Attendant_Console/Unit_1"></Unit_1_Key_11> 
+<Unit_1_Key_12 group="Attendant_Console/Unit_1"></Unit_1_Key_12> 
+<Unit_1_Key_13 group="Attendant_Console/Unit_1"></Unit_1_Key_13> 
+<Unit_1_Key_14 group="Attendant_Console/Unit_1"></Unit_1_Key_14> 
+<Unit_1_Key_15 group="Attendant_Console/Unit_1"></Unit_1_Key_15> 
+<Unit_1_Key_16 group="Attendant_Console/Unit_1"></Unit_1_Key_16> 
+<Unit_1_Key_17 group="Attendant_Console/Unit_1"></Unit_1_Key_17> 
+<Unit_1_Key_18 group="Attendant_Console/Unit_1"></Unit_1_Key_18> 
+<Unit_1_Key_19 group="Attendant_Console/Unit_1"></Unit_1_Key_19> 
+<Unit_1_Key_20 group="Attendant_Console/Unit_1"></Unit_1_Key_20> 
+<Unit_1_Key_21 group="Attendant_Console/Unit_1"></Unit_1_Key_21> 
+<Unit_1_Key_22 group="Attendant_Console/Unit_1"></Unit_1_Key_22> 
+<Unit_1_Key_23 group="Attendant_Console/Unit_1"></Unit_1_Key_23> 
+<Unit_1_Key_24 group="Attendant_Console/Unit_1"></Unit_1_Key_24> 
+<Unit_1_Key_25 group="Attendant_Console/Unit_1"></Unit_1_Key_25> 
+<Unit_1_Key_26 group="Attendant_Console/Unit_1"></Unit_1_Key_26> 
+<Unit_1_Key_27 group="Attendant_Console/Unit_1"></Unit_1_Key_27> 
+<Unit_1_Key_28 group="Attendant_Console/Unit_1"></Unit_1_Key_28> 
+<Unit_1_Key_29 group="Attendant_Console/Unit_1"></Unit_1_Key_29> 
+<Unit_1_Key_30 group="Attendant_Console/Unit_1"></Unit_1_Key_30> 
+<Unit_1_Key_31 group="Attendant_Console/Unit_1"></Unit_1_Key_31> 
+<Unit_1_Key_32 group="Attendant_Console/Unit_1"></Unit_1_Key_32> 
+<Unit_2_Key_1 group="Attendant_Console/Unit_2"></Unit_2_Key_1> 
+<Unit_2_Key_2 group="Attendant_Console/Unit_2"></Unit_2_Key_2> 
+<Unit_2_Key_3 group="Attendant_Console/Unit_2"></Unit_2_Key_3> 
+<Unit_2_Key_4 group="Attendant_Console/Unit_2"></Unit_2_Key_4> 
+<Unit_2_Key_5 group="Attendant_Console/Unit_2"></Unit_2_Key_5> 
+<Unit_2_Key_6 group="Attendant_Console/Unit_2"></Unit_2_Key_6> 
+<Unit_2_Key_7 group="Attendant_Console/Unit_2"></Unit_2_Key_7> 
+<Unit_2_Key_8 group="Attendant_Console/Unit_2"></Unit_2_Key_8> 
+<Unit_2_Key_9 group="Attendant_Console/Unit_2"></Unit_2_Key_9> 
+<Unit_2_Key_10 group="Attendant_Console/Unit_2"></Unit_2_Key_10> 
+<Unit_2_Key_11 group="Attendant_Console/Unit_2"></Unit_2_Key_11> 
+<Unit_2_Key_12 group="Attendant_Console/Unit_2"></Unit_2_Key_12> 
+<Unit_2_Key_13 group="Attendant_Console/Unit_2"></Unit_2_Key_13> 
+<Unit_2_Key_14 group="Attendant_Console/Unit_2"></Unit_2_Key_14> 
+<Unit_2_Key_15 group="Attendant_Console/Unit_2"></Unit_2_Key_15> 
+<Unit_2_Key_16 group="Attendant_Console/Unit_2"></Unit_2_Key_16> 
+<Unit_2_Key_17 group="Attendant_Console/Unit_2"></Unit_2_Key_17> 
+<Unit_2_Key_18 group="Attendant_Console/Unit_2"></Unit_2_Key_18> 
+<Unit_2_Key_19 group="Attendant_Console/Unit_2"></Unit_2_Key_19> 
+<Unit_2_Key_20 group="Attendant_Console/Unit_2"></Unit_2_Key_20> 
+<Unit_2_Key_21 group="Attendant_Console/Unit_2"></Unit_2_Key_21> 
+<Unit_2_Key_22 group="Attendant_Console/Unit_2"></Unit_2_Key_22> 
+<Unit_2_Key_23 group="Attendant_Console/Unit_2"></Unit_2_Key_23> 
+<Unit_2_Key_24 group="Attendant_Console/Unit_2"></Unit_2_Key_24> 
+<Unit_2_Key_25 group="Attendant_Console/Unit_2"></Unit_2_Key_25> 
+<Unit_2_Key_26 group="Attendant_Console/Unit_2"></Unit_2_Key_26> 
+<Unit_2_Key_27 group="Attendant_Console/Unit_2"></Unit_2_Key_27> 
+<Unit_2_Key_28 group="Attendant_Console/Unit_2"></Unit_2_Key_28> 
+<Unit_2_Key_29 group="Attendant_Console/Unit_2"></Unit_2_Key_29> 
+<Unit_2_Key_30 group="Attendant_Console/Unit_2"></Unit_2_Key_30> 
+<Unit_2_Key_31 group="Attendant_Console/Unit_2"></Unit_2_Key_31> 
+<Unit_2_Key_32 group="Attendant_Console/Unit_2"></Unit_2_Key_32> 
+{ENDIF}
+
+</flat-profile>
+
+]]></deviceconfig>
+    </device>
+  </data>
+</doc>

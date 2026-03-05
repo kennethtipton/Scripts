@@ -2,6 +2,7 @@
     "folders": [
         {"name": "PowershellScriptsManagement", "path": "."},
         {"name": "Failover Script for 3CX Servers", "path": ".\\Applications\\3CX\\Failover3CXServer"},
+        {"name": "Restore 3CX Templates", "path": ".\\Applications\\3CX\\RestoreTemplates"},
         {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"},
         {"name": "Powershell Scripts Management Pode.WEB Log Viewer", "path": ".\\Applications\\OpenSource\\PowershellScriptsManagementLogViewer"}
     ],
