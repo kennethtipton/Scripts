@@ -15,6 +15,8 @@
     Optional service action to perform. Use None to only query status.
 .PARAMETER Credential
     Optional credential for remote operations.
+.PARAMETER LogFileName
+    Optional log file base name to pass through to Write-AdvancedLog.
 .EXAMPLE
     PS> Invoke-WindowsServiceManagement -ServiceName 'Spooler'
 .EXAMPLE
@@ -26,7 +28,7 @@
 .EXAMPLE
     PS> Invoke-WindowsServiceManagement -ComputerName 'Server01' -ServiceName @('Spooler','W32Time','Win*')
 .INPUTS
-    [string[]] ComputerName, [string[]] ServiceName, [string] StartupType, [string] Action, [pscredential] Credential
+    [string[]] ComputerName, [string[]] ServiceName, [string] StartupType, [string] Action, [pscredential] Credential, [string] LogFileName
 .OUTPUTS
     [pscustomobject]
 .NOTES
@@ -70,11 +72,18 @@ function Invoke-WindowsServiceManagement {
         [string]$Action = 'None',
 
         [Parameter(Mandatory = $false)]
-        [pscredential]$Credential
+        [pscredential]$Credential,
+
+        [Parameter(Mandatory = $false)]
+        [string]$LogFileName
     )
 
     begin {
-        $script:ScriptLabel = $MyInvocation.MyCommand.Name
+        $script:ScriptLabel = 'Invoke-WindowsServiceManagement.ps1'
+        $scriptPath = $MyInvocation.MyCommand.ScriptBlock.File
+        if (-not [string]::IsNullOrWhiteSpace($scriptPath)) {
+            $script:ScriptLabel = [System.IO.Path]::GetFileName($scriptPath)
+        }
         $writeAdvancedLogPath = Join-Path -Path $PSScriptRoot -ChildPath 'Write-AdvancedLog.ps1'
         if (Test-Path -Path $writeAdvancedLogPath) {
             . $writeAdvancedLogPath
@@ -91,7 +100,17 @@ function Invoke-WindowsServiceManagement {
 
             if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
                 try {
-                    Write-AdvancedLog -Message $Message -ScriptName $script:ScriptLabel -LogType $LogType
+                    $logArgs = @{
+                        Message    = $Message
+                        ScriptName = $script:ScriptLabel
+                        LogType    = $LogType
+                    }
+
+                    if (-not [string]::IsNullOrWhiteSpace($LogFileName)) {
+                        $logArgs.LogFileName = $LogFileName
+                    }
+
+                    Write-AdvancedLog @logArgs
                 }
                 catch {
                     Write-Verbose "Write-AdvancedLog failed: $($_.Exception.Message)"

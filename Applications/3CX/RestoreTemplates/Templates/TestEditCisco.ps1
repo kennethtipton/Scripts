@@ -1,3 +1,42 @@
+<#
+.SYNOPSIS
+    Test utility script for updating Cisco template DST values.
+.DESCRIPTION
+    Defines Update-CiscoDSTForTimezone and runs a sample invocation against a Cisco
+    template XML file. Intended for development/testing in the RestoreTemplates workflow.
+.PARAMETER None
+    This script does not accept script-level parameters.
+.EXAMPLE
+    PS> .\TestEditCisco.ps1
+.INPUT
+    None
+.OUTPUT
+    [pscustomobject] from Update-CiscoDSTForTimezone when execution succeeds.
+.NOTES
+    Author: Kenneth Tipton
+    Company: TNC
+    Date: 2026-03-04
+    Time: 19:10:00
+    Time Zone: Central Standard Time
+    Function Or Application: Application
+    Version: 1.0.0
+    Website: (https://www.tnandc.com)
+    Is AI Used: True
+    AI Used: GitHub Copilot
+
+    Copyright (c) 2026
+    Licensed under the MIT License.
+    Full text available at: https://opensource.org/licenses/MIT
+
+    Overide Variables
+    Overide Filename:
+    Overide Log Filename:
+    Overide Text Log File Path:
+    Overide Log Type:
+.LINK
+    https://www.tnandc.com
+#>
+
 function Update-CiscoDSTForTimezone {
     <#
     .SYNOPSIS

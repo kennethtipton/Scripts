@@ -117,8 +117,11 @@ These instructions apply to all PowerShell scripts and functions generated or mo
 ### Script Files
 - Use `.ps1` extension
 - No spaces in file names
-- Use CamelCase
-- Capitalize the first letter of each word
+- Application/installation script files: use CamelCase and capitalize the first letter of each word
+- Function script files: use approved PowerShell `Verb-Noun` naming with a dash (`-`)
+- Function script verbs must be from approved PowerShell verbs (for example `Get`, `Set`, `New`, `Invoke`, `Test`)
+- In function script files, the noun portion after the dash must be CamelCase
+- Example: `Get-FileDates.ps1`, `Set-AdministratorMode.ps1`
 
 ### Folder Names
 - Capitalize the first letter of each word
@@ -222,3 +225,48 @@ Header may include AI override variables if required.
 - Do not omit required headers or footers
 - Do not use informal logging methods when `Write-AdvancedLog` is required
 - Do not create files that violate naming conventions
+
+---
+
+## Applications Compliance Audit (2026-03-04)
+
+Scope audited: `c:\Scripts\Applications` (recursive)
+
+- Folders scanned: `18`
+- `.ps1` scripts scanned: `9`
+- Folder naming violations: `2`
+- Script naming violations: `0`
+- Missing comment-based help headers: `0`
+
+### Documented Folder Exceptions
+
+- `Applications/3CX`
+	- Reason: Vendor/product acronym and numeric product identifier naming.
+- `Applications/3CX/Failover3CXServer/.vscode`
+	- Reason: Standard VS Code configuration folder (tooling folder, naming exempt).
+
+### Script Naming Normalization Applied
+
+- `Applications/3CX/RestoreTemplates/3CX_Template_Restore.ps1` -> `Applications/3CX/RestoreTemplates/Restore3CxTemplate.ps1`
+- `Applications/3CX/RestoreTemplates/Functions/Get-FixTemplates.ps1` -> `Applications/3CX/RestoreTemplates/Functions/GetFixTemplates.ps1` -> `Applications/3CX/RestoreTemplates/Functions/Get-FixTemplates.ps1`
+- `Applications/3CX/RestoreTemplates/Functions/Get-RestoreTemplates.ps1` -> `Applications/3CX/RestoreTemplates/Functions/GetRestoreTemplates.ps1` -> `Applications/3CX/RestoreTemplates/Functions/Get-RestoreTemplates.ps1`
+- `Applications/3CX/RestoreTemplates/Functions/RESTORE-TEMPLATE_DATA.ps1` -> `Applications/3CX/RestoreTemplates/Functions/RestoreTemplateData.ps1` -> `Applications/3CX/RestoreTemplates/Functions/Get-TemplateTypes.ps1`
+- `Applications/3CX/RestoreTemplates/Functions/UPDATE-CISCO_SPA5XX_DST_FOR_A_TIMEZONE.ps1` -> `Applications/3CX/RestoreTemplates/Functions/UpdateCiscoSpa5xxDstForATimezone.ps1` -> `Applications/3CX/RestoreTemplates/Functions/Update-CiscoDSTForTimezone.ps1`
+- `Applications/3CX/RestoreTemplates/Templates/test-editCisco.ps1` -> `Applications/3CX/RestoreTemplates/Templates/TestEditCisco.ps1`
+- `Applications/OpenSource/PowershellScriptsManagementLogViewer/Start-LogViewer.ps1` -> `Applications/OpenSource/PowershellScriptsManagementLogViewer/StartLogViewer.ps1`
+
+### Missing Header Compliance
+
+- None. Header compliance remediated for all scripts under `Applications`.
+
+### Logging Standard Updates Applied
+
+- Added `Write-AdvancedLog -LogFileName` support to separate script identity from log file target.
+- Updated shared functions to support app-provided `LogFileName` pass-through:
+	- `Functions/Copy-FileWithOverwrite.ps1`
+	- `Functions/Invoke-WindowsServiceManagement.ps1`
+	- `Functions/New-ZipFromFolder.ps1`
+	- `Functions/Set-AdministratorMode.ps1`
+- Updated RestoreTemplates app/function flow to pass application log context while preserving function script identity:
+	- `Applications/3CX/RestoreTemplates/Restore3CxTemplate.ps1`
+	- `Applications/3CX/RestoreTemplates/Functions/Get-TemplateTypes.ps1`

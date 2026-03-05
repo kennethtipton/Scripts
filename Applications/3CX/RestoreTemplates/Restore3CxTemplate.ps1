@@ -1,4 +1,44 @@
-﻿# ============================================================================
+﻿<#
+.SYNOPSIS
+    Restores 3CX template files from the local Templates folder to configured 3CX destinations.
+.DESCRIPTION
+    Runs a preflight dependency check, imports local/shared helper functions, loads restore
+    configuration from RESTORE_TEMPLATES_DATA.JSON, optionally applies template fix functions,
+    and copies templates to target locations.
+.PARAMETER None
+    This script does not accept parameters. Configuration is loaded from the Data folder.
+.EXAMPLE
+    PS> .\Restore3CxTemplate.ps1
+.INPUT
+    None
+.OUTPUT
+    None
+.NOTES
+    Author: Kenneth Tipton
+    Company: TNC
+    Date: 2026-03-04
+    Time: 19:10:00
+    Time Zone: Central Standard Time
+    Function Or Application: Application
+    Version: 1.0.0
+    Website: (https://www.tnandc.com)
+    Is AI Used: True
+    AI Used: GitHub Copilot
+
+    Copyright (c) 2026
+    Licensed under the MIT License.
+    Full text available at: https://opensource.org/licenses/MIT
+
+    Overide Variables
+    Overide Filename:
+    Overide Log Filename:
+    Overide Text Log File Path:
+    Overide Log Type:
+.LINK
+    https://www.tnandc.com
+#>
+
+# ============================================================================
 # ADMINISTRATOR PRIVILEGE CHECK
 # ============================================================================
 # This block checks if the script is running with Administrator privileges
@@ -17,8 +57,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # Display confirmation message that script is running with full privileges
 Write-Host "Running with full privileges" -ForegroundColor Green
 
-$applicationScriptName = '3CX_Template_Restore.ps1'
-$applicationLogFileName = '3CX_Template_Restore'
+$applicationScriptName = 'Restore3CxTemplate.ps1'
+$applicationLogFileName = 'Restore3CxTemplate'
 
 # Set the base path for all general scripts
 $scriptFolder = $PSScriptRoot
@@ -30,8 +70,8 @@ $sharedFunctionsFolder = Join-Path -Path $repoRoot -ChildPath 'Functions'
 # ============================================================================
 # Validate script dependencies and expected helper commands before continuing.
 $localFunctionScripts = @(
-    (Join-Path -Path $scriptFolder -ChildPath 'Functions\UPDATE-CISCO_SPA5XX_DST_FOR_A_TIMEZONE.ps1'),
-    (Join-Path -Path $scriptFolder -ChildPath 'Functions\RESTORE-TEMPLATE_DATA.ps1'),
+    (Join-Path -Path $scriptFolder -ChildPath 'Functions\Update-CiscoDSTForTimezone.ps1'),
+    (Join-Path -Path $scriptFolder -ChildPath 'Functions\Get-TemplateTypes.ps1'),
     (Join-Path -Path $scriptFolder -ChildPath 'Functions\Get-RestoreTemplates.ps1'),
     (Join-Path -Path $scriptFolder -ChildPath 'Functions\Get-FixTemplates.ps1')
 )
@@ -79,7 +119,7 @@ if ($missingCommands.Count -gt 0) {
 # LOG INITIALIZATION
 # ============================================================================
 # Write startup log entry for script execution tracking
-Write-AdvancedLog -Message '3CX_Template_Restore.ps1 script started successfully.' `
+Write-AdvancedLog -Message 'Restore3CxTemplate.ps1 script started successfully.' `
     -ScriptName $applicationScriptName `
     -LogFileName $applicationLogFileName `
     -LogType 'INFO'
@@ -225,8 +265,8 @@ foreach ($threeCXRestoreTemplate in $threeCXRestoreTemplates) {
                         -LogFileName $applicationLogFileName `
                         -Overwrite
                     # Write log entry for overwrite copy operation
-                    Write-AdvancedLog -Message "3CX_Template_Restore.ps1: Destination exists ($threeCXTemplatePath). Copying source ($restoreTemplatePath) over destination." `
-                        -ScriptName '3CX_Template_Restore.ps1' `
+                    Write-AdvancedLog -Message "Restore3CxTemplate.ps1: Destination exists ($threeCXTemplatePath). Copying source ($restoreTemplatePath) over destination." `
+                        -ScriptName 'Restore3CxTemplate.ps1' `
                         -LogType 'INFO'
                 }
                 
@@ -247,8 +287,8 @@ foreach ($threeCXRestoreTemplate in $threeCXRestoreTemplates) {
                         -Overwrite
 
                     # Write log entry for new destination copy operation
-                    Write-AdvancedLog -Message "3CX_Template_Restore.ps1: Destination missing ($threeCXTemplatePath). Copying source ($restoreTemplatePath) to destination." `
-                        -ScriptName '3CX_Template_Restore.ps1' `
+                    Write-AdvancedLog -Message "Restore3CxTemplate.ps1: Destination missing ($threeCXTemplatePath). Copying source ($restoreTemplatePath) to destination." `
+                        -ScriptName 'Restore3CxTemplate.ps1' `
                         -LogType 'INFO'
 
                 }

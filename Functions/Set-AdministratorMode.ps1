@@ -39,7 +39,10 @@
 
 function Set-AdministratorMode {
     [CmdletBinding()]
-    param()
+    param(
+        [Parameter(Mandatory = $false)]
+        [string]$LogFileName
+    )
 
     $writeAdvancedLogPath = Join-Path -Path $PSScriptRoot -ChildPath 'Write-AdvancedLog.ps1'
     if (Test-Path -Path $writeAdvancedLogPath) {
@@ -56,7 +59,17 @@ function Set-AdministratorMode {
 
         if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
             try {
-                Write-AdvancedLog -Message $Message -ScriptName 'Set-AdministratorMode.ps1' -LogType $LogType
+                $logArgs = @{
+                    Message    = $Message
+                    ScriptName = 'Set-AdministratorMode.ps1'
+                    LogType    = $LogType
+                }
+
+                if (-not [string]::IsNullOrWhiteSpace($LogFileName)) {
+                    $logArgs.LogFileName = $LogFileName
+                }
+
+                Write-AdvancedLog @logArgs
             }
             catch {
                 Write-Verbose "Write-AdvancedLog failed: $($_.Exception.Message)"

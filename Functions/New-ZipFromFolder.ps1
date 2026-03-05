@@ -16,6 +16,8 @@
     but still stores in Data/StoredFiles unless ZipPath is also specified.
 .PARAMETER Mode
     Optional. 'Files', 'Folders', or 'Both'. Determines what to include in the zip. Default is 'Both'.
+.PARAMETER LogFileName
+    Optional log file base name to pass through to Write-AdvancedLog.
 .EXAMPLE
     PS> New-ZipFromFolder -SourceFolder 'C:\MyFolder' -ZipPath 'C:\MyArchive.zip' -Mode Both
 .EXAMPLE
@@ -25,7 +27,7 @@
 .EXAMPLE
     PS> New-ZipFromFolder -SourceFolder 'C:\MyFolder' -ZipPath 'C:\MyArchive.zip' -Mode Folders
 .INPUTS
-    [string[]] SourceFolder, [string] ZipPath, [string] ZipName, [string] Mode
+    [string[]] SourceFolder, [string] ZipPath, [string] ZipName, [string] Mode, [string] LogFileName
 .OUTPUTS
     None
 .NOTES
@@ -62,7 +64,8 @@ function New-ZipFromFolder {
         [string]$ZipPath,
         [string]$ZipName,
         [ValidateSet('Files','Folders','Both')]
-        [string]$Mode = 'Both'
+        [string]$Mode = 'Both',
+        [string]$LogFileName
     )
     # Import Write-AdvancedLog if available
     $logFunc = Join-Path $PSScriptRoot '../Functions/Write-AdvancedLog.ps1'
@@ -74,12 +77,34 @@ function New-ZipFromFolder {
         param([string]$Message)
         Write-Verbose -Message $Message
     }
+
+    function Write-ZipLog {
+        param(
+            [Parameter(Mandatory)]
+            [string]$Message,
+            [ValidateSet('INFO', 'WARNING', 'ERROR')]
+            [string]$LogType = 'INFO'
+        )
+
+        if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
+            $logArgs = @{
+                Message    = $Message
+                ScriptName = $scriptName
+                LogType    = $LogType
+            }
+
+            if (-not [string]::IsNullOrWhiteSpace($LogFileName)) {
+                $logArgs.LogFileName = $LogFileName
+            }
+
+            Write-AdvancedLog @logArgs
+        }
+    }
+
     foreach ($folder in $SourceFolder) {
         if (-not (Test-Path $folder)) {
             $errMsg = "Source folder not found: $folder"
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message $errMsg -ScriptName $scriptName -LogType 'ERROR'
-            }
+            Write-ZipLog -Message $errMsg -LogType 'ERROR'
             throw $errMsg
         }
         # Determine zip path for each folder
@@ -95,9 +120,7 @@ function New-ZipFromFolder {
         $resolvedZipPath = $thisZipPath
         if (-not (Split-Path $resolvedZipPath -Parent | Test-Path)) {
             New-Item -Path (Split-Path $resolvedZipPath -Parent) -ItemType Directory | Out-Null
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message "Created directory: $(Split-Path $resolvedZipPath -Parent)" -ScriptName $scriptName -LogType 'INFO'
-            }
+            Write-ZipLog -Message "Created directory: $(Split-Path $resolvedZipPath -Parent)" -LogType 'INFO'
             Write-ZipVerbose "Created directory: $(Split-Path $resolvedZipPath -Parent)"
         }
         if (Test-Path $resolvedZipPath) {
@@ -112,14 +135,10 @@ function New-ZipFromFolder {
             $backupName = "$zipBaseName-$timestamp$zipExt"
             $backupPath = Join-Path $backupsDir $backupName
             Copy-Item $resolvedZipPath $backupPath -Force
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message "Backed up existing zip: $resolvedZipPath to $backupPath" -ScriptName $scriptName -LogType 'WARNING'
-            }
+            Write-ZipLog -Message "Backed up existing zip: $resolvedZipPath to $backupPath" -LogType 'WARNING'
             Write-ZipVerbose "Backed up existing zip: $resolvedZipPath to $backupPath"
             Remove-Item $resolvedZipPath -Force
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message "Removed existing zip: $resolvedZipPath" -ScriptName $scriptName -LogType 'WARNING'
-            }
+            Write-ZipLog -Message "Removed existing zip: $resolvedZipPath" -LogType 'WARNING'
             Write-ZipVerbose "Removed existing zip: $resolvedZipPath"
         }
         $items = @()
@@ -130,22 +149,16 @@ function New-ZipFromFolder {
         }
         if ($items.Count -eq 0) {
             $errMsg = "No items found to zip in $folder with mode $Mode."
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message $errMsg -ScriptName $scriptName -LogType 'WARNING'
-            }
+            Write-ZipLog -Message $errMsg -LogType 'WARNING'
             throw $errMsg
         }
         try {
             Compress-Archive -Path $items.FullName -DestinationPath $resolvedZipPath -Force
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message "Created zip: $resolvedZipPath from $folder ($Mode)" -ScriptName $scriptName -LogType 'INFO'
-            }
+            Write-ZipLog -Message "Created zip: $resolvedZipPath from $folder ($Mode)" -LogType 'INFO'
             Write-ZipVerbose "Created zip: $resolvedZipPath from $folder ($Mode)"
         } catch {
             $errMsg = "Failed to create zip: $_"
-            if (Get-Command Write-AdvancedLog -ErrorAction SilentlyContinue) {
-                Write-AdvancedLog -Message $errMsg -ScriptName $scriptName -LogType 'ERROR'
-            }
+            Write-ZipLog -Message $errMsg -LogType 'ERROR'
             throw $errMsg
         }
     }
@@ -157,3 +170,4 @@ function New-ZipFromFolder {
 # PS> New-ZipFromFolder -SourceFolder @('C:\Folder1','C:\Folder2') -ZipName 'MyMultiFolderBackup' -Mode Files
 # PS> New-ZipFromFolder -SourceFolder 'C:\Path\To\Folder' -ZipPath 'C:\Path\To\Archive.zip' -Mode Folders
 # PS> New-ZipFromFolder -SourceFolder @('C:\Scripts\Installs\PodeWeb','C:\Scripts\Installs\PoshAcme','C:\Scripts\Installs\PoshAcmeDeploy') -Mode Both
+# PS> New-ZipFromFolder -SourceFolder 'C:\Path\To\Folder' -ZipName 'Archive' -LogFileName 'MyApplication'

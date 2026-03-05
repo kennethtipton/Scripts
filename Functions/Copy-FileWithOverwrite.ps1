@@ -15,12 +15,14 @@
     Writes operational log messages through Write-AdvancedLog when available.
 .PARAMETER CallingScript
     Optional script name to include in log entries. Defaults to this function file name.
+.PARAMETER LogFileName
+    Optional log file base name to pass through to Write-AdvancedLog.
 .EXAMPLE
     PS> Copy-FileWithOverwrite -SourceFilePath 'C:\Temp\source.txt' -DestinationFilePath 'C:\Temp\destination.txt'
 .EXAMPLE
     PS> Copy-FileWithOverwrite -SourceFilePath 'C:\Temp\source.txt' -DestinationFilePath 'C:\Temp\destination.txt' -Overwrite -LogIt
 .INPUTS
-    [string] SourceFilePath, [string] DestinationFilePath, [switch] Overwrite, [switch] LogIt, [string] CallingScript
+    [string] SourceFilePath, [string] DestinationFilePath, [switch] Overwrite, [switch] LogIt, [string] CallingScript, [string] LogFileName
 .OUTPUTS
     [bool]
 .NOTES
@@ -65,8 +67,18 @@ function Copy-FileWithOverwrite {
         [switch]$LogIt,
 
         [Parameter(Mandatory = $false)]
-        [string]$CallingScript = 'Copy-FileWithOverwrite.ps1'
+        [string]$CallingScript = 'Copy-FileWithOverwrite.ps1',
+
+        [Parameter(Mandatory = $false)]
+        [string]$LogFileName
     )
+
+    if (-not $PSBoundParameters.ContainsKey('CallingScript')) {
+        $scriptPath = $MyInvocation.MyCommand.ScriptBlock.File
+        if (-not [string]::IsNullOrWhiteSpace($scriptPath)) {
+            $CallingScript = [System.IO.Path]::GetFileName($scriptPath)
+        }
+    }
 
     $writeAdvancedLogPath = Join-Path -Path $PSScriptRoot -ChildPath 'Write-AdvancedLog.ps1'
     if (Test-Path -Path $writeAdvancedLogPath) {
@@ -82,7 +94,17 @@ function Copy-FileWithOverwrite {
         )
 
         if ($LogIt -and (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue)) {
-            Write-AdvancedLog -Message $Message -ScriptName $CallingScript -LogType $Type
+            $logArgs = @{
+                Message    = $Message
+                ScriptName = $CallingScript
+                LogType    = $Type
+            }
+
+            if (-not [string]::IsNullOrWhiteSpace($LogFileName)) {
+                $logArgs.LogFileName = $LogFileName
+            }
+
+            Write-AdvancedLog @logArgs
         }
 
         Write-Verbose -Message $Message
@@ -126,3 +148,4 @@ function Copy-FileWithOverwrite {
 # Example usage:
 # PS> Copy-FileWithOverwrite -SourceFilePath 'C:\Temp\source.txt' -DestinationFilePath 'C:\Temp\destination.txt'
 # PS> Copy-FileWithOverwrite -SourceFilePath 'C:\Temp\source.txt' -DestinationFilePath 'C:\Temp\destination.txt' -Overwrite -LogIt -Verbose
+# PS> Copy-FileWithOverwrite -SourceFilePath 'C:\Temp\source.txt' -DestinationFilePath 'C:\Temp\destination.txt' -Overwrite -LogIt -LogFileName '3CX_Template_Restore'

@@ -9,6 +9,9 @@
     The log message to write. Mandatory.
 .PARAMETER ScriptName
     The name of the script generating the log entry. Defaults to the calling script name.
+.PARAMETER LogFileName
+    Optional base name to use for the default log file when LogFile is not specified.
+    This lets the log entry ScriptName differ from the physical log file name.
 .PARAMETER LogType
     The log level: 'INFO', 'WARNING', or 'ERROR'. Defaults to 'INFO'.
 .PARAMETER LogFile
@@ -22,9 +25,11 @@
 .EXAMPLE
     PS> Write-AdvancedLog -Message "Install completed" -ScriptName "MyApp.ps1" -LogType "INFO"
 .EXAMPLE
+    PS> Write-AdvancedLog -Message "Install completed" -ScriptName "Get-RestoreTemplates.ps1" -LogFileName "Restore3CxTemplate" -LogType "INFO"
+.EXAMPLE
     PS> Write-AdvancedLog -Message "Critical error" -ScriptName "MyApp.ps1" -LogType "ERROR" -WriteEventLog -EventLogName "CustomLog" -EventSource "CustomSource"
 .INPUTS
-    [string] Message, [string] ScriptName, [string] LogType, [string] LogFile, [switch] WriteEventLog, [string] EventLogName, [string] EventSource
+    [string] Message, [string] ScriptName, [string] LogFileName, [string] LogType, [string] LogFile, [switch] WriteEventLog, [string] EventLogName, [string] EventSource
 .OUTPUTS
     None
 .NOTES
@@ -59,6 +64,7 @@ function Write-AdvancedLog {
         [Parameter(Mandatory)]
         [string]$Message,
         [string]$ScriptName = $MyInvocation.MyCommand.Name,
+        [string]$LogFileName,
         [ValidateSet('INFO', 'WARNING', 'ERROR')]
         [string]$LogType = 'INFO',
         [string]$LogFile,
@@ -76,7 +82,13 @@ function Write-AdvancedLog {
     } else {
         $scriptsRoot = Split-Path -Parent $PSScriptRoot
         $logDir = Join-Path -Path $scriptsRoot -ChildPath 'Logs'
-        $logFile = Join-Path -Path $logDir -ChildPath ("$($ScriptName -replace '\.ps1$','').log")
+        $resolvedLogFileName = if ([string]::IsNullOrWhiteSpace($LogFileName)) {
+            $ScriptName
+        }
+        else {
+            $LogFileName
+        }
+        $logFile = Join-Path -Path $logDir -ChildPath ("$($resolvedLogFileName -replace '\.ps1$','').log")
     }
 
     # Ensure log file and folder exist using Initialize-FileAndFolder
@@ -86,6 +98,7 @@ function Write-AdvancedLog {
         Initialize-FileAndFolder -FilePath $logFile
     }
     $PSCmdlet.WriteVerbose("ScriptName: $ScriptName")
+    $PSCmdlet.WriteVerbose("LogFileName: $LogFileName")
     # Always write to text log
     $header = 'Timestamp | Script | Type | Message'
     $headerMarker = $header
@@ -178,5 +191,6 @@ function Write-AdvancedLog {
 # Example footer for function testing:
 # PS> Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "INFO" -Verbose
 # PS> Write-AdvancedLog -Message "This is a test INFO log entry (text only)." -LogType "INFO"
+# PS> Write-AdvancedLog -Message "Function log entry in app log file." -ScriptName "Get-RestoreTemplates.ps1" -LogFileName "Restore3CxTemplate" -LogType "INFO"
 # PS> Write-AdvancedLog -Message "This is a test ERROR log entry (event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "ERROR" -WriteEventLog -Verbose
 # PS> Write-AdvancedLog -Message "This is a test WARNING log entry (custom event log)." -ScriptName "Write-AdvancedLogTest.ps1" -LogType "WARNING" -WriteEventLog -EventLogName "CustomPSScriptLog" -EventSource "CustomPSSource" -Verbose

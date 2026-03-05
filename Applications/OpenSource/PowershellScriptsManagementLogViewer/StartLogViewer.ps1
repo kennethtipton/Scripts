@@ -16,11 +16,11 @@
     Full path to the folder containing .log files. Defaults to the Logs folder
     under the repository root (three levels above this script).
 .EXAMPLE
-    PS> .\Start-LogViewer.ps1
+    PS> .\StartLogViewer.ps1
 .EXAMPLE
-    PS> .\Start-LogViewer.ps1 -Port 9090 -Verbose
+    PS> .\StartLogViewer.ps1 -Port 9090 -Verbose
 .EXAMPLE
-    PS> .\Start-LogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs"
+    PS> .\StartLogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs"
 .INPUTS
     None
 .OUTPUTS
@@ -276,6 +276,6 @@ catch {
 }
 
 # Example footer
-# PS> .\Start-LogViewer.ps1
-# PS> .\Start-LogViewer.ps1 -Port 9090 -Verbose
-# PS> .\Start-LogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs" -Verbose
+# PS> .\StartLogViewer.ps1
+# PS> .\StartLogViewer.ps1 -Port 9090 -Verbose
+# PS> .\StartLogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs" -Verbose
