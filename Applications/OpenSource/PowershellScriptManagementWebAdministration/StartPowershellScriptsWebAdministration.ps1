@@ -16,11 +16,11 @@
     Full path to the folder containing .log files. Defaults to the Logs folder
     under the repository root (three levels above this script).
 .EXAMPLE
-    PS> .\StartLogViewer.ps1
+    PS> .\StartPowershellScriptsWebAdministration.ps1
 .EXAMPLE
-    PS> .\StartLogViewer.ps1 -Port 9090 -Verbose
+    PS> .\StartPowershellScriptsWebAdministration.ps1 -Port 9090 -Verbose
 .EXAMPLE
-    PS> .\StartLogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs"
+    PS> .\StartPowershellScriptsWebAdministration.ps1 -Port 8080 -LogPath "C:\Scripts\Logs"
 .INPUTS
     None
 .OUTPUTS
@@ -64,8 +64,40 @@ param(
 
 # Import Write-AdvancedLog function
 $writeLogFunc = Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\Functions\Write-AdvancedLog.ps1'
+$script:CurrentScriptName = $MyInvocation.MyCommand.Name
+$script:CanUseAdvancedLog = $false
+
 if (Test-Path $writeLogFunc) {
-    . $writeLogFunc
+    try {
+        . $writeLogFunc
+    }
+    catch {
+        Write-Warning "Failed to load Write-AdvancedLog from '$writeLogFunc'. Continuing without advanced logging. Error: $_"
+    }
+}
+
+if (Get-Command -Name Write-AdvancedLog -ErrorAction SilentlyContinue) {
+    $script:CanUseAdvancedLog = $true
+}
+
+function Write-SafeAdvancedLog {
+    param(
+        [string]$Message,
+        [ValidateSet('INFO', 'WARNING', 'ERROR')]
+        [string]$LogType = 'INFO'
+    )
+
+    if ($script:CanUseAdvancedLog) {
+        try {
+            Write-AdvancedLog -Message $Message -ScriptName $script:CurrentScriptName -LogType $LogType
+            return
+        }
+        catch {
+            Write-Verbose "Write-AdvancedLog failed: $_"
+        }
+    }
+
+    Write-Verbose "[$LogType] $Message"
 }
 
 Write-Verbose "LogPath: $LogPath"
@@ -74,15 +106,15 @@ Write-Verbose "Port: $Port"
 try {
     Import-Module Pode     -ErrorAction Stop
     Import-Module Pode.Web -ErrorAction Stop
-    Write-AdvancedLog -Message "Pode and Pode.Web modules imported successfully." -ScriptName $MyInvocation.MyCommand.Name -LogType 'INFO'
+    Write-SafeAdvancedLog -Message 'Pode and Pode.Web modules imported successfully.' -LogType 'INFO'
 }
 catch {
     Write-Error "Failed to import required modules. Install with:`n  Install-Module Pode -Scope CurrentUser`n  Install-Module Pode.Web -Scope CurrentUser`nError: $_"
-    Write-AdvancedLog -Message "Failed to import Pode/Pode.Web module: $_" -ScriptName $MyInvocation.MyCommand.Name -LogType 'ERROR'
+    Write-SafeAdvancedLog -Message "Failed to import Pode/Pode.Web module: $_" -LogType 'ERROR'
     exit 1
 }
 
-Write-AdvancedLog -Message "Starting Log Viewer (Pode.Web) on port $Port. LogPath: $LogPath" -ScriptName $MyInvocation.MyCommand.Name -LogType 'INFO'
+Write-SafeAdvancedLog -Message "Starting Log Viewer (Pode.Web) on port $Port. LogPath: $LogPath" -LogType 'INFO'
 
 # Capture parameter values for use in server scriptblocks.
 $ServerPort = $Port
@@ -129,7 +161,7 @@ try {
     Start-PodeServer {
         Add-PodeEndpoint -Address * -Port $ServerPort -Protocol Http
 
-        Use-PodeWebTemplates -Title 'PowerShell Script Log Viewer' -Theme Dark
+        Use-PodeWebTemplates -Title 'Powershell Scripts Administration' -Theme Dark
 
         # ── Detail modal ───────────────────────────────────────────────────────
         # DetailTable is initially empty; populated via Update-PodeWebTable when
@@ -272,10 +304,10 @@ try {
 }
 catch {
     Write-Error "Log Viewer server encountered an error: $_"
-    Write-AdvancedLog -Message "Log Viewer server error: $_" -ScriptName $MyInvocation.MyCommand.Name -LogType 'ERROR'
+    Write-SafeAdvancedLog -Message "Log Viewer server error: $_" -LogType 'ERROR'
 }
 
 # Example footer
-# PS> .\StartLogViewer.ps1
-# PS> .\StartLogViewer.ps1 -Port 9090 -Verbose
-# PS> .\StartLogViewer.ps1 -Port 8080 -LogPath "C:\Scripts\Logs" -Verbose
+# PS> .\StartPowershellScriptsWebAdministration.ps1
+# PS> .\StartPowershellScriptsWebAdministration.ps1 -Port 9090 -Verbose
+# PS> .\StartPowershellScriptsWebAdministration.ps1 -Port 8080 -LogPath "C:\Scripts\Logs" -Verbose
