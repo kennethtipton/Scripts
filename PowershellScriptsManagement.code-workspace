@@ -1,6 +1,6 @@
 {
     "folders": [
-        {"name": "Powershell Scripts Management", "path": "."},
+    {"name": "Powershell Scripts Management", "path": "."},
         {"name": "Failover Script for 3CX Servers", "path": ".\\Applications\\3CX\\Failover3CXServer"},
         {"name": "Restore 3CX Templates", "path": ".\\Applications\\3CX\\RestoreTemplates"},
         {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"},
