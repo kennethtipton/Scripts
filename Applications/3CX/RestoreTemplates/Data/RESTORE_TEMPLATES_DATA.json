@@ -1,0 +1,88 @@
+{
+    "tables": [
+        {
+            "templatetypes": [
+                {
+                    "type": "provider",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\provider"
+                },
+                {
+                    "type": "phones",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\phones"
+                },
+                {
+                    "type": "gateway",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\gateway"
+                },
+                {
+                    "type": "fxs",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\fxs"
+                },
+                {
+                    "type": "messaging",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\messaging"
+                },
+                {
+                    "type": "crm",
+                    "location": "C:\\ProgramData\\3CX\\Instance1\\Data\\Http\\Templates\\crm"
+                }
+            ]
+        },
+        {
+            "restoretemplates": [
+                {
+                    "name": "cisco.ph.xml",
+                    "type": "phones",
+                    "compare": false,
+                    "overwrite": true
+                },
+                {
+                    "name": "cisco_sidecarSPA50X.ph.xml",
+                    "type": "phones",
+                    "compare": false,
+                    "overwrite": true
+                },
+                {
+                    "name": "cisco_sidecarSPA525.ph.xml",
+                    "type": "phones",
+                    "compare": false,
+                    "overwrite": true
+                },
+                {
+                    "name": "fusionconnectreg.pv.xml",
+                    "type": "provider",
+                    "compare": false,
+                    "overwrite": true
+                }
+            ]
+        },
+        {
+            "fixtemplates": [
+                {
+                    "name": "cisco.ph.xml",
+                    "functions": [
+                        {
+                            "name":"Update-CiscoDSTForTimezone"
+                        }
+                    ]
+                },
+                {
+                    "name": "cisco_sidecarSPA50X.ph.xml",
+                    "functions": [
+                        {
+                            "name":"Update-CiscoDSTForTimezone"
+                        }
+                    ]
+                },
+                {
+                    "name": "cisco_sidecarSPA525.ph.xml",
+                    "functions": [
+                        {
+                            "name":"Update-CiscoDSTForTimezone"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

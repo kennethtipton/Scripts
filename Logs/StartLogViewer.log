@@ -1,0 +1,118 @@
+Timestamp | Script | Type | Message
+2026-03-05 17:41:39 | Script: StartLogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-05 17:41:39 | Script: StartLogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-05 17:37:55 | Script: StartLogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 18081. LogPath: C:\Scripts\Logs
+2026-03-05 17:37:55 | Script: StartLogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-05 17:33:03 | Script: StartLogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 18080. LogPath: C:\Scripts\Logs
+2026-03-05 17:33:03 | Script: StartLogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 17:15:58 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8094. LogPath: c:\Scripts\Logs
+2026-03-04 17:15:58 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 17:12:36 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 17:12:36 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 17:11:25 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8095. LogPath: c:\Scripts\Logs
+2026-03-04 17:11:25 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 17:03:23 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 17:03:23 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 17:02:27 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8096. LogPath: c:\Scripts\Logs
+2026-03-04 17:02:26 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:57:17 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:57:17 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:55:39 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:55:39 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:55:02 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:55:02 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:53:34 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8097. LogPath: C:\Scripts\Logs
+2026-03-04 16:53:34 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:52:19 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8097. LogPath: C:\Scripts\Logs
+2026-03-04 16:52:18 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:48:03 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:48:03 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:46:57 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8098. LogPath: C:\Scripts\Logs
+2026-03-04 16:46:57 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:45:45 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8098. LogPath: C:\Scripts\Logs
+2026-03-04 16:45:45 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:44:13 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:44:13 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:43:14 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8099. LogPath: C:\Scripts\Logs
+2026-03-04 16:43:14 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:42:36 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A parameter cannot be found that matches parameter name 'Homepage'.
+2026-03-04 16:42:34 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8099. LogPath: C:\Scripts\Logs
+2026-03-04 16:42:34 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:41:30 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A parameter cannot be found that matches parameter name 'Content'.
+2026-03-04 16:41:29 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:41:29 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:40:18 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A parameter cannot be found that matches parameter name 'Title'.
+2026-03-04 16:40:17 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:40:17 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-04 16:38:43 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A Using variable cannot be retrieved. A Using variable can be used only with Invoke-Command, Start-Job, or InlineScript in the script workflow. When it is used with Invoke-Command, the Using variable is valid only if the script block is invoked on a remote computer.
+2026-03-04 16:38:42 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-04 16:38:42 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-03 17:19:09 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A Using variable cannot be retrieved. A Using variable can be used only with Invoke-Command, Start-Job, or InlineScript in the script workflow. When it is used with Invoke-Command, the Using variable is valid only if the script block is invoked on a remote computer.
+2026-03-03 17:19:09 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer (Pode.Web) on port 8080. LogPath: C:\Scripts\Logs
+2026-03-03 17:19:08 | Script: Start-LogViewer.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-03 16:33:51 | Script: Start-LogViewer.ps1 | ERROR: Log Viewer server error: A Using variable cannot be retrieved. A Using variable can be used only with Invoke-Command, Start-Job, or InlineScript in the script workflow. When it is used with Invoke-Command, the Using variable is valid only if the script block is invoked on a remote computer.
+2026-03-03 16:33:50 | Script: Start-LogViewer.ps1 | INFO: Starting Log Viewer server on port 8080. LogPath: C:\Scripts\Logs
+2026-03-03 16:33:50 | Script: Start-LogViewer.ps1 | INFO: Pode module imported successfully.
+2026-02-24 13:12:57 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+2026-02-24 13:11:58 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+2026-02-24 13:09:03 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+2026-02-24 13:01:41 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+2026-02-24 12:59:33 | Script: Start-LogViewer.ps1 | INFO: [INFO] Log folder path: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

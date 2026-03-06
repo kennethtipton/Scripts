@@ -1,0 +1,141 @@
+{
+    "version": "1.0.0",
+    "commonRules": {
+        "mpsRules": {
+            "scriptRules": {
+                "applicationScripts": {
+                    "description": "PowerShell script files that are complete applications that can be run independently.",
+                    "extension": "ps1",
+                    "namingRules": [
+                        "The file name should contain no spaces. Use CamelCase",
+                        "The First letter of each word in a file name should be capitalized"
+                    ],
+                    "codingStandards": [
+                        "Follow standard PowerShell coding practices as outlined in PowerShell documentation.",
+                        "Use meaningful variable and function names.",
+                        "Include comments to explain complex logic.",
+                        "Use consistent indentation and formatting.",
+                        "Use descriptive error messages.",
+                        "Use the Write-AdvancedLog cmdlet for logging events.",
+                        "A verbose option should be included in the script.",
+                        "Error handling should be implemented to manage potential issues gracefully."
+                    ],
+                    "scriptHeader": [
+                        "Use the file MasterPowershellScriptHeaderExample.txt to create a standard header for each PowerShell script File.",
+                        "In the header replace [CurrentDate] with the metadata field (Date modified) for the file.",
+                        "In the header replace [CurrentTime] with the metadata field (Date modified) for the file.",
+                        "In the header replace [TIMEZONE] with the computers current time zone.",
+                        "In the header replace [CurrentYear] with the metadata field (Date modified) for the file.",
+                        "In the header replace [IsAIUsed] replaced with True or False if AI was used to create or modify the script code, exclude comments.",
+                        "In the header replace [AIUsed] with the name of the AI or AIs used to create or modify the script code, exclude comments. If no AI was used answer with N/A.",
+                        "In the header replace [AuthorCompany] with the Author Company",
+                        "In the header replace [LicenseName] with the License Name",
+                        "In the header replace [URLToLicense] with URL to License",
+                        "In the header replace [ScriptType] With Function if this script is a single function file and Application if it is an application script."
+                    ],
+                    "scriptFooter": [
+                        "Each PowerShell script should have a footer at the end of its script file with a remarked-out example to test the script."
+                    ],
+                    "loggingRules": {
+                        "logFileLocation": [
+                            "logfile should be created in a Logs folder under the Root folder unless the script specifies at the top of the PowerShell script another location."
+                        ]
+                    }
+                },
+                "installationScripts": {
+                    "description": "PowerShell script files used to install and/or configure applications and/or function Scripts and/or modules on a system.",
+                    "extension": "ps1",
+                    "namingRules": [
+                        "The file name should contain no spaces. Use CamelCase",
+                        "The First letter of each word in a file name should be capitalized"
+                    ],
+                    "codingStandards": [
+                        "Follow standard PowerShell coding practices as outlined in PowerShell documentation.",
+                        "Use meaningful variable and function names.",
+                        "Include comments to explain complex logic.",
+                        "Use consistent indentation and formatting.",
+                        "Use descriptive error messages.",
+                        "Use the Write-AdvancedLog cmdlet for logging events.",
+                        "A verbose option should be included in the script.",
+                        "Error handling should be implemented to manage potential issues gracefully."
+                    ],
+                    "scriptHeader": [
+                        "Use the file MasterPowershellScriptHeaderExample.txt to create a standard header for each PowerShell script File.",
+                        "In the header replace [CurrentDate] with the metadata field (Date modified) for the file.",
+                        "In the header replace [CurrentTime] with the metadata field (Date modified) for the file.",
+                        "In the header replace [TIMEZONE] with the computers current time zone.",
+                        "In the header replace [CurrentYear] with the metadata field (Date modified) for the file.",
+                        "In the header replace [IsAIUsed] replaced with True or False if AI was used to create or modify the script code, exclude comments.",
+                        "In the header replace [AIUsed] with the name of the AI or AIs used to create or modify the script code, exclude comments. If no AI was used answer with N/A.",
+                        "In the header replace [AuthorCompany] with the Author Company",
+                        "In the header replace [LicenseName] with the License Name",
+                        "In the header replace [URLToLicense] with URL to License",
+                        "In the header replace [ScriptType] With Function if this script is a single function file and Application if it is an application script."
+                    ],
+                    "scriptFooter": [
+                        "All PowerShell script files should have a footer at the end of its script file with a remarked-out example to test the script."
+                    ],
+                    "loggingRules": {
+                        "logFileLocation": [
+                            "logfile should be created in a Logs folder under the Root folder unless the script specifies at the top of the PowerShell script another location."
+                        ]
+                    }
+                },
+                "functionScripts": {
+                    "description": "PowerShell script files that contain a single function that can be used by other scripts.",
+                    "extension": "ps1",
+                    "path": [
+                        "Function script use by more that one application script should be stored under the Root Functions folder."
+                    ],
+                    "namingRules": [
+                        "The file name should contain no spaces. Use CamelCase",
+                        "The First letter of each word in a file name should be capitalized"
+                    ],
+                    "codingStandards": [
+                        "Follow standard PowerShell coding practices as outlined in PowerShell documentation.",
+                        "Use meaningful variable and function names.",
+                        "Include comments to explain complex logic.",
+                        "Use consistent indentation and formatting.",
+                        "Use descriptive error messages.",
+                        "Use the Write-AdvancedLog cmdlet for logging events.",
+                        "A verbose option should be included in the function."
+                    ],
+                    "scriptHeader": [
+                        "Use the file MasterPowershellScriptHeaderExample.txt to create a standard header for each PowerShell script File.",
+                        "Fields to be replacded in the header are surronded by [ ]  brackets. Below are the fields to be replaced.",
+                        "In the header replace [CurrentDate] with the metadata field (Date modified) for the file.",
+                        "In the header replace [CurrentTime] with the metadata field (Date modified) for the file.",
+                        "In the header replace [TIMEZONE] with the computers current time zone.",
+                        "In the header replace [CurrentYear] with the metadata field (Date modified) for the file.",
+                        "In the header replace [IsAIUsed] replaced with True or False if AI was used to create or modify the script code, exclude comments.",
+                        "In the header replace [AIUsed] with the name of the AI or AIs used to create or modify the script code, exclude comments. If no AI was used answer with N/A.",
+                        "In the header replace [AuthorCompany] with the Author Company",
+                        "In the header replace [LicenseName] with the License Name",
+                        "In the header replace [URLToLicense] with URL to License",
+                        "In the header replace [ScriptType] With Function if this script is a single function file and Application if it is an application script.",
+                        "The header also contains override options used by AI Code assisteance to overide specifice Variable in the script. if they are not used they do not need to be added to the header"
+                    ],
+                    "scriptFooter": [
+                        "Each PowerShell script function should have a footer at the end of its script file with a remarked-out example to test the function."
+                    ],
+                    "logFilePath": {
+                        "Defaultlocation": "the Default log file location is the Logs folder under the Root folder.",
+                        "OverrideOption": "This can be overridden by specifying another location at the top of the PowerShell script in the header's note section."
+                    }
+                }
+            },
+            "folderRules": [
+                "The First letter of each word in a folder name should be capitalized",
+                "The capitalization rule can be overridden for folders if specified in the folder structure array"
+            ],
+            "loggingRules": {
+                "textLogFileNameConvention": [
+                    "Log file names should follow the convention: ScriptName.log where ScriptName is the name of the script generating the log."
+                ],
+                "logFileLocation": [
+                    "logfile should be created in a Logs folder under the Root folder unless the script specifies at the top of the PowerShell script another location."
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {"name": "Powershell Scripts Management", "path": "."},
+        {"name": "Failover Script for 3CX Servers", "path": ".\\Applications\\3CX\\Failover3CXServer"},
+        {"name": "Restore 3CX Templates", "path": ".\\Applications\\3CX\\RestoreTemplates"},
+        {"name": "Mikrotik RouterOS API", "path": ".\\Modules\\MikrotikRouterOSAPI"},
+        {"name": "Powershell Scripts Management WEB Administration", "path": ".\\Applications\\OpenSource\\PowershellScriptManagementWebAdministration"}
+    ],
+    "settings": {
+        "chat.tools.terminal.autoApprove": {
+            "Test-Path": true,
+            ".\\StartPowershellScriptsWebAdministration.ps1": true
+        }
+    },
+    "name": "Powershell ScriptsManagement"
+}
