@@ -1,0 +1,194 @@
+Timestamp | Script | Type | Message
+2026-03-07 11:44:04 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:44:04 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:39:36 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:39:36 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:39:36 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:37:11 | Script: StartMikrotikRouterOSManagementWeb.ps1 | ERROR: Pode.Web server error: Exception calling "Start" with "0" argument(s): "Only one usage of each socket address (protocol/network address/port) is normally permitted."
+2026-03-07 11:37:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:37:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:37:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:36:23 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:36:23 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:36:22 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:34:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:34:27 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:34:27 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:29:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:29:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:29:06 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:25:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:25:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:25:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:22:49 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:22:49 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:22:49 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:15:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:15:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:15:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 11:11:59 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 11:11:59 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 11:11:59 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:55:22 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:55:22 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:55:22 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:48:45 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:48:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:48:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:45:10 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:45:10 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:45:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:41:19 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:41:19 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:41:19 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:34:08 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:34:08 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:34:08 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:31:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:31:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:31:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 10:09:35 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 10:09:35 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 10:09:34 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 09:44:31 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 09:44:31 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: LiteDB contacts collection initialized at 'C:\Scripts\Applications\Mikrrotik\MikrotikRouterOSManagement\Data\MikrotikDevices.db'.
+2026-03-07 09:44:31 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-07 09:28:02 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-07 09:28:02 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:47:27 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:47:27 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:44:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:44:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:44:02 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8095
+2026-03-06 19:44:02 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:41:30 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:41:30 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:24:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:24:09 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:21:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:21:40 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:16:29 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:16:29 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:15:34 | Script: StartMikrotikRouterOSManagementWeb.ps1 | ERROR: Pode.Web server error: Exception calling "Start" with "0" argument(s): "Only one usage of each socket address (protocol/network address/port) is normally permitted."
+2026-03-06 19:15:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:15:28 | Script: StartMikrotikRouterOSManagementWeb.ps1 | WARNING: Non-admin session detected. Replacing address '*' with 127.0.0.1.
+2026-03-06 19:15:27 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:14:00 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:14:00 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:12:07 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:12:07 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:11:31 | Script: StartMikrotikRouterOSManagementWeb.ps1 | ERROR: Pode.Web server error: Exception calling "Start" with "0" argument(s): "Only one usage of each socket address (protocol/network address/port) is normally permitted."
+2026-03-06 19:11:24 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:11:24 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:10:36 | Script: StartMikrotikRouterOSManagementWeb.ps1 | ERROR: Pode.Web server error: Exception calling "Start" with "0" argument(s): "Only one usage of each socket address (protocol/network address/port) is normally permitted."
+2026-03-06 19:10:29 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:10:29 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:09:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:09:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | WARNING: Non-admin session detected. Replacing address '*' with 127.0.0.1.
+2026-03-06 19:09:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:08:07 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:08:07 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:06:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:06:44 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:04:57 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://127.0.0.1:8090
+2026-03-06 19:04:57 | Script: StartMikrotikRouterOSManagementWeb.ps1 | WARNING: Non-admin session detected. Replacing address '*' with 127.0.0.1.
+2026-03-06 19:04:57 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+2026-03-06 19:03:13 | Script: StartMikrotikRouterOSManagementWeb.ps1 | ERROR: Pode.Web server error: Must be running with administrator priviledges to listen on non-localhost addresses
+2026-03-06 19:03:12 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Starting Pode.Web UI on http://*:8090
+2026-03-06 19:03:12 | Script: StartMikrotikRouterOSManagementWeb.ps1 | INFO: Pode and Pode.Web modules imported successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
