@@ -1,30 +1,41 @@
-# Powershell Script Management
+# PowerShell Scripts Management
 
-This project helps manage, organize, and run PowerShell scripts efficiently.
+Repository for managing reusable PowerShell functions, standalone applications,
+installation scripts, and related modules.
 
-## Structure
-- `scripts/` — Store your PowerShell scripts here.
-- `logs/` — Script execution logs.
-- `config/` — Configuration files.
+## Root Structure
+- `Applications/` - Standalone PowerShell applications (for example 3CX tooling and web admin utilities).
+- `Data/` - Shared data and settings files.
+- `Functions/` - Reusable function scripts (Verb-Noun naming).
+- `Installations/` - Installation and configuration scripts.
+- `Libraries/` - Supporting libraries.
+- `Logs/` - Script execution logs.
+- `Modules/` - PowerShell modules (for example `MikrotikRouterOSAPI`).
+- `manage.ps1` - Interactive management script.
 
-## Usage
-1. Place your PowerShell scripts in the `scripts` folder.
-2. Use the provided management script to list and run available scripts.
-3. Logs are saved in the `logs` folder.
+## Workspaces
+- `PowershellScriptsManagement.code-workspace` - Main multi-root workspace.
+- `MikrotikRouterOSAPI.code-workspace` - Module-focused workspace.
 
-## Example
-- Run the management script:
-  ```powershell
-  .\manage.ps1
-  ```
-- Follow prompts to select and execute a script.
+## Key Entry Points
+- Management script:
+
+```powershell
+.\manage.ps1
+```
+
+- Web administration script:
+
+```powershell
+.\Applications\OpenSource\PowershellScriptManagementWebAdministration\StartPowershellScriptsWebAdministration.ps1
+```
 
 ## Requirements
-- Windows PowerShell or PowerShell Core
+- Windows PowerShell 5.1+ or PowerShell 7+
+- Optional modules for web administration:
+  - `Pode`
+  - `Pode.Web`
 
-## Customization
-- Add your own scripts to the `scripts` folder.
-- Adjust configuration in the `config` folder as needed.
-
----
-For more details, see the comments in the management script.
+## Notes
+- `manage.ps1` currently expects a `scripts` subfolder for interactive script discovery.
+- Most reusable shared logic is in `Functions/`, with logs written under `Logs/`.
