@@ -1,0 +1,26 @@
+{
+  "Zone": "3cx.us",
+  "RecordName": "srv010010037051",
+  "NewAliasPrimary": "srv010010037051.generationsgaither.com",
+  "NewAliasFailover": "srv010010050051.generationsgaither.com",
+  "DnsServer": "srv010010037041.generationsgaither.com",
+  "PrimaryServer": "srv010010037051.generationsgaither.com",
+  "FailoverServer": "srv010010050051.generationsgaither.com",
+  "RequiredServices": [
+    "3CX PhoneSystem Database Server",
+    "3CXAudioProvider01",
+    "3CXCallFlow01",
+    "3CXCfgServ01",
+    "3CXEventNotificationManager",
+    "3CXGatewayService",
+    "3CXHotelModule01",
+    "3CXIVR01",
+    "3CXPhoneSystem01",
+    "3CXPhoneSystemMC01",
+    "3CXQueueManager01",
+    "3CXSystemService01",
+    "3CXMediaServer",
+    "nginx"
+  ],
+  "RestoreCmdPath": "C:\\Program Files\\3CX Phone System\\Bin\\RestoreCmd.exe"
+}

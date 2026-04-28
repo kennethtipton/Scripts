@@ -1,2 +1,3 @@
-CD C:\Scripts\Applications\3CX\Failover3CXServer
-"C:\Program Files\PowerShell\7\pwsh.exe" -ExecutionPolicy Bypass -File C:\Scripts\Applications\3CX\Failover3CXServer\FailoverToIP010010050051.ps1
+@echo off
+REM This batch file has been moved to the Functions folder.
+REM Use Functions\FailoverToIP010010050051.bat instead.
