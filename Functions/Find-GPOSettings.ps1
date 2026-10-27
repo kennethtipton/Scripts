@@ -1,0 +1,431 @@
+#Requires -Modules GroupPolicy
+<#
+.SYNOPSIS
+    Scans every GPO in the domain and lists the ones that set firewall, WinRM or
+    PowerShell execution-policy settings.
+.DESCRIPTION
+    Reads each GPO's XML report (Get-GPOReport) and pulls out, from the Computer section only:
+
+      Firewall         Inbound/outbound firewall rules (name, enabled, action, profile, local
+                       ports, remote addresses) and profile settings (firewall on/off,
+                       default inbound action, whether local rules are merged)
+      WinRM            Administrative Template policies under Windows Remote Management /
+                       Windows Remote Shell (e.g. "Allow remote server management through
+                       WinRM" with its IPv4/IPv6 filters), and WinRM service startup set
+                       under System Services
+      ExecutionPolicy  "Turn on Script Execution" (Windows PowerShell)
+
+    For each GPO it also shows where it is linked, whether the link is enabled, the GPO status
+    (e.g. computer settings disabled) and any WMI filter.
+    Read-only. Run on a domain controller or a machine with the RSAT Group Policy tools.
+.PARAMETER Category
+    Which settings to look for: Firewall, WinRM, ExecutionPolicy or All (default).
+.PARAMETER Domain
+    Domain to scan. Defaults to the current user's domain.
+.PARAMETER ExportPath
+    CSV file for the results. Defaults to C:\SCRIPTS\LOGS\GPOSettings_<date>.csv when
+    C:\SCRIPTS\LOGS exists. Pass an empty string to skip the export.
+.EXAMPLE
+    PS> .\Find-GPOSettings.ps1
+.EXAMPLE
+    PS> .\Find-GPOSettings.ps1 -Category Firewall
+.INPUTS
+    None
+.OUTPUTS
+    [pscustomobject] one row per matching setting
+.NOTES
+    Author: Kenneth Tipton
+    Company: TNC
+    Date: 2026-10-12
+    Time: 13:10:00
+    Time Zone: Central Standard Time
+    Function Or Application: Application
+    Version: 1.1.0
+    Website: (https://www.tnandc.com)
+    Is AI Used: True
+    AI Used: Claude
+
+    Settings pushed through Group Policy Preferences (Registry items) are not decoded; a GPO
+    that writes WinRM or firewall registry keys directly will not appear here.
+
+    Copyright (c) 2026
+    Licensed under the MIT License.
+    Full text available at: https://opensource.org/licenses/MIT
+
+    Overide Variables
+    Overide Filename:
+    Overide Log Filename:
+    Overide Text Log File Path:
+    Overide Log Type:
+.LINK
+    https://www.tnandc.com
+#>
+[CmdletBinding()]
+param(
+    [ValidateSet('Firewall', 'WinRM', 'ExecutionPolicy', 'All')]
+    [string[]]$Category = 'All',
+
+    [string]$Domain = $env:USERDNSDOMAIN,
+
+    [string]$ExportPath = $(if (Test-Path 'C:\SCRIPTS\LOGS') { 'C:\SCRIPTS\LOGS\GPOSettings_{0:yyyyMMdd_HHmm}.csv' -f (Get-Date) } else { '' })
+)
+
+$ErrorActionPreference = 'Stop'
+Import-Module GroupPolicy
+
+$Cats = if ($Category -contains 'All') { @('Firewall', 'WinRM', 'ExecutionPolicy') } else { $Category }
+
+#region Helpers
+# All matching child elements' text, joined. GPO report XML uses many namespaces, so match on local-name().
+function Get-ChildText {
+    param([System.Xml.XmlNode]$Node, [string]$Name)
+    $Nodes = $Node.SelectNodes("*[local-name()='$Name']")
+    (@($Nodes | ForEach-Object { $_.InnerText.Trim() } | Where-Object { $_ })) -join ', '
+}
+
+$Rows = New-Object System.Collections.Generic.List[object]
+function Add-Row {
+    param($Base, [string]$RowCategory, [string]$Setting, [string]$Value)
+    $Rows.Add([pscustomobject]@{
+        GPO       = $Base.GPO
+        Category  = $RowCategory
+        Setting   = $Setting
+        Value     = $Value
+        Links     = $Base.Links
+        GpoStatus = $Base.GpoStatus
+        WmiFilter = $Base.WmiFilter
+    })
+}
+#endregion
+
+$Gpos = @(Get-GPO -All -Domain $Domain | Sort-Object DisplayName)
+$I = 0
+
+foreach ($Gpo in $Gpos) {
+    $I++
+    Write-Progress -Activity 'Scanning GPOs' -Status $Gpo.DisplayName -PercentComplete ($I / $Gpos.Count * 100)
+
+    [xml]$Report = Get-GPOReport -Guid $Gpo.Id -ReportType Xml -Domain $Domain
+
+    $Links = @($Report.SelectNodes("//*[local-name()='LinksTo']") | ForEach-Object {
+        $Path    = Get-ChildText $_ 'SOMPath'
+        $Enabled = Get-ChildText $_ 'Enabled'
+        if ($Enabled -eq 'true') { $Path } else { "$Path (link disabled)" }
+    }) -join '; '
+    if (-not $Links) { $Links = '(not linked)' }
+
+    $Base = @{
+        GPO       = $Gpo.DisplayName
+        Links     = $Links
+        GpoStatus = "$($Gpo.GpoStatus)"
+        WmiFilter = if ($Gpo.WmiFilter) { $Gpo.WmiFilter.Name } else { '' }
+    }
+
+    $Computer = $Report.SelectSingleNode("/*[local-name()='GPO']/*[local-name()='Computer']")
+    if (-not $Computer) { continue }
+
+    #region Firewall
+    if ('Firewall' -in $Cats) {
+        foreach ($Dir in 'InboundFirewallRules', 'OutboundFirewallRules') {
+            foreach ($Rule in $Computer.SelectNodes(".//*[local-name()='$Dir']")) {
+                $Remote = (@((Get-ChildText $Rule 'RA4'), (Get-ChildText $Rule 'RA6')) | Where-Object { $_ }) -join ', '
+                if (-not $Remote) { $Remote = 'Any' }
+                $Lport = Get-ChildText $Rule 'LPort'
+                if (-not $Lport) { $Lport = 'Any' }
+                $Value = 'Dir {0}; Active {1}; Action {2}; Profile {3}; LocalPort {4}; RemoteAddr {5}' -f `
+                    (Get-ChildText $Rule 'Dir'), (Get-ChildText $Rule 'Active'), (Get-ChildText $Rule 'Action'),
+                    (Get-ChildText $Rule 'Profile'), $Lport, $Remote
+                Add-Row $Base 'Firewall rule' (Get-ChildText $Rule 'Name') $Value
+            }
+        }
+
+        foreach ($ProfileName in 'DomainProfile', 'PrivateProfile', 'PublicProfile') {
+            foreach ($Prof in $Computer.SelectNodes(".//*[local-name()='$ProfileName']")) {
+                $Vals = @($Prof.ChildNodes | Where-Object { $_.NodeType -eq 'Element' } |
+                    ForEach-Object { '{0}={1}' -f $_.LocalName, $_.InnerText.Trim() })
+                if ($Vals.Count) { Add-Row $Base 'Firewall profile' $ProfileName ($Vals -join '; ') }
+            }
+        }
+    }
+    #endregion
+
+    #region Administrative Template policies (WinRM, execution policy)
+    foreach ($Policy in $Computer.SelectNodes(".//*[local-name()='Policy']")) {
+        $Name     = Get-ChildText $Policy 'Name'
+        $PolicyCategory = Get-ChildText $Policy 'Category'
+        $IsWinRM  = $PolicyCategory -like '*Windows Remote Management*' -or $PolicyCategory -like '*Windows Remote Shell*'
+        $IsExec   = $Name -eq 'Turn on Script Execution'
+
+        if (($IsWinRM -and 'WinRM' -in $Cats) -or ($IsExec -and 'ExecutionPolicy' -in $Cats)) {
+            $Details = @($Policy.ChildNodes | Where-Object { $_.LocalName -in 'EditText', 'DropDownList', 'Numeric', 'CheckBox', 'ListBox' } |
+                ForEach-Object {
+                    $V = Get-ChildText $_ 'Value'
+                    if (-not $V) { $V = Get-ChildText $_ 'State' }
+                    '{0} {1}' -f (Get-ChildText $_ 'Name'), $V
+                })
+            $Value = (@("State $(Get-ChildText $Policy 'State')") + $Details) -join '; '
+            $RowCategory = if ($IsExec) { 'Execution policy' } else { 'WinRM policy' }
+            Add-Row $Base $RowCategory $Name $Value
+        }
+    }
+    #endregion
+
+    #region WinRM service startup (System Services)
+    if ('WinRM' -in $Cats) {
+        foreach ($Svc in $Computer.SelectNodes(".//*[local-name()='SystemServices']")) {
+            if ((Get-ChildText $Svc 'Name') -eq 'WinRM') {
+                Add-Row $Base 'WinRM service' 'WinRM startup' (Get-ChildText $Svc 'StartupMode')
+            }
+        }
+    }
+    #endregion
+}
+Write-Progress -Activity 'Scanning GPOs' -Completed
+
+#region Output
+$Matched = @($Rows | Select-Object -ExpandProperty GPO -Unique)
+$Clean   = @($Gpos | Where-Object { $_.DisplayName -notin $Matched } | ForEach-Object DisplayName)
+
+Write-Host "`nScanned $($Gpos.Count) GPOs in $Domain for: $($Cats -join ', ')" -ForegroundColor Cyan
+
+foreach ($Group in ($Rows | Group-Object GPO)) {
+    $First = $Group.Group[0]
+    Write-Host "`n$($Group.Name)" -ForegroundColor Yellow
+    Write-Host "  Linked to : $($First.Links)"
+    if ($First.GpoStatus -ne 'AllSettingsEnabled') { Write-Host "  Status    : $($First.GpoStatus)" -ForegroundColor Red }
+    if ($First.WmiFilter) { Write-Host "  WMI filter: $($First.WmiFilter)" }
+    $Group.Group | Format-Table Category, Setting, Value -AutoSize -Wrap | Out-String -Width 250 | Write-Host
+}
+
+if ($Rows.Count -eq 0) {
+    Write-Host 'No GPO sets any of these settings.' -ForegroundColor Green
+}
+Write-Host ("{0} GPO(s) with matching settings: {1}" -f $Matched.Count, ($Matched -join ', ')) -ForegroundColor Cyan
+Write-Host ("{0} GPO(s) with none: {1}" -f $Clean.Count, ($Clean -join ', '))
+
+if ($ExportPath -and $Rows.Count) {
+    $Rows | Export-Csv -Path $ExportPath -NoTypeInformation
+    Write-Host "Results exported to $ExportPath"
+}
+#endregion
+
+
+# SIG # Begin signature block
+# MIIohAYJKoZIhvcNAQcCoIIodTCCKHECAQExDzANBglghkgBZQMEAgEFADB5Bgor
+# BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCDoP1QQatqTa9fK
+# 6pnctz+LbKuGooZbm3zmoSkFTF0OZKCCInYwggWNMIIEdaADAgECAhAOmxiO+dAt
+# 5+/bUOIIQBhaMA0GCSqGSIb3DQEBDAUAMGUxCzAJBgNVBAYTAlVTMRUwEwYDVQQK
+# EwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xJDAiBgNV
+# BAMTG0RpZ2lDZXJ0IEFzc3VyZWQgSUQgUm9vdCBDQTAeFw0yMjA4MDEwMDAwMDBa
+# Fw0zMTExMDkyMzU5NTlaMGIxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2Vy
+# dCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xITAfBgNVBAMTGERpZ2lD
+# ZXJ0IFRydXN0ZWQgUm9vdCBHNDCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoC
+# ggIBAL/mkHNo3rvkXUo8MCIwaTPswqclLskhPfKK2FnC4SmnPVirdprNrnsbhA3E
+# MB/zG6Q4FutWxpdtHauyefLKEdLkX9YFPFIPUh/GnhWlfr6fqVcWWVVyr2iTcMKy
+# unWZanMylNEQRBAu34LzB4TmdDttceItDBvuINXJIB1jKS3O7F5OyJP4IWGbNOsF
+# xl7sWxq868nPzaw0QF+xembud8hIqGZXV59UWI4MK7dPpzDZVu7Ke13jrclPXuU1
+# 5zHL2pNe3I6PgNq2kZhAkHnDeMe2scS1ahg4AxCN2NQ3pC4FfYj1gj4QkXCrVYJB
+# MtfbBHMqbpEBfCFM1LyuGwN1XXhm2ToxRJozQL8I11pJpMLmqaBn3aQnvKFPObUR
+# WBf3JFxGj2T3wWmIdph2PVldQnaHiZdpekjw4KISG2aadMreSx7nDmOu5tTvkpI6
+# nj3cAORFJYm2mkQZK37AlLTSYW3rM9nF30sEAMx9HJXDj/chsrIRt7t/8tWMcCxB
+# YKqxYxhElRp2Yn72gLD76GSmM9GJB+G9t+ZDpBi4pncB4Q+UDCEdslQpJYls5Q5S
+# UUd0viastkF13nqsX40/ybzTQRESW+UQUOsxxcpyFiIJ33xMdT9j7CFfxCBRa2+x
+# q4aLT8LWRV+dIPyhHsXAj6KxfgommfXkaS+YHS312amyHeUbAgMBAAGjggE6MIIB
+# NjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTs1+OC0nFdZEzfLmc/57qYrhwP
+# TzAfBgNVHSMEGDAWgBRF66Kv9JLLgjEtUYunpyGd823IDzAOBgNVHQ8BAf8EBAMC
+# AYYweQYIKwYBBQUHAQEEbTBrMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdp
+# Y2VydC5jb20wQwYIKwYBBQUHMAKGN2h0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNv
+# bS9EaWdpQ2VydEFzc3VyZWRJRFJvb3RDQS5jcnQwRQYDVR0fBD4wPDA6oDigNoY0
+# aHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0QXNzdXJlZElEUm9vdENB
+# LmNybDARBgNVHSAECjAIMAYGBFUdIAAwDQYJKoZIhvcNAQEMBQADggEBAHCgv0Nc
+# Vec4X6CjdBs9thbX979XB72arKGHLOyFXqkauyL4hxppVCLtpIh3bb0aFPQTSnov
+# Lbc47/T/gLn4offyct4kvFIDyE7QKt76LVbP+fT3rDB6mouyXtTP0UNEm0Mh65Zy
+# oUi0mcudT6cGAxN3J0TU53/oWajwvy8LpunyNDzs9wPHh6jSTEAZNUZqaVSwuKFW
+# juyk1T3osdz9HNj0d1pcVIxv76FQPfx2CWiEn2/K2yCNNWAcAgPLILCsWKAOQGPF
+# mCLBsln1VWvPJ6tsds5vIy30fnFqI2si/xK4VC0nftg62fC2h5b9W9FcrBjDTZ9z
+# twGpn1eqXijiuZQwgga0MIIEnKADAgECAhANx6xXBf8hmS5AQyIMOkmGMA0GCSqG
+# SIb3DQEBCwUAMGIxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMx
+# GTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xITAfBgNVBAMTGERpZ2lDZXJ0IFRy
+# dXN0ZWQgUm9vdCBHNDAeFw0yNTA1MDcwMDAwMDBaFw0zODAxMTQyMzU5NTlaMGkx
+# CzAJBgNVBAYTAlVTMRcwFQYDVQQKEw5EaWdpQ2VydCwgSW5jLjFBMD8GA1UEAxM4
+# RGlnaUNlcnQgVHJ1c3RlZCBHNCBUaW1lU3RhbXBpbmcgUlNBNDA5NiBTSEEyNTYg
+# MjAyNSBDQTEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQC0eDHTCphB
+# cr48RsAcrHXbo0ZodLRRF51NrY0NlLWZloMsVO1DahGPNRcybEKq+RuwOnPhof6p
+# vF4uGjwjqNjfEvUi6wuim5bap+0lgloM2zX4kftn5B1IpYzTqpyFQ/4Bt0mAxAHe
+# HYNnQxqXmRinvuNgxVBdJkf77S2uPoCj7GH8BLuxBG5AvftBdsOECS1UkxBvMgEd
+# gkFiDNYiOTx4OtiFcMSkqTtF2hfQz3zQSku2Ws3IfDReb6e3mmdglTcaarps0wjU
+# jsZvkgFkriK9tUKJm/s80FiocSk1VYLZlDwFt+cVFBURJg6zMUjZa/zbCclF83bR
+# VFLeGkuAhHiGPMvSGmhgaTzVyhYn4p0+8y9oHRaQT/aofEnS5xLrfxnGpTXiUOeS
+# LsJygoLPp66bkDX1ZlAeSpQl92QOMeRxykvq6gbylsXQskBBBnGy3tW/AMOMCZIV
+# NSaz7BX8VtYGqLt9MmeOreGPRdtBx3yGOP+rx3rKWDEJlIqLXvJWnY0v5ydPpOjL
+# 6s36czwzsucuoKs7Yk/ehb//Wx+5kMqIMRvUBDx6z1ev+7psNOdgJMoiwOrUG2Zd
+# SoQbU2rMkpLiQ6bGRinZbI4OLu9BMIFm1UUl9VnePs6BaaeEWvjJSjNm2qA+sdFU
+# eEY0qVjPKOWug/G6X5uAiynM7Bu2ayBjUwIDAQABo4IBXTCCAVkwEgYDVR0TAQH/
+# BAgwBgEB/wIBADAdBgNVHQ4EFgQU729TSunkBnx6yuKQVvYv1Ensy04wHwYDVR0j
+# BBgwFoAU7NfjgtJxXWRM3y5nP+e6mK4cD08wDgYDVR0PAQH/BAQDAgGGMBMGA1Ud
+# JQQMMAoGCCsGAQUFBwMIMHcGCCsGAQUFBwEBBGswaTAkBggrBgEFBQcwAYYYaHR0
+# cDovL29jc3AuZGlnaWNlcnQuY29tMEEGCCsGAQUFBzAChjVodHRwOi8vY2FjZXJ0
+# cy5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkUm9vdEc0LmNydDBDBgNVHR8E
+# PDA6MDigNqA0hjJodHRwOi8vY3JsMy5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVz
+# dGVkUm9vdEc0LmNybDAgBgNVHSAEGTAXMAgGBmeBDAEEAjALBglghkgBhv1sBwEw
+# DQYJKoZIhvcNAQELBQADggIBABfO+xaAHP4HPRF2cTC9vgvItTSmf83Qh8WIGjB/
+# T8ObXAZz8OjuhUxjaaFdleMM0lBryPTQM2qEJPe36zwbSI/mS83afsl3YTj+IQhQ
+# E7jU/kXjjytJgnn0hvrV6hqWGd3rLAUt6vJy9lMDPjTLxLgXf9r5nWMQwr8Myb9r
+# EVKChHyfpzee5kH0F8HABBgr0UdqirZ7bowe9Vj2AIMD8liyrukZ2iA/wdG2th9y
+# 1IsA0QF8dTXqvcnTmpfeQh35k5zOCPmSNq1UH410ANVko43+Cdmu4y81hjajV/gx
+# dEkMx1NKU4uHQcKfZxAvBAKqMVuqte69M9J6A47OvgRaPs+2ykgcGV00TYr2Lr3t
+# y9qIijanrUR3anzEwlvzZiiyfTPjLbnFRsjsYg39OlV8cipDoq7+qNNjqFzeGxcy
+# tL5TTLL4ZaoBdqbhOhZ3ZRDUphPvSRmMThi0vw9vODRzW6AxnJll38F0cuJG7uEB
+# YTptMSbhdhGQDpOXgpIUsWTjd6xpR6oaQf/DJbg3s6KCLPAlZ66RzIg9sC+NJpud
+# /v4+7RWsWCiKi9EOLLHfMR2ZyJ/+xhCx9yHbxtl5TPau1j/1MIDpMPx0LckTetiS
+# uEtQvLsNz3Qbp7wGWqbIiOWCnb5WqxL3/BAPvIXKUjPSxyZsq8WhbaM2tszWkPZP
+# ubdcMIIG6DCCBNCgAwIBAgITQAAAAqtBkGO1asEvkAAAAAACqzANBgkqhkiG9w0B
+# AQsFADBwMRMwEQYKCZImiZPyLGQBGRYDY29tMSIwIAYKCZImiZPyLGQBGRYSZ2Vu
+# ZXJhdGlvbnNnYWl0aGVyMTUwMwYDVQQDEyxnZW5lcmF0aW9uc2dhaXRoZXItU1JW
+# MDEwMDEwMDM4MDM1LUlzc3VpbmdDQTAeFw0yNjA4MjAxNzMzNTRaFw0yNzAxMzEx
+# NzI3MjVaMDgxFDASBgNVBAoTC0dlbmVyYXRpb25zMSAwHgYDVQQDExdQb3dlcnNo
+# ZWxsIENvZGUgU2lnbmluZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+# AMgHhkqXmzDlBuov3PJaCmpZddU3S+1mt4Yaahz121grfW1H+nHXf2cUuzH12wzG
+# ErW+kF0lqkBll/26aHzETnBepOxaP+KCoKZ7db4mYctch5wdDTANplQu35hPEO6I
+# yNhrEk5UQqAjM9ONKCdWkzBo+/vaTbQDpYwc7h2s1s8dZdjU4tqy72+ThXEx8Vp3
+# OePAXZ1moCIPXuhjSEoCMasqIuWDwavRRLXONBrhhue84FPyFa7qpTOz7Hg98DfW
+# pMA+ZIXl/KJVlRdN5H8b0IZiWczfHUyz76fw67tzngUR7CI2xeTkdSpJ1dl2O+Xi
+# T33pvcVEnjq/Pql0rddXBbUCAwEAAaOCArEwggKtMD0GCSsGAQQBgjcVBwQwMC4G
+# JisGAQQBgjcVCIK0njms71qCqYE6gt6kboK4gAOBOIO8mwSBh4VAAgFkAgEDMBMG
+# A1UdJQQMMAoGCCsGAQUFBwMDMA4GA1UdDwEB/wQEAwIHgDAbBgkrBgEEAYI3FQoE
+# DjAMMAoGCCsGAQUFBwMDMB0GA1UdDgQWBBRT5Uu5LaLJBCLOFGRaVsipJu+gMjAf
+# BgNVHSMEGDAWgBROXx35Y5WKLzaZqCYJ3GvzXL4RnDCB/QYDVR0fBIH1MIHyMIHv
+# oIHsoIHphoHmbGRhcDovLy9DTj1nZW5lcmF0aW9uc2dhaXRoZXItU1JWMDEwMDEw
+# MDM4MDM1LUlzc3VpbmdDQSxDTj1zcnYwMTAwMTAwMzgwMzUsQ049Q0RQLENOPVB1
+# YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRp
+# b24sREM9Z2VuZXJhdGlvbnNnYWl0aGVyLERDPWNvbT9jZXJ0aWZpY2F0ZVJldm9j
+# YXRpb25MaXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQw
+# gekGCCsGAQUFBwEBBIHcMIHZMIHWBggrBgEFBQcwAoaByWxkYXA6Ly8vQ049Z2Vu
+# ZXJhdGlvbnNnYWl0aGVyLVNSVjAxMDAxMDAzODAzNS1Jc3N1aW5nQ0EsQ049QUlB
+# LENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZp
+# Z3VyYXRpb24sREM9Z2VuZXJhdGlvbnNnYWl0aGVyLERDPWNvbT9jQUNlcnRpZmlj
+# YXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1dGhvcml0eTANBgkq
+# hkiG9w0BAQsFAAOCAgEAAHvAjyztTm9FmITG34NV4dx+megfwLzllxDHlShSacUx
+# XzEPlVd4XScO3O1a+0sngL1XuE8xVDBe6suITmBjbN/BYo8vRjbIUlwUYE54FhRD
+# rUOHYYEIecLI1ax1qpnS19Fy8YIOu7y14R2NwbY38uNZ7UDb5TBGiwJdHR+jlQVX
+# Qyu0gONFsaP/mqeFKqkOKAQ0UWo38Q6U/4zJ5I9nuiHULQWqEiUEF0kTEudFWwhP
+# hiwGjiIRGzmpJtiMuffHRk2kDk3wXcFyR4cjtkQjXqq3crMRnxoC3FohGFL4EmXe
+# 3knNDtgR3ODvE0zrzHiPCBeF/goZ5p+/6v35xfCLPDRzXCz1FC3U6/VVomuLf5ln
+# m6tO0+X9iFFi2LsnvYi6omNesi+qBRQcXq0uPbK8eA/grIk4+zVVooM2Dc9diS0C
+# hwoFqMV0t0H3lpdmCXCLIqYaqO4FwxTy1Mm/Q6PZHPD/Uxq8QUPeOtvD5x7RsNRw
+# zT+yaU73mqtqPc/lrcG6SRWd3jE79GbkGM3n+0FfD097Ks0lk/U820Is++u/8gPV
+# kEe2UePSM2XYc4CYUlPYStlcyMh1t44TX/5l6qypJBehjdzYnvMe2ZRDL3SmPj4K
+# AJiHANKMgoKK9GSW3qCeXMT+qevxRBKnhkBJcBYn/mHIMhHbwSwSTxU0mW+ggLMw
+# ggbtMIIE1aADAgECAhAIT9wzT35FTtvDD4/5khg1MA0GCSqGSIb3DQEBCwUAMGkx
+# CzAJBgNVBAYTAlVTMRcwFQYDVQQKEw5EaWdpQ2VydCwgSW5jLjFBMD8GA1UEAxM4
+# RGlnaUNlcnQgVHJ1c3RlZCBHNCBUaW1lU3RhbXBpbmcgUlNBNDA5NiBTSEEyNTYg
+# MjAyNSBDQTEwHhcNMjYwODA1MDAwMDAwWhcNMzcxMTA0MjM1OTU5WjBjMQswCQYD
+# VQQGEwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xOzA5BgNVBAMTMkRpZ2lD
+# ZXJ0IFNIQTI1NiBSU0E0MDk2IFRpbWVzdGFtcCBSZXNwb25kZXIgMjAyNiAxMIIC
+# IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAtnum8sn+zUr41JtMZbP9OMYw
+# +HwJDpG5xkIu/lqcfNYmMX81YmsUiHLbh9ykpeWBGKTLhYBrAN9Tdg/QEzG32XcO
+# bmgIblnr0CoQ3WSAeDZ6nH6X6VkFyYkJw3QBJREwvm4UhLzSxmwPA7cFKRTEOMsm
+# EEj6qJk/dqLEAL+oQYuOwE2UuiX1Vnul8YReIyWd4kgLn9gq6LNXM0UplkR6jL/Q
+# Hxmb6fMoGBJYbnaUI7XD6cKDpekK2SVMld4iDbzeHDtOaaxldH5IxuNusQ69nd8/
+# ZXEiB5Hbxj3RlK13cX1W4DlFXKdv/CEhM8Cj1vvlmvhNroyPdRGbbpBlgyf8Wdu5
+# N6ByhFwURn0U6ozlPoxN22v+fviUhP+6DR547OZnpBMWDfei1f5sVGwiiW/KQTWO
+# K97g+4RJpPzPNV4VYMAwO2jM2Aty2QYPVmOQTJm0msuXnJrSbl2gf9JylpkJlWXq
+# k1Q4LJsxz+TELoQCZIljbgvTJgoPU2R12ydv8i1UqL/adelA0y7U9Pmmtbze9Xx3
+# rtajC5SzQd1jgfwAwsa90v9YcSPdmeoyoBBA/27cCL237l5DTYYPDLQ4ON3OLTGW
+# nvRb6jDrf/T75gMRfUzSLCBQfBusm9+mSWRlC/Df6S/e9Q8i13CuhzOT2Jx+V/nl
+# bXM4QoBwlUAhelwwJT0CAwEAAaOCAZUwggGRMAwGA1UdEwEB/wQCMAAwHQYDVR0O
+# BBYEFBTJY4owLtRK+26U8+bjQH717M3iMB8GA1UdIwQYMBaAFO9vU0rp5AZ8esri
+# kFb2L9RJ7MtOMA4GA1UdDwEB/wQEAwIHgDAWBgNVHSUBAf8EDDAKBggrBgEFBQcD
+# CDCBlQYIKwYBBQUHAQEEgYgwgYUwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRp
+# Z2ljZXJ0LmNvbTBdBggrBgEFBQcwAoZRaHR0cDovL2NhY2VydHMuZGlnaWNlcnQu
+# Y29tL0RpZ2lDZXJ0VHJ1c3RlZEc0VGltZVN0YW1waW5nUlNBNDA5NlNIQTI1NjIw
+# MjVDQTEuY3J0MF8GA1UdHwRYMFYwVKBSoFCGTmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0
+# LmNvbS9EaWdpQ2VydFRydXN0ZWRHNFRpbWVTdGFtcGluZ1JTQTQwOTZTSEEyNTYy
+# MDI1Q0ExLmNybDAgBgNVHSAEGTAXMAgGBmeBDAEEAjALBglghkgBhv1sBwEwDQYJ
+# KoZIhvcNAQELBQADggIBAI3FOmEenVIK35msCYB+fShAsWvSYvLBItoNdAgQ2jIq
+# rGsVsluXMJU/+mRebBc52s6lbKAvOVPXaizmKkMLLflEEKDZQx4CkS2t8aHPjkXh
+# a3hYZ010htFa3dhNgmalH5vuWvh3tTCf4frTS7gPtGc4Z/xaPhQ2AB1mR8eEe/Wb
+# H0RWHvVIl6VwQ3+g5FKNfN2N/DWJkf13w2H+2GfqEfbd35Ww8CvoYBjLNIDTadcP
+# WdgsjsiOaK/7EsKJgLjUNIVgvcaFOLLQ/GlrA+0ZHJoFUbOr5SJN8zykPspXIXlp
+# DJY/gqFUZRROeab9GVgmhbdOJcD/63RhxPahFUGbckRONqMe6DYAv6/mOG0pWd3c
+# PStsdcS7buj5DyniwRY8yooMH6ptx5vpP/pZzBPBeZD2U4IsthyxB5Jaa8qrOkB5
+# z160TXiM5ADMspZ0TfD9MJoq0tFpFPssKRFhWeEDYPvcUuN7U7lvcdHl4ezQ3NT/
+# 7Ffs1sR1yh/LRbdZ3B3Vc6q2WmD8mDC0p9kzl2o73iVtS946IkEj7FkRsZGww1te
+# YxERROC745xrtjvcw9ZyyUjHZWGRIpJeMNsPquCDf0fkyHtB+J4AiNZqCQk23rxh
+# +KbpyMTNVKItJ5l92Svl20U9NbqMBOVYl1h54NEYLJq1/xHWFKPNK903zJZA9P2D
+# MIIITDCCBgCgAwIBAgITGQAAAAu8LyA0hwqD9AAAAAAACzBBBgkqhkiG9w0BAQow
+# NKAPMA0GCWCGSAFlAwQCAwUAoRwwGgYJKoZIhvcNAQEIMA0GCWCGSAFlAwQCAwUA
+# ogMCAUAwbTETMBEGCgmSJomT8ixkARkWA2NvbTEiMCAGCgmSJomT8ixkARkWEmdl
+# bmVyYXRpb25zZ2FpdGhlcjEyMDAGA1UEAxMpZ2VuZXJhdGlvbnNnYWl0aGVyLVNS
+# VjAxMDAxMDAzNzAzNS1Sb290Q0EwHhcNMjUwMTMxMTcxNzI1WhcNMjcwMTMxMTcy
+# NzI1WjBwMRMwEQYKCZImiZPyLGQBGRYDY29tMSIwIAYKCZImiZPyLGQBGRYSZ2Vu
+# ZXJhdGlvbnNnYWl0aGVyMTUwMwYDVQQDEyxnZW5lcmF0aW9uc2dhaXRoZXItU1JW
+# MDEwMDEwMDM4MDM1LUlzc3VpbmdDQTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCC
+# AgoCggIBAME7bcPuw+OBlpLFMrUpTOHjElzdC+VrSCfa9scUjHCqDU2B9rTBDzN5
+# 5xpCu+NC4psqMzLIbOOOmv1KkfKvdDNkmgK7sJ6v4CxXrLsVELZkugW7mQG2NpTY
+# yurNWkIxxn6U8wZHIwRbzH3a5XPHgeejY8+XEn4lDeQ/gy4HZPrT6gO2ML9MoED0
+# jkXuSpBlotXDlv8D/EJTvTWoT3i/8sSa6J5uO+r0ckCSCkxvMy4zwifEFLmUNope
+# nB8aPzs4NkRnPhNg7OcRyjssDcijiVWV8Tee9N0iAc637aJrTD8CtSyUDMAA0Zhh
+# tjaGlcj7xXM1GhBvmlwn0EchVyGsALPC41AMHQRi3FNl6k633iXssKkcQL51EuAx
+# XWS73CrcD1w1leFNVZnxmtW3yGzto6ND9ZSuYwyrBrqJLVfXVQJC+0ruUNrz/B/5
+# jHey1Se4iLQnGrgrLVhJAAZHGAXuVTYB4f5s1cjjvj7+h6i/ZnJOYlCEW8ipwVW4
+# 1AFjnxEAenzxAFv7NeoWuusJoPq9sGvC9xJfxClWt9zZfu4qJ95k1e+t1t4CSnvM
+# 5O0uY4KqQDX1I0IOTozy9jT04QSLpm3VdLmznOFebja1213JR/D3GeApyqNJzEr5
+# wWiIeZWkk27a+Yc3e9xGTke2nT06j+ytb66v8CIdxuy9JdfBn8aNAgMBAAGjggJ4
+# MIICdDAQBgkrBgEEAYI3FQEEAwIBADAdBgNVHQ4EFgQUTl8d+WOVii82magmCdxr
+# 81y+EZwwGQYJKwYBBAGCNxQCBAweCgBTAHUAYgBDAEEwDgYDVR0PAQH/BAQDAgGG
+# MA8GA1UdEwEB/wQFMAMBAf8wHwYDVR0jBBgwFoAUQBf/oJasKe2FCSOPWKt9FaN9
+# U1EwgfoGA1UdHwSB8jCB7zCB7KCB6aCB5oaB42xkYXA6Ly8vQ049Z2VuZXJhdGlv
+# bnNnYWl0aGVyLVNSVjAxMDAxMDAzNzAzNS1Sb290Q0EsQ049c3J2MDEwMDEwMDM3
+# MDM1LENOPUNEUCxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNl
+# cyxDTj1Db25maWd1cmF0aW9uLERDPWdlbmVyYXRpb25zZ2FpdGhlcixEQz1jb20/
+# Y2VydGlmaWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNlP29iamVjdENsYXNzPWNSTERp
+# c3RyaWJ1dGlvblBvaW50MIHmBggrBgEFBQcBAQSB2TCB1jCB0wYIKwYBBQUHMAKG
+# gcZsZGFwOi8vL0NOPWdlbmVyYXRpb25zZ2FpdGhlci1TUlYwMTAwMTAwMzcwMzUt
+# Um9vdENBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2
+# aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWdlbmVyYXRpb25zZ2FpdGhlcixEQz1j
+# b20/Y0FDZXJ0aWZpY2F0ZT9iYXNlP29iamVjdENsYXNzPWNlcnRpZmljYXRpb25B
+# dXRob3JpdHkwQQYJKoZIhvcNAQEKMDSgDzANBglghkgBZQMEAgMFAKEcMBoGCSqG
+# SIb3DQEBCDANBglghkgBZQMEAgMFAKIDAgFAA4ICAQCXYn6MOeflWh5jgspvzRQQ
+# CWPuI3Ob3d3xt3bCSp1EW7uSAk1vkSc7OmcAUTayZXI7HH9KjIBTey1yuss4ynun
+# /ZD87JBLTX9IWZcnD7SsDddk/7Qi4zRMj+Z8orAeLifAHXDGVFogWPr7giAvJU8n
+# XPFjmz+5h6Vhujn9Ny5iaCKGXDbsb0FBimSqTyFMZ3hY5Z0AK87dWQIHWnx227Rm
+# n5OIJCNC1lqpzHOgRs+VObKNSJMnSjyxOY77AaW73mXf0JGSJ4e61jJGvkghuZmX
+# 3D+VvyOeXiNUfVpPRw5EVSUdPqYm6Y7pKTa0Dc7Wat4lCe8UGNwowIA3RfpzxeL3
+# o6CvCn2tslFCtyO40fKX6Rgh+Fl5cAddwLYQTIULk4pxLqJBtAUPVhd+yTc+S6gl
+# shFy+j1H9m1K9HfoQBTgukTKn3QWkn49FbbiNTAQ/Sr9XN4HF7/zJEu8WrA6GeLq
+# QVYtIm2lwELocI3UPzSpp7Vw8TpRsFhJSOvfWEBjbNBvAWB7g79/AuotJ0DHIxnu
+# yK6i6mf3ZUi9hj9g+lyXB/TQoRH8p3f01lpl7x60COLxJTSd4C3W0msRsTaqeO7x
+# ZNZuc3i35mRD3XPmchB3Xgmx/qxAbnv8vDvOe86nz4wDRcHJtKoOtRdXDuBxqavy
+# 8e8SwzOBXivKZRSg9xYQMTGCBWQwggVgAgEBMIGHMHAxEzARBgoJkiaJk/IsZAEZ
+# FgNjb20xIjAgBgoJkiaJk/IsZAEZFhJnZW5lcmF0aW9uc2dhaXRoZXIxNTAzBgNV
+# BAMTLGdlbmVyYXRpb25zZ2FpdGhlci1TUlYwMTAwMTAwMzgwMzUtSXNzdWluZ0NB
+# AhNAAAACq0GQY7VqwS+QAAAAAAKrMA0GCWCGSAFlAwQCAQUAoIGEMBgGCisGAQQB
+# gjcCAQwxCjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYK
+# KwYBBAGCNwIBCzEOMAwGCisGAQQBgjcCARUwLwYJKoZIhvcNAQkEMSIEIFGzz6PR
+# /Xnt+vGeFrIBrEAMozvw/fh9XiQMld1m9pnWMA0GCSqGSIb3DQEBAQUABIIBAIcQ
+# MNg14Tw5qwJfkcpJTsOrimfztlQ8lenKy1IvUuhvfLydMdIfYWnpnEUGUjmaI1ss
+# KUGrXJDwFzObZyO/JDew45MonYnmnwwe0unpgzFFE/mxZKlcyacDQtFk5M/X0yMk
+# nzWly1NVJfThLgMvHzt/z4Wm9hRj4Q7c26391oOAwnHh69Kwgtb/nr1WXVGYMcBn
+# ok6Q+xA4KuLkk5IIgawYlc/2ZDH/KMC1lSlA0vKzq8gfrBRW/H126N1N0uN6CMbT
+# 9eeINRFab94d3P5bdo1N5pX7c82/0ajeuOAnhyy84rbnnVY2DPMGYpVyWV8gQ15T
+# Gj5nu9pWxkn0af56BsuhggMmMIIDIgYJKoZIhvcNAQkGMYIDEzCCAw8CAQEwfTBp
+# MQswCQYDVQQGEwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMT
+# OERpZ2lDZXJ0IFRydXN0ZWQgRzQgVGltZVN0YW1waW5nIFJTQTQwOTYgU0hBMjU2
+# IDIwMjUgQ0ExAhAIT9wzT35FTtvDD4/5khg1MA0GCWCGSAFlAwQCAQUAoGkwGAYJ
+# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjYxMDEyMjA1
+# NzQ0WjAvBgkqhkiG9w0BCQQxIgQg0/cA12DfDCW5/ny5T1aMxfspP8BFsT2Z2nK/
+# XqwtIzcwDQYJKoZIhvcNAQEBBQAEggIAPhnJuZwEg9V2/PRinMqweCQPE5AaAE9u
+# 32pm93tV4LkhmK6WRdBGRQ2zBfZ3RfwHC8taBv3kHQ89t6DOiQESr2mFqNrfwI0w
+# k+E/1HVwPtJcAIt+sqtt4P0UXipyHB2WEEs8qijI84oX0eIk1/qZHYyjC+DjZd5c
+# 4WIf5eYSIOtwiXXGQ+H/nQ+1I7m5dttA6J77OhXDYFMzYAhLHEACzxo3gYuhKb8A
+# OO12JYgCqEHGeThNNKUmHifSbwa0Trhhu9XIeWZctKMatQ7nTwaPlDPJ8unKkPov
+# uPUKWpceVjk8UroA5daUvmTtZySrTU5PIRCgTelLXVY170rotaK4PkJ4LXtnouFR
+# R4zo+u6elKwDM8WItrHBLrPN5rnxsPli1nv0FlkqCcETlNEiA1iUb6QFQ8ZVovbU
+# vwFyQZ8tXK3XGob+mysbbe4Ae/3eraCrHUB6ipPGI3QJ1dOPGfoj76srheFp5s++
+# hV1o8kcVhLGQ/wRs0aXLzInIndWu/LigacM4TBlKisW2f/grzzkn6DnbQxmnAa8Z
+# 7Lc6VQjVztqEW69JkQbSwt2w9LFFJieHHPmcg8cRC70KgMIPjFn9s+OVFV7aHEkE
+# QGj2FHeau2PviJC4xbwJqAR9G2nlLjLbD7mxvEZnWapSrgrql+b0KtXIcLS/KARP
+# gpgODDUSE/Q=
+# SIG # End signature block

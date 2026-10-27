@@ -1,0 +1,37 @@
+{
+  "Name": "PSMFrontendScriptsSync",
+  "Description": "PSM Frontend (Powershell Scripts Management): keeps the device's scripts current from the DFS share (Sync-ScriptsFromDfs.ps1, scheduled task \\PSM\\SyncScriptsFromDfs as SYSTEM). Part of Base, so it is copied and its install step listed with every application; pick it on its own to install PSM on a device without any other application.",
+  "AppData": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Data\\PSMFrontendScriptsSync.json",
+  "Servers": [],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Install-FrontendScriptsSync.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync",
+    "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Sync-ScriptsFromDfs.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Sync-ScriptsFromDfs.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Send-LogsToDfs.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Send-LogsToDfs.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Write-DeviceRecord.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Write-DeviceRecord.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Install-FrontendScriptsSync.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\FrontendScriptsSync\\Install-FrontendScriptsSync.ps1"
+    }
+  ]
+}

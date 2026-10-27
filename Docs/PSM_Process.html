@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSM Process</title>
+<meta name="description" content="How Powershell Scripts Management (PSM) moves scripts from the development computer through the DFS release store to every server, and how servers report back.">
+<style>
+  :root {
+    --bg: #f7f8fa; --panel: #ffffff; --ink: #1d2330; --muted: #5c6577; --line: #d6dbe4;
+    --dev: #2f6fd6; --dev-bg: #e8f0fd; --dfs: #1f8a5b; --dfs-bg: #e5f5ee;
+    --srv: #8a5a12; --srv-bg: #fbf1e1; --mgmt: #6b3fb5; --mgmt-bg: #efe8fa;
+    --plan: #8b93a3; --warn: #b4232a; --ok: #1f8a5b; --code-bg: #eef1f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151b; --panel: #1a1f28; --ink: #e6e9ef; --muted: #9aa3b4; --line: #2e3542;
+      --dev: #7aa7f2; --dev-bg: #1b2a44; --dfs: #5cc795; --dfs-bg: #16302a;
+      --srv: #e0b56e; --srv-bg: #352915; --mgmt: #b593ee; --mgmt-bg: #2a2140;
+      --plan: #7b8496; --warn: #f07a7f; --ok: #5cc795; --code-bg: #232a35;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151b; --panel: #1a1f28; --ink: #e6e9ef; --muted: #9aa3b4; --line: #2e3542;
+    --dev: #7aa7f2; --dev-bg: #1b2a44; --dfs: #5cc795; --dfs-bg: #16302a;
+    --srv: #e0b56e; --srv-bg: #352915; --mgmt: #b593ee; --mgmt-bg: #2a2140;
+    --plan: #7b8496; --warn: #f07a7f; --ok: #5cc795; --code-bg: #232a35;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 64px; }
+  header p { color: var(--muted); max-width: 70ch; margin: 6px 0 0; }
+  h1 { font-size: 28px; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 19px; margin: 36px 0 10px; }
+  .meta { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .diagram { padding: 8px; overflow-x: auto; }
+  .diagram svg { display: block; width: 100%; min-width: 760px; height: auto; }
+  @media (max-width: 800px) { .diagram::after { content: "Scroll sideways to see the whole diagram"; display: block; font-size: 12px; color: var(--muted); padding: 6px 4px 0; } }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: 12.5px; text-transform: uppercase; letter-spacing: .04em; }
+  tr:last-child td { border-bottom: 0; }
+  .tablewrap { overflow-x: auto; }
+  code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px; background: var(--code-bg);
+         padding: 1px 5px; border-radius: 4px; word-break: break-word; }
+  pre { background: var(--code-bg); padding: 12px 14px; border-radius: 8px; overflow-x: auto; margin: 8px 0 0; }
+  pre code { background: none; padding: 0; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;
+           grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px 12px 46px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; border-radius: 50%;
+                      background: var(--ink); color: var(--bg); font-weight: 700; font-size: 13px; display: grid; place-items: center; }
+  .steps b { display: block; }
+  .steps span { color: var(--muted); font-size: 13.5px; }
+  .tag { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 1px 7px; border-radius: 99px; border: 1px solid currentColor; }
+  .tag.ok { color: var(--ok); } .tag.plan { color: var(--plan); }
+  .grid2 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid2 h3 { margin: 0 0 6px; font-size: 15px; }
+  ul.tight { margin: 6px 0 0; padding-left: 20px; } ul.tight li { margin: 3px 0; }
+  .note { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--panel); border-radius: 0 8px 8px 0; margin-top: 10px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); margin: 8px 4px 0; }
+  .legend i { display: inline-block; width: 26px; height: 0; border-top: 2.5px solid var(--ink); vertical-align: middle; margin-right: 6px; }
+  .legend i.dash { border-top-style: dashed; border-color: var(--plan); }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>PSM Process</h1>
+  <p>How Powershell Scripts Management moves scripts from the development computer, through the DFS release store, to every server, and how the servers report back.</p>
+  <div class="meta">C:\SCRIPTS\Docs\PSM_Process.html &middot; state as of 2026-10-21</div>
+</header>
+
+<h2>The big picture</h2>
+<div class="panel diagram">
+<svg viewBox="0 0 1000 620" role="img" aria-labelledby="dtitle ddesc">
+  <title id="dtitle">PSM flow</title>
+  <desc id="ddesc">The development computer publishes signed scripts to the DFS release store. Every server's Frontend pulls from it hourly and writes an inventory record back. The management server's Backend merges the records into Inventory.json.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--ink)"/>
+    </marker>
+    <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--plan)"/>
+    </marker>
+  </defs>
+  <style>
+    .box { stroke-width: 1.5; rx: 12; }
+    .h { font: 700 16px "Segoe UI", system-ui, sans-serif; }
+    .s { font: 13px "Segoe UI", system-ui, sans-serif; fill: var(--ink); }
+    .m { font: 12px "Segoe UI", system-ui, sans-serif; fill: var(--muted); }
+    .lbl { font: 600 12.5px "Segoe UI", system-ui, sans-serif; fill: var(--ink); }
+    .plbl { font: 600 12.5px "Segoe UI", system-ui, sans-serif; fill: var(--plan); }
+    .ar { stroke: var(--ink); stroke-width: 2.2; fill: none; marker-end: url(#ah); }
+    .ap { stroke: var(--plan); stroke-width: 2; fill: none; stroke-dasharray: 6 5; marker-end: url(#ahp); }
+  </style>
+
+  <!-- 1 Develop -->
+  <rect class="box" x="20" y="20" width="300" height="220" fill="var(--dev-bg)" stroke="var(--dev)"/>
+  <text class="h" x="40" y="50" fill="var(--dev)">1 &middot; Develop</text>
+  <text class="m" x="40" y="70">DT-13GFDV2 &middot; sometimes off</text>
+  <text class="s" x="40" y="100">C:\SCRIPTS &middot; edit &rarr; sign</text>
+  <text class="s" x="40" y="124">SetupApplications</text>
+  <text class="m" x="52" y="144">&#8226; Publish to DFS tab</text>
+  <text class="m" x="52" y="162">&#8226; Copy to servers tab</text>
+  <text class="s" x="40" y="190">Backup-ScriptsFolder</text>
+  <text class="m" x="52" y="210">&rarr; D:\Backups (every publish)</text>
+
+  <!-- 2 Release store -->
+  <rect class="box" x="420" y="20" width="560" height="220" fill="var(--dfs-bg)" stroke="var(--dfs)"/>
+  <text class="h" x="440" y="50" fill="var(--dfs)">2 &middot; Release store (DFS)</text>
+  <text class="m" x="440" y="70">\\generationsgaither.com\all_scripts\scripts &middot; always on, replicated</text>
+  <text class="s" x="440" y="100">Functions &middot; Data &middot; Modules</text>
+  <text class="s" x="440" y="124">Installs\Data &mdash; the manifests</text>
+  <text class="s" x="440" y="148">Applications\&lt;app&gt; &mdash; manifest files only</text>
+  <text class="s" x="440" y="172">Release.json &middot; _Retired\&lt;date&gt;</text>
+  <line x1="700" y1="88" x2="700" y2="222" stroke="var(--dfs)" stroke-opacity=".35"/>
+  <text class="s" x="716" y="100">Applications\Data</text>
+  <text class="m" x="716" y="120">update.&lt;SERVER&gt;.&lt;App&gt;.json</text>
+  <text class="m" x="716" y="138">Inventory.json</text>
+  <text class="s" x="716" y="172">Logs\Updates</text>
+  <text class="m" x="716" y="190">log drop (planned)</text>
+
+  <!-- 3 Every server -->
+  <rect class="box" x="20" y="360" width="500" height="240" fill="var(--srv-bg)" stroke="var(--srv)"/>
+  <text class="h" x="40" y="390" fill="var(--srv)">3 &middot; Every server &mdash; PSM Frontend</text>
+  <text class="m" x="40" y="410">Task \PSM\SyncScriptsFromDfs &middot; hourly &middot; SYSTEM = SRVxxxx$</text>
+  <text class="s" x="40" y="440">1. read manifests &rarr; which apps this server has</text>
+  <text class="s" x="40" y="464">2. pull Functions, Data, Modules + its apps</text>
+  <text class="m" x="58" y="484">signed scripts only &middot; SHA256 &middot; never deletes</text>
+  <text class="s" x="40" y="510">3. write update.&lt;SERVER&gt;.&lt;App&gt;.json (local + DFS)</text>
+  <text class="s" x="40" y="534" fill="var(--plan)" style="fill:var(--plan)">4. send new log lines (planned)</text>
+  <text class="m" x="40" y="566">Apps run as before: Renew-ExchangeLE, Update-DynamicGroups, &hellip;</text>
+  <text class="m" x="40" y="584">&rarr; C:\SCRIPTS\Logs, transcripts, event log</text>
+
+  <!-- 4 Management server -->
+  <rect class="box" x="640" y="360" width="340" height="240" fill="var(--mgmt-bg)" stroke="var(--mgmt)"/>
+  <text class="h" x="660" y="390" fill="var(--mgmt)">4 &middot; Management server</text>
+  <text class="m" x="660" y="410">srv010010037049 &middot; PSM Backend &middot; always on</text>
+  <text class="s" x="660" y="440">\PSM\UpdateInventoryIndex &middot; 15 min</text>
+  <text class="m" x="672" y="460">records &rarr; Inventory.json</text>
+  <text class="m" x="672" y="478">only from the server itself or an admin</text>
+  <text class="s" x="660" y="508" style="fill:var(--plan)">Planned</text>
+  <text class="m" x="672" y="528">log merge (+ server column, 90 days)</text>
+  <text class="m" x="672" y="546">Setup role &middot; backup job</text>
+  <text class="m" x="672" y="564">web: IIS &rarr; Pode.Web (app tabs)</text>
+
+  <!-- Arrows -->
+  <path class="ar" d="M320,105 L414,105"/>
+  <text class="lbl" x="330" y="96">Publish</text>
+  <text class="m" x="330" y="124">signed only</text>
+
+  <path class="ar" d="M180,240 L180,352"/>
+  <text class="lbl" x="190" y="290">Copy to servers</text>
+  <text class="m" x="190" y="308">\\server\C$, immediate</text>
+
+  <path class="ar" d="M450,240 L450,352"/>
+  <text class="lbl" x="440" y="290" text-anchor="end">1&middot;2 pull, hourly</text>
+
+  <path class="ar" d="M520,420 L552,420 L552,246"/>
+  <text class="lbl" x="558" y="292">3 Synced</text>
+  <text class="lbl" x="558" y="308">record</text>
+
+  <path class="ap" d="M520,534 L616,534 L616,246"/>
+  <text class="plbl" x="622" y="336">4 log lines</text>
+  <text class="plbl" x="622" y="352" dy="-0">(planned)</text>
+
+  <path class="ar" d="M880,246 L880,352"/>
+  <text class="lbl" x="888" y="300">read drop</text>
+</svg>
+</div>
+<div class="legend"><span><i></i>works today</span><span><i class="dash"></i>planned</span></div>
+
+<h2>How a change reaches production</h2>
+<ol class="steps">
+  <li><b>Edit &amp; sign</b><span>On this PC; Set-ScriptSignature. Bump the app's Version.</span></li>
+  <li><b>Preview &amp; Publish</b><span>SetupApplications &rarr; Publish to DFS. Backup first, signed scripts only.</span></li>
+  <li><b>Release updated</b><span>Changed files only; removed files moved to _Retired; Release.json.</span></li>
+  <li><b>Servers pull</b><span>Within the hour each Frontend copies what changed for its apps.</span></li>
+  <li><b>Servers report</b><span>"Synced" record to DFS; Backend updates Inventory.json within 15 min.</span></li>
+</ol>
+<p class="meta">Need it on one server now? Use the "Copy to servers" tab: it copies directly and the next hourly pull finds nothing to change.</p>
+
+<h2>Pieces</h2>
+<div class="panel tablewrap">
+<table>
+  <tr><th>Piece</th><th>Where it runs</th><th>What it does</th><th>Status</th></tr>
+  <tr><td><code>Installs\SetupApplications.ps1</code></td><td>Development PC</td><td>Copy to servers; Publish to DFS tab; Distribution settings</td><td><span class="tag ok">working</span></td></tr>
+  <tr><td><code>Functions\Publish-ScriptsToDfs.ps1</code></td><td>Development PC</td><td>Signature check, backup, copy changed files, retire, Release.json</td><td><span class="tag ok">working</span></td></tr>
+  <tr><td><code>Functions\Backup-ScriptsFolder.ps1</code></td><td>Development PC</td><td>Full zip of C:\SCRIPTS to D:\Backups</td><td><span class="tag ok">working</span></td></tr>
+  <tr><td><code>PSM\FrontendScriptsSync\Sync-ScriptsFromDfs.ps1</code><br><span class="meta">task \PSM\SyncScriptsFromDfs</span></td><td>Every server</td><td>Hourly pull of Functions, Data, Modules and the server's apps; writes Synced records</td><td><span class="tag ok">working</span> 3 servers</td></tr>
+  <tr><td><code>PSM\BackendScriptsSync\Update-InventoryIndex.ps1</code><br><span class="meta">task \PSM\UpdateInventoryIndex</span></td><td>srv010010037049</td><td>Merges records into Inventory.json every 15 minutes</td><td><span class="tag ok">working</span></td></tr>
+  <tr><td><code>Functions\Update-ApplicationInventory.ps1</code></td><td>Everywhere</td><td>Writes update.&lt;SERVER&gt;.&lt;App&gt;.json (Copied, Installed, Synced, Verified)</td><td><span class="tag ok">working</span></td></tr>
+  <tr><td><code>Functions\Get-ScriptsTransport.ps1</code></td><td>Everywhere</td><td>Reads Transports (DFS, SFTP, FTP) from Scripts.json</td><td><span class="tag ok">DFS only</span></td></tr>
+  <tr><td><code>Functions\Send-ScriptMail.ps1</code></td><td>Everywhere</td><td>Notifications via the Mail settings in Scripts.json</td><td><span class="tag plan">needs sender / recipients</span></td></tr>
+  <tr><td>Log shipping &amp; merge</td><td>Servers &rarr; srv010010037049</td><td>Central logs with server column, 90-day trim</td><td><span class="tag plan">planned</span></td></tr>
+  <tr><td>Setup role, backup job, web interface</td><td>srv010010037049</td><td>Mirror the release; daily/weekly/monthly backups; IIS + Pode.Web</td><td><span class="tag plan">planned</span></td></tr>
+</table>
+</div>
+
+<h2>Permissions on the DFS share</h2>
+<div class="panel tablewrap">
+<table>
+  <tr><th>Group</th><th>Members</th><th>Rights</th></tr>
+  <tr><td><code>FLD-SCRIPTS.ADMINS</code></td><td>Domain Admins, Scripts Admin, srv010010037049 (while developing)</td><td>Full control; publishes</td></tr>
+  <tr><td><code>FLD-SCRIPTS.REVIEWERS</code></td><td>APP-PowershellScriptsManagement</td><td>Read the release, <b>including Installs\Data</b> (manifests)</td></tr>
+  <tr><td><code>FLD-SCRIPTS.APPLICATIONS.DATA.EDITORS</code></td><td>APP-PowershellScriptsManagement</td><td>Modify the inventory drop (Applications\Data)</td></tr>
+  <tr><td><code>APP-PowershellScriptsManagement</code></td><td>Computer accounts of the servers (OU=ApplicationsGroups)</td><td>&mdash; nested in the two groups above</td></tr>
+</table>
+</div>
+<p class="meta">The Frontend runs as SYSTEM, which reaches DFS as the computer account (SRVxxxx$). Group changes count only after a reboot or a ticket purge.</p>
+
+<h2>Safety rules</h2>
+<div class="grid2">
+  <div class="panel"><h3>What moves</h3>
+    <ul class="tight">
+      <li>Only validly signed scripts are published or pulled.</li>
+      <li>Files are compared by SHA256; only changed files move.</li>
+      <li>Written under a temporary name, then renamed &mdash; never half a file.</li>
+      <li>A publish always makes a backup of C:\SCRIPTS first.</li>
+    </ul></div>
+  <div class="panel"><h3>What never moves</h3>
+    <ul class="tight">
+      <li>Server-local data: DynamicGroups rules, PoshAcme certificates, logs, transcripts.</li>
+      <li>Nothing is deleted on a server; removed files on DFS go to <code>_Retired\&lt;date&gt;</code>.</li>
+      <li>Nothing outside C:\SCRIPTS is written by the Frontend.</li>
+    </ul></div>
+</div>
+<div class="note"><b>Publish before enabling a Frontend.</b> A Frontend makes its server match DFS. If DFS is older than the server, the server is rolled back (this happened on SRV010010050050 on 2026-10-20 before the first publish).</div>
+
+<h2>Adding a server</h2>
+<div class="panel">
+<ol class="tight" style="padding-left:20px;margin:0">
+  <li>Add its computer account to <code>APP-PowershellScriptsManagement</code>.</li>
+  <li>On the server (elevated), refresh its tickets &mdash; use the full path, another <code>klist</code> may be first on PATH:
+    <pre><code>C:\Windows\System32\klist.exe -li 0x3e7 purge</code></pre></li>
+  <li>SetupApplications &rarr; Copy to servers: copy the server's applications (Base and the PSM Frontend come along).</li>
+  <li>On the server: <code>C:\SCRIPTS\Applications\PSM\FrontendScriptsSync\Install-FrontendScriptsSync.ps1</code></li>
+  <li>Check <code>C:\SCRIPTS\Logs\Sync-ScriptsFromDfs.log</code> shows <code>0 failed</code> and its records on DFS show <b>Synced OK</b>.</li>
+</ol>
+</div>
+
+<h2>Troubleshooting</h2>
+<div class="panel tablewrap">
+<table>
+  <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+  <tr><td>Sync: <code>Access is denied</code></td><td>Server's ticket predates its group membership</td><td><code>C:\Windows\System32\klist.exe -li 0x3e7 purge</code> or reboot</td></tr>
+  <tr><td>Sync: <code>Access is denied</code> on every server</td><td>No read on <code>Installs\Data</code> (Installs has inheritance blocked)</td><td>Grant FLD-SCRIPTS.REVIEWERS read on Installs\Data</td></tr>
+  <tr><td>Sync OK but no Synced record on DFS</td><td>Server can read but not yet write the drop</td><td>Ticket purge; the next run writes the record</td></tr>
+  <tr><td>Server got older files</td><td>DFS older than the server</td><td>Publish first; re-copy with SetupApplications</td></tr>
+  <tr><td>Publish stops: not validly signed</td><td>A script was edited after signing</td><td>Run Set-ScriptSignature, then publish</td></tr>
+</table>
+</div>
+</main>
+</body>
+</html>

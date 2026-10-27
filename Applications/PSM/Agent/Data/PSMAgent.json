@@ -1,0 +1,27 @@
+{
+  "Name": "PSMAgent",
+  "Version": "1.0.0",
+  "Description": "PSM Agent (Powershell Scripts Management): a small HTTPS web service on each PSM server (Pode + Pode.Web) that shows this server's PSM data: device record, applications and their settings layers, logs and cleanup list. Read-only. Bump Version whenever a file of this application changes.",
+  "Port": 8776,
+  "Threads": 3,
+  "ViewGroups": [ "FLD-SCRIPTS.REVIEWERS" ],
+  "AdminGroups": [ "FLD-SCRIPTS.ADMINS" ],
+  "SessionMinutes": 60,
+  "Certificate": {
+    "PreferIssuer": "generationsgaither",
+    "AllowSelfSigned": true
+  },
+  "LogMaxEntries": 500,
+  "Modules": [
+    { "Name": "Pode", "RequiredVersion": "2.14.1" },
+    { "Name": "Pode.Web", "RequiredVersion": "1.0.0-preview3" }
+  ],
+  "TaskPath": "\\PSM\\",
+  "TaskName": "PsmAgent",
+  "Notes": {
+    "Port": "8776 = PSM on a telephone keypad. Opened in Windows Firewall for the Domain profile by Install-PsmAgent.ps1.",
+    "ViewGroups": "AD groups (nested membership counts) whose members can sign in and view. AdminGroups can also view, and later use actions.",
+    "Certificate": "The newest valid server-authentication certificate in LocalMachine\\My for this server's FQDN; one whose issuer contains PreferIssuer (the internal CA, auto-enrolled) wins. Without one, AllowSelfSigned starts with a self-signed certificate and logs a warning.",
+    "Modules": "Installed on the servers by SetupApplications (Install-ServerModule; downloaded on the workstation, no internet needed on the server)."
+  }
+}

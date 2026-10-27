@@ -1,0 +1,42 @@
+{
+  "Name": "PoshAcme",
+  "Description": "Posh-ACME core: installs Posh-ACME and Posh-ACME.Deploy, sets POSHACME_HOME and moves the existing Posh-ACME data into the shared Certs folder. Used on its own (with a server added) or as a dependency of a server role manifest such as PoshAcmeExchangeServer.",
+  "AppData": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Data\\PoshAcme.json",
+  "Servers": [],
+  "Modules": [
+    { "Name": "Posh-ACME", "LatestOnly": true },
+    { "Name": "Posh-ACME.Deploy", "LatestOnly": true }
+  ],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Test-PoshAcmePrerequisites.ps1",
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Install-PoshAcme.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme",
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Install-PoshAcme.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Install-PoshAcme.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Test-PoshAcmePrerequisites.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Test-PoshAcmePrerequisites.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Show-PoshAcmeCertificateManagement.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Show-PoshAcmeCertificateManagement.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\PoshAcme.md",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\PoshAcme.md"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "Name": "Sites",
+  "Version": "0.1.0",
+  "Description": "DRAFT 2026-10-27, built from what exists in AD and on DATA. The source of truth for the organization's sites: which exist and everything needed to put a person there (OUs, people group, folder, mailbox database, executive director). Read by DynamicGroups (site membership), NetworkDataPermissionsSet (folders), the user on/off-boarding scripts and the PSM web interface. A person's site is NOT here: it is on the user account (SiteAttribute). Bump Version on every change.",
+  "SiteAttribute": "extensionAttribute3",
+  "Accounts": {
+    "UserNameFormat": "{FirstInitial}{Last}",
+    "UpnSuffix": "generationsgaither.com",
+    "MailDomain": "generationsgaither.com",
+    "Exchange": [ "SRV010010037050.generationsgaither.com", "SRV010010050050.generationsgaither.com" ]
+  },
+  "Types": {
+    "Houses": { "DisplayName": "Houses", "MailboxDatabase": "GGIFACILITIES", "Department": "Facilities Management" },
+    "MHCs": { "DisplayName": "Mental Health Centers", "MailboxDatabase": "GMHC", "Department": "" },
+    "SkilledNursing": { "DisplayName": "Skilled Nursing", "MailboxDatabase": "GGISPENCER", "Department": "" },
+    "Offices": { "DisplayName": "Offices", "MailboxDatabase": "GGICORP", "Department": "" }
+  },
+  "Portfolios": {
+    "mbrown": { "ExecutiveDirector": "mbrown", "Sites": [ "Houses.Campbell_Lodge", "Houses.Kolton_Wayne", "Houses.Mckenzie" ] },
+    "sseiber": { "ExecutiveDirector": "sseiber", "Sites": [ "Houses.Kristopher_Wayne", "Houses.Ella_Katlynn" ] },
+    "SunnyAcres": { "ExecutiveDirector": "nalexander", "Group": "DEPT-Campus.Morrison", "Sites": [ "Houses.Denton", "Houses.James_Gilbert", "Houses.Kirby", "Houses.Wood" ] },
+    "Woodbury": { "ExecutiveDirector": "lhoch", "Group": "DEPT-Campus.Woodbury", "Sites": [ "Houses.Warren", "Houses.Harwell" ] },
+    "panderson": { "ExecutiveDirector": "panderson", "Sites": [ "Houses.Logan" ] },
+    "awanamaker": { "ExecutiveDirector": "awanamaker", "Sites": [ "Houses.Woodlee_Trail" ] },
+    "DresdenMHC": { "ExecutiveDirector": "sjenkins", "Sites": [ "MHCs.Dresden" ] },
+    "MorrisonMHC": { "ExecutiveDirector": "ddavis", "Sites": [ "MHCs.Morrison" ] }
+  },
+  "Sites": {
+    "Houses.Campbell_Lodge": { "DisplayName": "Campbell Lodge", "Type": "Houses", "SiteOU": "OU=TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.CAMPBELL_LODGE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Campbell_Lodge", "PeopleGroup": "DEPT-Facilities.Houses.Campbell_Lodge" },
+    "Houses.Denton": { "DisplayName": "Denton House", "Type": "Houses", "Campus": "SunnyAcres", "SiteOU": "OU=TN.MORRISON.CAMPUS-SUNNY_ACRES_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\Denton", "PeopleGroup": "DEPT-Facilities.Houses.Denton" },
+    "Houses.Ella_Katlynn": { "DisplayName": "Ella Katelynn House", "Type": "Houses", "SiteOU": "OU=TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.ELLA_KATELYNN_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Ella_Katlynn", "PeopleGroup": "DEPT-Facilities.Houses.EllaKatelynn" },
+    "Houses.Harwell": { "DisplayName": "Harwell House", "Type": "Houses", "Campus": "Woodbury", "SiteOU": "OU=TN.WOOBURY.CAMPUS-AUBURNTOWN_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Harwell", "PeopleGroup": "DEPT-Facilities.Houses.Harwell" },
+    "Houses.James_Gilbert": { "DisplayName": "James Gilbert House", "Type": "Houses", "Campus": "SunnyAcres", "SiteOU": "OU=TN.MORRISON.CAMPUS-SUNNY_ACRES_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\James_Gilbert", "PeopleGroup": "DEPT-Facilities.Houses.James_Gilbert" },
+    "Houses.Kirby": { "DisplayName": "Kirby House", "Type": "Houses", "Campus": "SunnyAcres", "SiteOU": "OU=TN.MORRISON.CAMPUS-SUNNY_ACRES_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\Kirby", "PeopleGroup": "DEPT-Facilities.Houses.Kirby" },
+    "Houses.Kolton_Wayne": { "DisplayName": "Kolton Wayne House", "Type": "Houses", "SiteOU": "OU=TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.KOLTON_WAYNE_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Kolton_Wayne", "PeopleGroup": "DEPT-Facilities.Houses.Kolton_Wayne" },
+    "Houses.Kristopher_Wayne": { "DisplayName": "Kristopher Wayne House", "Type": "Houses", "SiteOU": "OU=TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.KRISTOPHER_WAYNE_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Kristopher_Wayne", "PeopleGroup": "DEPT-Facilities.Houses.Kristopher_Wayne" },
+    "Houses.Logan": { "DisplayName": "Logan House", "Type": "Houses", "SiteOU": "OU=TN.COOKEVILLE.FACILITY.LOGAN_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\Logan", "PeopleGroup": "DEPT-Facilities.Houses.Logan" },
+    "Houses.Mckenzie": { "DisplayName": "McKenzie House", "Type": "Houses", "SiteOU": "OU=TN.MCMINNVILLE.FACILITY.MCKENZIE_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Mckenzie", "PeopleGroup": "DEPT-Facilities.Houses.McKenzie" },
+    "Houses.Robert_Coy": { "DisplayName": "Robert Coy House", "Type": "Houses", "SiteOU": "OU=TN.MCMINNVILLE.CAMPUS-NORTH_SPRING_STREET.ROBERT_COY_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Robert_Coy", "PeopleGroup": "DEPT-Facilities.Houses.Robert_Coy" },
+    "Houses.Skylar": { "DisplayName": "Skylar House", "Type": "Houses", "SiteOU": "OU=TN.COOKEVILLE.FACILITY.SKYLAR_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\Skylar", "PeopleGroup": "DEPT-Facilities.Houses.Skylar" },
+    "Houses.Warren": { "DisplayName": "Warren House", "Type": "Houses", "Campus": "Woodbury", "SiteOU": "OU=TN.WOOBURY.CAMPUS-AUBURNTOWN_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Warren", "PeopleGroup": "DEPT-Facilities.Houses.Warren" },
+    "Houses.Wood": { "DisplayName": "Wood House", "Type": "Houses", "Campus": "SunnyAcres", "SiteOU": "OU=TN.MORRISON.CAMPUS-SUNNY_ACRES_ROAD,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\Houses\\Wood", "PeopleGroup": "DEPT-Facilities.Houses.Wood" },
+    "Houses.Woodlee_Trail": { "DisplayName": "Woodlee Trail House", "Type": "Houses", "SiteOU": "OU=TN.MCMINNVILLE.FACILITY.WOODLEE_HOUSE,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=users", "Folder": "Facilities\\Houses\\Woodlee_Trail", "PeopleGroup": "DEPT-Facilities.Houses.Woodlee_Trail" },
+    "MHCs.Cookeville": { "DisplayName": "Cookeville Mental Health Center", "Type": "MHCs", "SiteOU": "OU=TN.COOKEVILLE.FACILITY.MHC,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\MHCs\\Cookeville", "PeopleGroup": "" },
+    "MHCs.Dayton": { "DisplayName": "Dayton Mental Health Center", "Type": "MHCs", "SiteOU": "OU=TN.DAYTON.FACILITY.MHC,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\MHCs\\Dayton", "PeopleGroup": "" },
+    "MHCs.Dresden": { "DisplayName": "Dresden Mental Health Center", "Type": "MHCs", "SiteOU": "OU=TN.DRESDEN.FACILITY.MHC,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\MHCs\\Dresden", "PeopleGroup": "" },
+    "MHCs.Morrison": { "DisplayName": "Morrison Mental Health Center", "Type": "MHCs", "SiteOU": "OU=TN.MORRISON.FACILITY.MHC,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\MHCs\\Morrison", "PeopleGroup": "" },
+    "SkilledNursing.Spencer": { "DisplayName": "Generations of Spencer", "Type": "SkilledNursing", "SiteOU": "OU=TN.SPENCER.FACILITY.GENERATIONS_OF_SPENCER,OU=GGI,DC=generationsgaither,DC=com", "UsersOU": "OU=Employees,OU=Users", "Folder": "Facilities\\SkilledNursing\\Spencer", "PeopleGroup": "" }
+  },
+  "Notes": {
+    "SiteAttribute": "The user attribute that holds a person's site key (e.g. Houses.Mckenzie). extensionAttribute3 was unused on 2026-10-27 (1, 2, 8, 9, 10 are in use). The campus OUs (Sunny Acres, Woodbury) hold several houses' staff together, so a person's house can't be taken from the OU; DynamicGroups builds each PeopleGroup from this attribute instead.",
+    "Sites": "Key = <Type>.<Folder name>. SiteOU: the site's OU; UsersOU: relative to SiteOU, where new staff accounts go; Folder: relative to the DATA share; PeopleGroup: the DEPT- group of the site's people (nested into its FLD- groups); DisplayName: also written to the user's Office field (today's Office values are inconsistent, e.g. McKenzie staff have 'Kolton House').",
+    "Types": "Defaults per site type. MailboxDatabase from where staff of that type have their mailboxes today (GGIFACILITIES 61, GMHC 87, GGISPENCER 31, GGICORP 21).",
+    "Portfolios": "Executive director portfolios: the ED (username) and their sites. DRAFT keys - rename to whatever you call them. Group: an existing DEPT-Campus group for the portfolio. Still unknown: ED for Skylar, Robert Coy, Cookeville and Dayton MHCs, Spencer; Morrison MHC has two staff titled Executive Director (jstotts, ddavis).",
+    "Accounts": "Conventions found on 2026-10-27: 185 of 202 staff usernames are first initial + last name; email and UPN the same @generationsgaither.com; Exchange 2019."
+  }
+}

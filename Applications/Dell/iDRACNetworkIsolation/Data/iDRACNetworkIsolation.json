@@ -1,0 +1,6 @@
+{
+  "Name": "iDRACNetworkIsolation",
+  "Version": "1.0.1",
+  "Description": "Dell PowerEdge iDRAC9: moves the iDRAC to its dedicated port and removes the OS-to-iDRAC pass-through NIC (Remote NDIS, 169.254.x) from Windows, which otherwise registers unroutable addresses in DNS and breaks WinRM / the Exchange Management Shell. Run once per server with Set-iDRACNetworkIsolation.ps1 (-WhatIf first). Bump Version whenever a file of this application changes.",
+  "RunAs": "Local administrator (elevated); needs racadm, installed with the server's Dell tools"
+}

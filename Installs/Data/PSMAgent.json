@@ -1,0 +1,39 @@
+{
+  "Name": "PSMAgent",
+  "Description": "PSM Agent (Powershell Scripts Management): HTTPS web service on port 8776 (Pode + Pode.Web) that shows this server's PSM data: device record, applications and their settings layers, logs and cleanup list. Scheduled task \\PSM\\PsmAgent as SYSTEM. Sign-in: FLD-SCRIPTS.REVIEWERS (view), FLD-SCRIPTS.ADMINS. Certificate: the server's auto-enrolled internal CA certificate.",
+  "AppData": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Data\\PSMAgent.json",
+  "Servers": [],
+  "DependsOn": [ "PSMFrontendScriptsSync" ],
+  "Modules": [
+    { "Name": "Pode", "RequiredVersion": "2.14.1" },
+    { "Name": "Pode.Web", "RequiredVersion": "1.0.0-preview3" }
+  ],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Install-PsmAgent.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\PSM\\Agent",
+    "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Data",
+    "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Functions"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Start-PsmAgent.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Start-PsmAgent.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Install-PsmAgent.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Install-PsmAgent.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Functions\\Get-PsmAgentData.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\Agent\\Functions\\Get-PsmAgentData.ps1"
+    }
+  ]
+}

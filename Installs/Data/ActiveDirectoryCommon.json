@@ -1,0 +1,27 @@
+{
+  "Name": "ActiveDirectoryCommon",
+  "Description": "Shared Active Directory functions (library, no install step): Move-AdUserToOu, Remove-AdUserAccount. Applications that use them list ActiveDirectoryCommon in DependsOn, so it is copied only where AD work runs. Needs RSAT-AD-PowerShell on that machine.",
+  "AppData": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Data\\ActiveDirectoryCommon.json",
+  "Servers": [],
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\Microsoft",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Data",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Functions"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Functions\\*.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\Functions"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\ActiveDirectoryCommon.md",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\Common\\ActiveDirectoryCommon.md"
+    }
+  ]
+}

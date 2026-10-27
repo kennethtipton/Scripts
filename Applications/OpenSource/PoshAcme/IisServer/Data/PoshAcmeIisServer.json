@@ -1,0 +1,19 @@
+{
+  "Name": "PoshAcmeIisServer",
+  "Version": "1.0.2",
+  "Description": "IIS role of PoshAcme: renews this server's Let's Encrypt certificates (Posh-ACME) and binds each to its IIS site bindings (Posh-ACME.Deploy Set-IISCertificate). Which certificate goes to which bindings is kept in Data\\Deployments\\IisCertificates.json on the server (edited with Add-IisCertificate.ps1; never overwritten by a copy or sync). The core settings (account, order domain, run-as) come from ..\\Data\\PoshAcme.json. Bump Version whenever any file of the role changes.",
+  "RunAs": "GENERATIONSGAIT\\Administrator",
+  "TaskPath": "\\IIS\\LetsEncrypt\\",
+  "TaskName": "RenewIisCertificates",
+  "RunTime": "01:00",
+  "RemoveOldCert": true,
+  "DeploymentsFile": "Data\\Deployments\\IisCertificates.json",
+  "DeploymentsTemplate": "Data\\IisCertificates.Template.json",
+  "KeepDeploymentBackups": 30,
+  "TranscriptRetentionDays": 90,
+  "Notes": {
+    "RunAs": "Account the task runs as; it must own the Posh-ACME data (encrypted DNS plugin arguments).",
+    "RemoveOldCert": "After a deployment, delete the previous certificate from LocalMachine\\My, but only when no HTTPS binding on this server still uses it.",
+    "DeploymentsFile": "Server-local. Each entry: MainDomain (the Posh-ACME order), Names, Enabled, Bindings (SiteName, IPAddress, Port, HostHeader, RequireSNI)."
+  }
+}

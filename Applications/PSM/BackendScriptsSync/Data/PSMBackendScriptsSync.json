@@ -1,0 +1,6 @@
+{
+  "Name": "PSMBackendScriptsSync",
+  "Version": "1.4.0",
+  "Description": "PSM Backend (Powershell Scripts Management), installed only on the InventoryServer from C:\\SCRIPTS\\Data\\Settings\\Scripts.json (the services server): Update-InventoryIndex.ps1 merges the devices' inventory records into Inventory.json. Bump Version whenever a file of this application changes.",
+  "RunAs": "SYSTEM (scheduled task \\PSM\\UpdateInventoryIndex)"
+}

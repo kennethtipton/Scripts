@@ -1,0 +1,986 @@
+﻿Date: 2026-10-24 21:33:57
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:00
+Level: Error
+ThreadId: 28
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:03
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:06
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:09
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:13
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:16
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:19
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:22
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:25
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:28
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:31
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:34
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:37
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:40
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:43
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:46
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:49
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:52
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:55
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:34:58
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:02
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:05
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:08
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:11
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:14
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:17
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:20
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:23
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:26
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:29
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:32
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:35
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:38
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:41
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:44
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:47
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:50
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:54
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:35:57
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:00
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:03
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:06
+Level: Error
+ThreadId: 8
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:09
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:12
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:15
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:18
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:21
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:24
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:27
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:30
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:33
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:36
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:39
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:43
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:36:46
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:39:28
+Level: Error
+ThreadId: 27
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+
+Date: 2026-10-24 21:39:30
+Level: Error
+ThreadId: 14
+ContextId: <none>
+Server: DT-13GFDV2
+Kind: Server
+Category: System
+Message: The credentials supplied to the package were not recognized
+StackTrace:    at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Pode.Protocols.Common.Requests.PodeRequestHandler.<UpgradeToSSL>d__96.MoveNext()
+

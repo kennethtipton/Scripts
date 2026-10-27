@@ -1,0 +1,30 @@
+{
+  "Name": "iDRACNetworkIsolation",
+  "Description": "Dell PowerEdge iDRAC9 network isolation: iDRAC on its dedicated port, no OS-to-iDRAC pass-through NIC in Windows. Run the step once on each server, -WhatIf first; add -SkipDedicated where the dedicated iDRAC port is not cabled or licensed (for example an R340).",
+  "AppData": "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Data\\iDRACNetworkIsolation.json",
+  "Servers": [
+    "srv010010037050.generationsgaither.com",
+    "srv010010037054.generationsgaither.com",
+    "srv010010037055.generationsgaither.com"
+  ],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Set-iDRACNetworkIsolation.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\Dell",
+    "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation",
+    "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Set-iDRACNetworkIsolation.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Dell\\iDRACNetworkIsolation\\Set-iDRACNetworkIsolation.ps1"
+    }
+  ]
+}

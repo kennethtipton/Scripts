@@ -1,0 +1,33 @@
+Timestamp | Script | Type | Message
+2026-10-22 13:22:05 | Script: Update-InventoryIndex.ps1 | INFO: Device SRVTEST reports again (last 2026-10-22T13:22:03).
+2026-10-22 13:22:02 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 7 application(s), 24 application record(s), 0 stale, 2 device(s) (1 not reporting), 0 skipped.
+2026-10-22 13:22:02 | Script: Update-InventoryIndex.ps1 | WARNING: Device SRVTEST has not reported for 300 minutes (last 2026-10-22T08:21:59); more than DeviceStaleMinutes 150.
+2026-10-13 14:53:47 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 1 application(s), 1 device record(s), 0 stale, 0 skipped.
+2026-10-13 14:52:51 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVX.PoshAcme.json: Content is for SRVY/PoshAcme, not SRVX/PoshAcme
+2026-10-13 14:52:51 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 2 application(s), 3 device record(s), 1 stale, 1 skipped.
+2026-10-13 14:52:49 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVX.PoshAcme.json: Content is for SRVY/PoshAcme, not SRVX/PoshAcme
+2026-10-13 14:52:49 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 2 application(s), 3 device record(s), 1 stale, 1 skipped.
+2026-10-13 14:52:12 | Script: Update-InventoryIndex.ps1 | ERROR: Inventory index failed: Cannot find an overload for "TryParse" and the argument count: "2".
+2026-10-13 14:52:10 | Script: Update-InventoryIndex.ps1 | ERROR: Inventory index failed: Cannot find an overload for "TryParse" and the argument count: "2".
+2026-10-13 14:51:36 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVZ.PoshAcme.json: Not valid JSON: Invalid object passed in, ':' or '}' expected. (7): { not json
+
+2026-10-13 14:51:36 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVX.PoshAcme.json: Content is for SRVY/PoshAcme, not SRVX/PoshAcme
+2026-10-13 14:51:36 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRV010010037050.PoshAcmeExchangeServer.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:36 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.DT-13GFDV2.PoshAcme.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:36 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.bogus.json: Name is not update.<DEVICE>.<Application>.json
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVZ.PoshAcme.json: Not valid JSON: Conversion from JSON failed with error: Invalid character after parsing property name. Expected ':' but got: j. Path '', line 1, position 6.
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVX.PoshAcme.json: Content is for SRVY/PoshAcme, not SRVX/PoshAcme
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRV010010037050.PoshAcmeExchangeServer.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.DT-13GFDV2.PoshAcme.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.bogus.json: Name is not update.<DEVICE>.<Application>.json
+2026-10-13 14:51:32 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 0 application(s), 0 device record(s), 0 stale, 5 skipped.
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVZ.PoshAcme.json: Not valid JSON: Invalid object passed in, ':' or '}' expected. (7): { not json
+
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRVX.PoshAcme.json: Content is for SRVY/PoshAcme, not SRVX/PoshAcme
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.SRV010010037050.PoshAcmeExchangeServer.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.DT-13GFDV2.PoshAcme.json: Owner 'GENERATIONSGAIT\kennethtipton' is neither the device nor a Scripts/Domain admin
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | WARNING: Skipped update.bogus.json: Name is not update.<DEVICE>.<Application>.json
+2026-10-13 14:51:31 | Script: Update-InventoryIndex.ps1 | INFO: Inventory.json: 0 application(s), 0 device record(s), 0 stale, 5 skipped.
+2026-10-13 14:50:43 | Script: Update-InventoryIndex.ps1 | WARNING: DT-13GFDV2 is not the inventory server (srv010010037049.generationsgaither.com in C:\Users\KENNET~1\AppData\Local\Temp\claude\c--SCRIPTS\3a4d76f3-ba9f-497e-8d2d-0993e1da5268\scratchpad\inv\SCRIPTS\Data\Settings\Scripts.json); nothing done. Use -Force to run anyway.
+2026-10-13 14:50:41 | Script: Update-InventoryIndex.ps1 | ERROR: Inventory index failed: Argument types do not match
+2026-10-13 14:50:38 | Script: Update-InventoryIndex.ps1 | ERROR: Inventory index failed: Argument types do not match

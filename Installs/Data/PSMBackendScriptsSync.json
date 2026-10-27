@@ -1,0 +1,37 @@
+{
+  "Name": "PSMBackendScriptsSync",
+  "Description": "PSM Backend (Powershell Scripts Management): Update-InventoryIndex.ps1 merges every device's update.<DEVICE>.<App>.json in the DFS drop folder into Inventory.json. Installed only on the InventoryServer named in C:\\SCRIPTS\\Data\\Settings\\Scripts.json (change it there to move the job).",
+  "AppData": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Data\\PSMBackendScriptsSync.json",
+  "ServersFrom": {
+    "Settings": "C:\\SCRIPTS\\Data\\Settings\\Scripts.json",
+    "Key": "InventoryServer"
+  },
+  "Servers": [],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Install-BackendScriptsSync.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync",
+    "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Update-InventoryIndex.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Update-InventoryIndex.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Merge-LogUpdates.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Merge-LogUpdates.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Install-BackendScriptsSync.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\PSM\\BackendScriptsSync\\Install-BackendScriptsSync.ps1"
+    }
+  ]
+}

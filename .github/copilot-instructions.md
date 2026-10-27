@@ -244,6 +244,8 @@ Scope audited: `c:\Scripts\Applications` (recursive)
 	- Reason: Vendor/product acronym and numeric product identifier naming.
 - `Applications/3CX/Failover3CXServer/.vscode`
 	- Reason: Standard VS Code configuration folder (tooling folder, naming exempt).
+- `Applications/PSM`
+	- Reason: Product acronym for Powershell Scripts Management (the maintenance applications FrontendScriptsSync and BackendScriptsSync).
 
 ### Script Naming Normalization Applied
 

@@ -1,0 +1,44 @@
+{
+  "Name": "DynamicGroups",
+  "Description": "Rule-based Active Directory groups (Update-DynamicGroups.ps1 every 2 hours). Install on a domain controller (-RunAsSystem) or on the services server (gMSA or delegated domain account; needs RSAT-AD-PowerShell). The rules are server-local (Data\\Rules) and never copied or synced; only the application files and settings are.",
+  "AppData": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Data\\DynamicGroups.json",
+  "Servers": [],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Install-DynamicGroups.ps1"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\Microsoft",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Data",
+    "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Functions"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Functions\\*.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Functions"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Update-DynamicGroups.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Update-DynamicGroups.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Show-DynamicGroupEditor.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Show-DynamicGroupEditor.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Install-DynamicGroups.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\Install-DynamicGroups.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\DynamicGroups.md",
+      "Destination": "C:\\SCRIPTS\\Applications\\Microsoft\\ActiveDirectory\\DynamicGroups\\DynamicGroups.md"
+    }
+  ]
+}

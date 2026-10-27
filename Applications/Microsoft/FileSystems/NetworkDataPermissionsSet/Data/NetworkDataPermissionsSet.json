@@ -1,0 +1,143 @@
+{
+  "Name": "NetworkDataPermissionsSet",
+  "Version": "1.0.0",
+  "Description": "Folder security from rules: creates/renames the FLD- groups, nests them for traverse, and sets each managed folder's permissions. Set-NetworkDataPermissions.ps1 reports by default and changes only with -Apply. Bump Version whenever a file of this application changes.",
+  "GroupsOU": "",
+  "GroupsOUPerTopFolder": true,
+  "SharedOUTopFolders": [ "Users" ],
+  "GroupNameFormat": "FLD-{Role}-{Share}{Path}",
+  "MaxGroupNameLength": 64,
+  "Roles": {
+    "A": { "Word": "Administrators", "Rights": "FullControl", "Scope": "All", "Description": "Full Control on {Folder}" },
+    "E": { "Word": "Editors", "Rights": "Modify", "ThisFolderRights": "ReadAndExecute, CreateFiles, CreateDirectories", "Scope": "All", "Description": "Modify on {Folder}" },
+    "R": { "Word": "Reviewers", "Rights": "ReadAndExecute", "Scope": "All", "Description": "Read on {Folder}" },
+    "T": { "Word": "Traverse", "Rights": "Traverse, ListDirectory, ReadAttributes, ReadExtendedAttributes, ReadPermissions", "Scope": "ThisFolder", "Description": "Traverse and list {Folder} (this folder only), to reach a folder below it" }
+  },
+  "Owner": "S-1-5-32-544",
+  "Base": [
+    { "Identity": "S-1-5-18", "Rights": "FullControl" },
+    { "Identity": "S-1-5-32-544", "Rights": "FullControl" }
+  ],
+  "LegacyNameFormats": [ "FLD-{Share}{PATH}.{Word}" ],
+  "LegacyRoleWords": {
+    "A": [ "ADMIN", "ADMINS" ],
+    "E": [ "EDITORS", "EDITOR" ],
+    "R": [ "REVIEWERS", "REVIEWER" ],
+    "T": [ "TRAVERSE" ]
+  },
+  "Shares": {
+    "DATA": {
+      "Path": "\\\\generationsgaither.com\\ALL_DATA\\DATA",
+      "RootRoles": [ "A" ],
+      "TopFolderRoles": [ "A" ],
+      "ExcludeTopFolders": [ "DfsrPrivate", "__DFSR_DIAGNOSTICS_TEST_FOLDER__", "Facility" ]
+    }
+  },
+  "Areas": [
+    {
+      "Name": "Facilities",
+      "Share": "DATA",
+      "Rules": [
+        {
+          "Path": "Facilities",
+          "Roles": [ "A", "E", "T" ],
+          "CarryDown": [ "E" ],
+          "Note": "A = administrators of all facilities; E = editors of every facility (carried into each); T = browse."
+        },
+        {
+          "Path": "Facilities\\*",
+          "Roles": [ "A", "R", "T" ],
+          "CarryDown": [ "R" ],
+          "Note": "Type folders (Houses, MHCs, SkilledNursing, Offices): A = delegate that type; R = staff who read all of that type (carried into each site); T = browse. No Editors group at this level."
+        },
+        {
+          "Path": "Facilities\\*\\*",
+          "Roles": [ "E", "R" ],
+          "Note": "Each site folder (and Houses\\AAA-REPORTS): its own Editors and Reviewers."
+        },
+        {
+          "Path": "Facilities\\MHCs\\*\\AA.Management",
+          "Roles": [ "E", "R" ],
+          "BlockCarryDown": true,
+          "ShareAdminsOnly": true,
+          "Note": "MHC management: nothing comes down from above except FLD-A-DATA (and SYSTEM / Administrators); only its own Editors and Reviewers."
+        }
+      ],
+      "LegacyPrefixes": [ "FLD-DATA.FACILITY" ],
+      "Sites": {
+        "Folder": "Facilities",
+        "Depth": 2,
+        "SearchBase": "OU=GGI,DC=generationsgaither,DC=com",
+        "NamePattern": "^(TN|KY)\\.",
+        "Exclude": [
+          "TN.CAMPAIGN.HOME_OFFICE.WAYNE_GREER",
+          "TN.DRESDEN.OFFICE.CARE_MANAGEMENT",
+          "TN.MCMINNVILLE.CAMPUS-NORTH_SPRING_STREET",
+          "TN.MCMINNVILLE.CAMPUS-NORTH_SPRING_STREET.HOUSING",
+          "TN.MCMINNVILLE.CAMPUS-NORTH_SPRING_STREET.WALLING_STREET_OFFICE",
+          "TN.MCMINNVILLE.HOME_OFFICE.LACEY_DAVIS",
+          "TN.MCMINNVILLE.HOME_OFFICE.MATTHEW_LEWIS"
+        ],
+        "Folders": {
+          "TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.CAMPBELL_LODGE": "Houses\\Campbell_Lodge",
+          "TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.ELLA_KATELYNN_HOUSE": "Houses\\Ella_Katlynn",
+          "TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.KOLTON_WAYNE_HOUSE": "Houses\\Kolton_Wayne",
+          "TN.CENTERTOWN.CAMPUS-CRISP_SPRINGS_ROAD.KRISTOPHER_WAYNE_HOUSE": "Houses\\Kristopher_Wayne",
+          "TN.COOKEVILLE.FACILITY.LOGAN_HOUSE": "Houses\\Logan",
+          "TN.COOKEVILLE.FACILITY.SKYLAR_HOUSE": "Houses\\Skylar",
+          "TN.MCMINNVILLE.CAMPUS-NORTH_SPRING_STREET.ROBERT_COY_HOUSE": "Houses\\Robert_Coy",
+          "TN.MCMINNVILLE.FACILITY.MCKENZIE_HOUSE": "Houses\\Mckenzie",
+          "TN.MCMINNVILLE.FACILITY.WOODLEE_HOUSE": "Houses\\Woodlee_Trail",
+          "TN.COOKEVILLE.FACILITY.MHC": "MHCs\\Cookeville",
+          "TN.DAYTON.FACILITY.MHC": "MHCs\\Dayton",
+          "TN.DRESDEN.FACILITY.MHC": "MHCs\\Dresden",
+          "TN.MORRISON.FACILITY.MHC": "MHCs\\Morrison",
+          "TN.SPENCER.FACILITY.GENERATIONS_OF_SPENCER": "SkilledNursing\\Spencer",
+          "TN.MORRISON.CAMPUS-SUNNY_ACRES_ROAD": [ "Houses\\Denton", "Houses\\James_Gilbert", "Houses\\Wood", "Houses\\Kirby" ],
+          "TN.WOOBURY.CAMPUS-AUBURNTOWN_ROAD": [ "Houses\\Warren", "Houses\\Harwell" ]
+        },
+        "Shared": [ "Houses\\AAA-REPORTS" ]
+      }
+    }
+  ],
+  "Legacy": {
+    "FLD-T-DATA.Facilities.MHCs.Dresden": [ "FLD-T-DATA.Facilities.MHCs.Dresdent" ],
+    "FLD-A-DATA": [ "FLD-DATA.ADMIN" ],
+    "FLD-A-DATA.Facilities": [ "FLD-A-DATA.Favilites", "FLD-DATA.FACILITY.ADMIN" ],
+    "FLD-E-DATA.Facilities": [ "FLD-DATA.FACILITY.EDITORS" ],
+    "FLD-T-DATA.Facilities": [ "FLD-DATA.FACILITY.TRAVERSE" ],
+    "FLD-E-DATA.Facilities.Houses.Campbell_Lodge": [ "FLD-E-DATA.Facilities.Houses.Camplbell_lodge", "FLD-DATA.FACILITY.TN.CENTERTOWN.CAMPBELL_LODGE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Ella_Katlynn": [ "FLD-E-DATA.Facilities.Houses.Ella_Katelyn", "FLD-DATA.FACILITY.TN.CENTERTOWN.ELLA_KATELYN.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Kolton_Wayne": [ "FLD-DATA.FACILITY.TN.CENTERTOWN.KOLTON_WAYNE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Kristopher_Wayne": [ "FLD-DATA.FACILITY.TN.CENTERTOWN.KRISTOPHER_WAYNE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Logan": [ "FLD-DATA.FACILITY.TN.COOKEVILLE.LOGAN_HOUSE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Skylar": [ "FLD-DATA.FACILITY.TN.COOKEVILLE.SKYLAR_HOUSE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Mckenzie": [ "FLD-E-Facilities.Houses.McKenzie", "FLD-DATA.FACILITY.TN.MCMINNVILLE.MACKENZIE_HOUSE.EDITORS" ],
+    "FLD-E-DATA.Facilities.Houses.Robert_Coy": [ "FLD-DATA.FACILITY.TN.MCMINNVILLE.ROBERT_COY_HOUSE.EDITORS" ],
+    "FLD-E-DATA.Facilities.MHCs.Cookeville": [ "FLD-DATA.FACILITY.TN.COOKEVILLE.MENTAL_HEALTH_CENTER.EDITORS" ],
+    "FLD-E-DATA.Facilities.MHCs.Dayton": [ "FLD-DATA.FACILITY.TN.DAYTON.FACILITY.MHC.EDITORS", "FLD-DATA.FACILITY.TN.DAYTON.MENTAL_HEALTH_CENTER.EDITORS" ],
+    "FLD-E-DATA.Facilities.MHCs.Dresden": [ "FLD-DATA.FACILITY.TN.DRESDEN.MENTAL_HEALTH_CENTER.EDITORS" ],
+    "FLD-E-DATA.Facilities.MHCs.Morrison": [ "FLD-DATA.FACILITY.TN.MORRISON.MHC.EDITORS" ],
+    "FLD-T-DATA.Facilities.MHCs.Morrison": [ "FLD-DATA.FACILITY.TN.MORRISON.MHC.TRAVERSE" ],
+    "FLD-E-DATA.Facilities.MHCs.Morrison.AA.Management": [ "FLD-E-DATA.Facilities.MHCs.Morrison.Managment", "FLD-DATA.FACILITY.TN.MORRISON.MHC.OFFICE_MANAGEMENT.EDITOR" ],
+    "FLD-E-DATA.Facilities.SkilledNursing.Spencer": [ "FLD-DATA.FACILITY.TN.SPENCER.GENERATIONS_OF_GAITHER.EDITORS" ]
+  },  "Notes": {
+    "GroupNameFormat": "{Role} = A, E, R or T; {Share} = share name (upper); {Path} = '.' + the folder path as named on disk with '\\' replaced by '.', or empty at the share root. Example: FLD-E-DATA.Facility.TN.MCMINNVILLE.MACKENZIE_HOUSE.",
+    "Roles": "A Full Control, E Modify, R Read & Execute (folder, subfolders and files); T Traverse + List + read attributes/permissions on this folder only.",
+    "Rules": "Each rule makes its folder(s) restricted: inheritance off, and the permissions are exactly Base + the Administrators (A) groups of every folder above it + the CarryDown groups of the rules above it + its own roles. 'Path' is relative to the share; a last segment of * means every folder directly below. An exact Path beats a * rule. Roles: which groups the folder gets. CarryDown: which of its roles also go on every restricted folder below. GroupPath: replaces the path part of the group names (for names over MaxGroupNameLength). A folder whose parent has no T role gets one automatically, and its groups are nested into that T group so members can reach it.",
+    "Legacy": "Existing groups to take over, by new name. The first one found is renamed in place (name, pre-2000 name, display name: the SID, members and current permissions stay); members of the others are copied into it, and they are listed for deletion by hand. Without an entry, LegacyNameFormats is tried (FLD-DATA.FACILITY.<FOLDER>.EDITORS etc.).",
+    "TopFolderRoles": "Groups every top-level folder of the share gets (A: FLD-A-DATA.Dept, FLD-A-DATA.Facility, ...), so its administration can be delegated later. On a top folder no rule manages, only that group is added (nothing else changes). It is also carried into every restricted folder below it, so its members can repair permissions anywhere in that folder. System folders and ExcludeTopFolders are skipped.",
+    "GroupsOUPerTopFolder": "true: groups go in OU=<top-level folder>,OU=<SHARE>,<GroupsOU> (e.g. OU=Facility,OU=DATA,OU=SecurityGroups,...); share-root groups and SharedOUTopFolders (Users: only FLD-A-DATA.Users) in OU=<SHARE>. Missing OUs are created protected from accidental deletion; existing groups are moved there (the SID stays). Delegate 'manage group membership' on OU=<top folder> to FLD-A-<SHARE>.<top folder> to hand over that folder's administration.",
+    "KeepParentRoles": "Rule option for a restricted subfolder: which of the parent folder's groups stay on it, e.g. [ \"E\" ] keeps the facility's Editors but not its Reviewers. Default: none (only carried Administrators / CarryDown groups and the subfolder's own groups).",
+    "Sites": "Area check (report only): every site OU under SearchBase whose name matches NamePattern should have a folder under Folder - named as in Folders, or like the site OU when not listed - except the Exclude sites (corporate / administrative). Folders no site claims are listed unless in Shared.",
+    "GroupsOU": "Empty = Groups.FolderGroupsOU in C:\\SCRIPTS\\Data\\Settings\\Scripts.json.",
+    "BlockCarryDown": "Rule option: only the administrators (A groups) come down into the folder; no CarryDown groups from above (e.g. MHC Management folders).",
+    "ShareAdminsOnly": "Rule option: of the administrators groups above, only the share's (FLD-A-DATA) is on the folder - not the top-level or type administrators (e.g. MHC Management). FLD-A-DATA, SYSTEM and Administrators are on every managed folder.",
+    "PermanentSharedFolder": "Every folder a rule manages is a Permanent Shared Folder: a group works inside it and other users keep shortcuts to its files, so it must never be renamed, moved, deleted or hidden. Only administrators (A) can do that; editors only work on its contents.",
+    "ThisFolderRights": "Role option: rights on the Permanent Shared Folder itself; Rights apply to everything inside it. Editors get ReadAndExecute, CreateFiles, CreateDirectories on the folder (list it, save new files, make subfolders) - no delete, rename or attribute changes - and Modify on its subfolders and files.",
+    "Owner": "Owner of every managed folder (S-1-5-32-544 = Administrators): the creator of a folder owns it, and an owner can always change its permissions.",
+    "LegacyPrefixes": "Area option: name prefixes of the old groups, for the report of old groups no rule uses.",
+    "ExcludeTopFolders": "Facility is the old layout being retired: its data moves to Facilities, then it is removed. Its groups are renamed to the Facilities folders (same SIDs), so the old folders keep working during the move.",
+    "Base": "SIDs: S-1-5-18 SYSTEM, S-1-5-32-544 Administrators. CREATOR OWNER is deliberately not here (decided 2026-10-26)."
+  }
+}

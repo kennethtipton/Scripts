@@ -1,0 +1,41 @@
+{
+  "RootFolderPath": "c:\\SCRIPTS",
+  "RootDataFolderPath": "c:\\SCRIPTS\\Data",
+  "RootLogsFolderPath": "c:\\SCRIPTS\\Logs",
+  "DnsServers": [
+    "srv010010037045.generationsgaither.com",
+    "srv010010039045.generationsgaither.com",
+    "srv010010049045.generationsgaither.com",
+    "srv010010050045.generationsgaither.com"
+  ],
+  "ftpBackupServer": "srv010010037065.generationsgaither.com",
+  "CommonFunctionsFolderPath": "c:\\SCRIPTS\\Functions",
+  "Applications": [
+    {
+      "TypeOrVendor": "3CX",
+      "Applications": [
+        {
+          "Name": "Failover3CXServer",
+          "Path": "c:\\SCRIPTS\\Applications\\3CX\\Failover3CXServer"
+        },
+        {
+          "Name": "RestoreTemplates",
+          "Path": "c:\\SCRIPTS\\Applications\\3CX\\RestoreTemplates"
+        }
+      ]
+    },
+    {
+      "TypeOrVendor": "Mikrotik",
+      "Applications": []
+    },
+    {
+      "TypeOrVendor": "OpenSource",
+      "Applications": [
+        {
+          "Name": "PowershellScriptManagementWebAdministration",
+          "Path": "c:\\SCRIPTS\\Applications\\OpenSource\\PowershellScriptManagementWebAdministration"
+        }
+      ]
+    }
+  ]
+}

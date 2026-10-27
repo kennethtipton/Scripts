@@ -1,0 +1,136 @@
+{
+  "Name": "Scripts",
+  "Version": "1.3.4",
+  "Description": "Settings for distributing C:\\SCRIPTS to devices and keeping the inventory of what is installed where. Copied to every device by Base. A device that needs other values gets Scripts.<COMPUTERNAME>.json next to this file, listing only what differs (read with Get-ApplicationSettings; objects merge at every depth). Edit with SetupApplications (Distribution...).",
+  "Transports": {
+    "Dfs": {
+      "Type": "Dfs",
+      "Enabled": true,
+      "Priority": 1,
+      "Root": "\\\\generationsgaither.com\\all_scripts\\scripts"
+    },
+    "Sftp": {
+      "Type": "Sftp",
+      "Enabled": false,
+      "Priority": 2,
+      "Host": "srv010010037065.generationsgaither.com",
+      "Port": 22,
+      "Root": "/scripts",
+      "User": "psm-sync",
+      "Credential": "PSM-Sftp"
+    },
+    "Ftp": {
+      "Type": "Ftp",
+      "Enabled": false,
+      "Priority": 3,
+      "Host": "srv010010037065.generationsgaither.com",
+      "Port": 21,
+      "Encryption": "Explicit",
+      "Root": "/scripts",
+      "User": "psm-sync",
+      "Credential": "PSM-Ftp"
+    }
+  },
+  "Mail": {
+    "Enabled": true,
+    "SmtpServers": [
+      "smtp.generationsgaither.com",
+      "srv010010050050.generationsgaither.com"
+    ],
+    "Port": 25,
+    "UseSsl": false,
+    "From": "PowerShell Scripts <scripts@generationsgaither.com>",
+    "To": [],
+    "SubjectPrefix": "[PSM]",
+    "TimeoutSeconds": 30,
+    "PickupDirectory": ""
+  },
+  "Publish": {
+    "Exclude": [
+      "Data\\GenerationsGaitherServers.csv"
+    ]
+  },
+  "LogShipping": {
+    "Enabled": true,
+    "UpdatesFolder": "Logs\\Updates",
+    "CentralFolder": "Logs\\Central",
+    "Include": [ "*.log" ],
+    "Exclude": [],
+    "WindowHours": 48,
+    "RetentionDays": 90,
+    "IngestedKeepDays": 7
+  },
+  "DeviceRecord": {
+    "Enabled": true,
+    "StaleMinutes": 150
+  },
+  "Cleanup": {
+    "DefaultDays": 90,
+    "Targets": [
+      { "Type": "LogEntries", "Path": "Logs\\*.log" },
+      { "Type": "Files", "Path": "Logs\\*.tmp", "Days": 1, "Recurse": true }
+    ]
+  },
+  "InventoryFolder": "Applications\\Data",
+  "InventoryServer": "srv010010037049.generationsgaither.com",
+  "InventoryIntervalMinutes": 15,
+  "SyncIntervalMinutes": 60,
+  "StaleDays": 7,
+  "Groups": {
+    "FolderGroupsOU": "OU=SecurityGroups,OU=AA.Common.Groups,OU=GGI,DC=generationsgaither,DC=com",
+    "AppGroupsOU": "OU=ApplicationsGroups,OU=AA.Common.Groups,OU=GGI,DC=generationsgaither,DC=com",
+    "Scope": "Global",
+    "FolderGroupFormat": "FLD-{SHARE}.{Folder}.{Subfolder}.{ROLE}",
+    "AppGroupFormat": "APP-{Application}.{Subset}",
+    "Roles": {
+      "ADMINS": "FullControl",
+      "EDITORS": "Modify",
+      "REVIEWERS": "ReadAndExecute",
+      "TRAVERSE": "Traverse, List folder, Read attributes, Read permissions (this folder only)"
+    },
+    "Administrators": "FLD-SCRIPTS.ADMINS",
+    "Reviewers": "FLD-SCRIPTS.REVIEWERS",
+    "InventoryEditors": "FLD-SCRIPTS.Applications.Data.EDITORS",
+    "LogUpdatesEditors": "FLD-SCRIPTS.Logs.Updates.EDITORS",
+    "LogCentralEditors": "FLD-SCRIPTS.Logs.Central.EDITORS",
+    "Devices": "APP-PowershellScriptsManagement.Frontend",
+    "Backend": "APP-PowershellScriptsManagement.Backend",
+    "AppReviewersFormat": "Read group of one application folder, if one is ever needed; {0} is the folder path in the pattern (for example Applications.Opensource.Poshacme). None exists yet."
+  },  "Notes": {
+    "Cleanup": "Invoke-ScriptsCleanup (Functions) runs after every Frontend sync. DefaultDays applies to every target without its own Days (-1 = never clean). Targets here are for all servers; an application adds its own under Cleanup in its settings file (Cleanup.Days, Cleanup.Targets: Type LogEntries|Files|KeepCount, Path relative to C:\\SCRIPTS, Days, Keep, Recurse). Change a value for one server in Applications\\Data\\Settings\\<Name>.json on that server (local override, never synced).",
+    "DeviceRecord": "After each sync every Frontend writes device.<DEVICE>.json to the inventory drop folder (Write-DeviceRecord.ps1): OS, hardware, disks, network, PowerShell, PSM sync and log-shipping results, \\PSM\\ tasks, the PSM applications on disk (version here and on DFS), modules, unmanaged folders and other script tasks (password-like arguments masked). The Backend lists them under Devices in Inventory.json; a device without a report for StaleMinutes is marked stale and logged once.",
+    "Transports": "Where devices pull from and report to (scripts, inventory, logs). Each enabled transport is tried in Priority order (1 first); the first one the device can reach is used. Type is Dfs, Sftp or Ftp; a second server of the same type gets its own key (for example Sftp2). A device with none enabled reports locally only.",
+    "Transports.Dfs.Root": "UNC path of the scripts share.",
+    "Transports.Sftp": "Root is the folder on the SFTP server. Credential names the SSH key kept on each device (readable by SYSTEM and Administrators only); never a password or key in this file.",
+    "Transports.Ftp": "Encryption: None (plain FTP: password and files in clear text), Explicit (FTPS, AUTH TLS) or Implicit (FTPS, usually port 990). Credential names the password kept on each device, encrypted with that machine's key (DPAPI).",
+    "Mail": "Used by Functions\\Send-ScriptMail.ps1 for every application's notifications. SmtpServers are tried in order (smtp.generationsgaither.com = SRV010010037050, then SRV010010050050). Port 25 without credentials is accepted by Exchange from the internal network for internal recipients; outside recipients need a relay connector. UseSsl = STARTTLS. To = default recipients (callers can pass -To). PickupDirectory (testing): write .eml files there instead of sending. A device on another network sets its own Mail values in Scripts.<COMPUTERNAME>.json.",
+    "Publish": "Exclude: paths relative to C:\\SCRIPTS (wildcards allowed, e.g. Data\\Private\\*) that Publish-ScriptsToDfs never copies to DFS, even inside a published folder. For private data such as server lists; also list them in .gitignore.",
+    "LogShipping": {
+    "Enabled": true,
+    "UpdatesFolder": "Logs\\Updates",
+    "CentralFolder": "Logs\\Central",
+    "Include": [ "*.log" ],
+    "Exclude": [],
+    "WindowHours": 48,
+    "RetentionDays": 90,
+    "IngestedKeepDays": 7
+  },
+  "DeviceRecord": {
+    "Enabled": true,
+    "StaleMinutes": 150
+  },
+  "Cleanup": {
+    "DefaultDays": 90,
+    "Targets": [
+      { "Type": "LogEntries", "Path": "Logs\\*.log" },
+      { "Type": "Files", "Path": "Logs\\*.tmp", "Days": 1, "Recurse": true }
+    ]
+  },
+  "InventoryFolder": "Under the transport root: the drop folder for update.<DEVICE>.<App>.json and the merged Inventory.json.",
+    "InventoryServer": "The one server that runs the PSM Backend (Update-InventoryIndex.ps1; the services server). Change it here to move the job.",
+    "Groups": "Folder security follows the GGI pattern. FLD-<SHARE>.<Folder>.<Subfolder>.<ROLE>: FLD and the share name in capitals, each folder with only its first letter capitalised, dots between folders, the role in capitals. The group is applied on the folder its name describes; only FLD groups go on folder permissions. FLD-<SHARE>.ADMINS (Full Control) is at the share root and inherits the whole tree. Additive rights (EDITORS, REVIEWERS) are added with inheritance kept; a restrictive folder has inheritance removed, keeps ADMINS and gets its own group, and its parents then get .TRAVERSE groups. APP-<Application>[.<Subset>] groups hold the computer or user accounts and are nested into FLD groups. All groups are Global, in FolderGroupsOU and AppGroupsOU.",
+    "Groups.Devices": "Every server that runs the PSM Frontend (its tasks run as SYSTEM, which reaches DFS as DOMAIN\\SERVER$). Nested in Reviewers (read the share), InventoryEditors (scripts\\Applications\\Data) and LogUpdatesEditors (scripts\\Logs\\Updates). Add a new server here, then reboot it or run 'klist -li 0x3e7 purge' on it.",
+    "Groups.Backend": "Servers that run the PSM Backend (Inventory.json, the log merge); they are also Devices. Nested in LogCentralEditors (scripts\\Logs\\Central).",
+    "AppReviewersFormat": "Read group of each application folder; {0} is the application name from its manifest. Not used yet (no per-application groups exist)."
+  }
+}

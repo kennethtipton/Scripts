@@ -1,0 +1,7 @@
+{
+  "Transports": {
+    "Dfs": {
+      "Enabled": false
+    }
+  }
+}

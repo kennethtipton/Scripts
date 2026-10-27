@@ -1,0 +1,50 @@
+{
+  "Name": "PoshAcmeExchangeServer",
+  "Description": "Exchange role of PoshAcme: renews the server's Let's Encrypt certificate and deploys it to Exchange (443, 444, IMAP, POP, SMTP). Pulls in the PoshAcme core, whose install steps run first.",
+  "AppData": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Data\\PoshAcmeExchangeServer.json",
+  "DependsOn": [
+    "PoshAcme"
+  ],
+  "Servers": [
+    "srv010010037050.generationsgaither.com",
+    "srv010010050050.generationsgaither.com"
+  ],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Test-ExchangeLEPrerequisites.ps1",
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Install-ExchangeLE.ps1",
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Renew-ExchangeLE.ps1 -DeployCurrent"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer",
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Functions",
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Install-ExchangeLE.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Install-ExchangeLE.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Renew-ExchangeLE.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Renew-ExchangeLE.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Test-ExchangeLEPrerequisites.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Test-ExchangeLEPrerequisites.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Functions\\Set-ExchangeBackEndCertificate.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Functions\\Set-ExchangeBackEndCertificate.ps1"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Functions\\Set-InternalTransportCertificate.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\ExchangeServer\\Functions\\Set-InternalTransportCertificate.ps1"
+    }
+  ]
+}

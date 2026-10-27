@@ -1,0 +1,35 @@
+{
+  "Name": "Base",
+  "Description": "What every server or client needs, copied first with every application: the C:\\SCRIPTS root folders, the common functions (C:\\SCRIPTS\\Functions\\*.ps1), the scripts settings (Data\\Settings\\Scripts*.json: DFS path, inventory server) and, through DependsOn, the PSM Frontend (PSMFrontendScriptsSync), whose install step is listed first for every application. The deployment tools (Installs folder, Connect-AdminShare, Copy-FilesToServer, Install-ServerModule, Set-ScriptSignature) stay on the setup machine. Can also be run on its own (with a server added) to prepare a new machine.",
+  "DependsOn": [
+    "PSMFrontendScriptsSync"
+  ],
+  "Servers": [],
+  "Folders": [
+    "C:\\SCRIPTS",
+    "C:\\SCRIPTS\\Applications",
+    "C:\\SCRIPTS\\Applications\\Data",
+    "C:\\SCRIPTS\\Applications\\PSM",
+    "C:\\SCRIPTS\\Data",
+    "C:\\SCRIPTS\\Data\\Settings",
+    "C:\\SCRIPTS\\Functions",
+    "C:\\SCRIPTS\\Logs"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Functions\\*.ps1",
+      "Destination": "C:\\SCRIPTS\\Functions",
+      "Exclude": [
+        "Connect-AdminShare.ps1",
+        "Copy-FilesToServer.ps1",
+        "Install-ServerModule.ps1",
+        "Publish-ScriptsToDfs.ps1",
+        "Set-ScriptSignature.ps1"
+      ]
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Data\\Settings\\Scripts*.json",
+      "Destination": "C:\\SCRIPTS\\Data\\Settings"
+    }
+  ]
+}

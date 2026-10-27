@@ -1,0 +1,24 @@
+# PoshAcme (Exchange Let's Encrypt): created at run time on the servers.
+# Certs holds the ACME account key and PFX files; Backups holds a zip of the old data.
+Applications/OpenSource/PoshAcme/Certs/
+Applications/OpenSource/PoshAcme/Backups/
+Applications/OpenSource/PoshAcme/**/Logs/
+
+# Private keys and certificate bundles, wherever they end up
+*.pfx
+*.p12
+*.key
+
+# DynamicGroups: server-local rules (with their backups) and run transcripts
+Applications/Microsoft/ActiveDirectory/DynamicGroups/Data/Rules/
+Applications/Microsoft/ActiveDirectory/DynamicGroups/Logs/
+
+# Private data: never synced to GitHub (also listed in Publish.Exclude in Data\Settings\Scripts.json, so never published to DFS)
+Data/GenerationsGaitherServers.csv
+
+# Runtime logs and reports are kept locally and are not source files.
+Logs/
+
+# PoshAcmeIisServer: server-local certificate mapping (with backups) and run transcripts
+Applications/OpenSource/PoshAcme/IisServer/Data/Deployments/
+Applications/OpenSource/PoshAcme/IisServer/Logs/

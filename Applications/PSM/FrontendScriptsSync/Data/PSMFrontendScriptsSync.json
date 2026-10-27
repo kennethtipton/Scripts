@@ -1,0 +1,6 @@
+{
+  "Name": "PSMFrontendScriptsSync",
+  "Version": "1.6.1",
+  "Description": "PSM Frontend (Powershell Scripts Management), installed on every device that runs these scripts: Sync-ScriptsFromDfs.ps1 pulls the device's scripts from DfsRoot (C:\\SCRIPTS\\Data\\Settings\\Scripts.json) every SyncIntervalMinutes. Bump Version whenever a file of this application changes.",
+  "RunAs": "SYSTEM (scheduled task \\PSM\\SyncScriptsFromDfs)"
+}

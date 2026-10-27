@@ -1,0 +1,22 @@
+{
+    "Device":  "DT-13GFDV2",
+    "Domain":  "generationsgaither.com",
+    "Application":  "PSMFrontendScriptsSync",
+    "Version":  "1.0.0",
+    "Updated":  "2026-10-15T09:56:09",
+    "Actions":  {
+                    "Synced":  {
+                                   "Version":  "1.0.0",
+                                   "Date":  "2026-10-15T09:56:09",
+                                   "By":  "GENERATIONSGAIT\\kennethtipton",
+                                   "From":  "DT-13GFDV2",
+                                   "Result":  "OK",
+                                   "Details":  {
+                                                   "Manifests":  "PSMFrontendScriptsSync",
+                                                   "Failed":  0,
+                                                   "Source":  "C:\\Users\\KennethTipton\\AppData\\Local\\Temp\\claude\\c--SCRIPTS\\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\\scratchpad\\FakeDfs",
+                                                   "Updated":  34
+                                               }
+                               }
+                }
+}

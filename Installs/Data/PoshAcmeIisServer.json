@@ -1,0 +1,41 @@
+{
+  "Name": "PoshAcmeIisServer",
+  "Description": "IIS role of PoshAcme: renews the server's Let's Encrypt certificates and binds each to its IIS bindings (Posh-ACME.Deploy Set-IISCertificate). Which certificate goes to which site/bindings is kept on the server (Data\\Deployments\\IisCertificates.json), edited with Add-IisCertificate.ps1; one certificate can serve several sites and a server can have several certificates. Pulls in the PoshAcme core, whose install steps run first.",
+  "AppData": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Data\\PoshAcmeIisServer.json",
+  "DependsOn": [
+    "PoshAcme"
+  ],
+  "Servers": [
+    "srv010010037055.generationsgaither.com"
+  ],
+  "Install": {
+    "Steps": [
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Test-IisLEPrerequisites.ps1",
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Install-IisLE.ps1 -ImportCurrent",
+      "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Renew-IisLE.ps1 -DeployCurrent"
+    ]
+  },
+  "Folders": [
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer",
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Functions",
+    "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Data"
+  ],
+  "Files": [
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Data\\*.json",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Data"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Functions\\*.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\Functions"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\*.ps1",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer"
+    },
+    {
+      "Source": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\PoshAcmeIisServer.md",
+      "Destination": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\IisServer\\PoshAcmeIisServer.md"
+    }
+  ]
+}

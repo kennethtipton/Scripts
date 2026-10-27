@@ -1,0 +1,7 @@
+"Name","Zone","Type","Data"
+"SRV010010037055","generationsgaither.com","AAAA","2001:470:c03f:25:e9ce:7638:8425:62dd"
+"SRV010010038039","generationsgaither.com","AAAA","2001:470:c03f:26:9e30:673f:ac86:eaf7"
+"SRV010010049051","generationsgaither.com","AAAA","2001:470:e080:31:5b25:783d:d82f:3c03"
+"SRV010010049052","generationsgaither.com","AAAA","2001:470:e080:31:a94e:2682:8456:1cff"
+"SRV010010050050","generationsgaither.com","AAAA","2001:470:c03f:32:d3dc:c5b6:5591:d201"
+"1.0.d.f.5.9.5.5.6.b.5.c.c.d.3.d","2.3.0.0.f.3.0.c.0.7.4.0.1.0.0.2.ip6.arpa","PTR","srv010010050050.generationsgaither.com."

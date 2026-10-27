@@ -1,0 +1,19 @@
+{
+  "Name": "PoshAcmeExchangeServer",
+  "Version": "2.3.1",
+  "Description": "Exchange role of PoshAcme, read by the scripts in ExchangeServer (with Get-ApplicationSettings). The order's domain comes from the core settings (..\\Data\\PoshAcme.json). A server that needs other values gets PoshAcmeExchangeServer.<COMPUTERNAME>.json next to this file. Bump Version whenever any file of the role changes.",
+  "RunAs": "GENERATIONSGAIT\\Administrator",
+  "InternalTransportThumbprint": "B1E5BFBCC966D2D0F563D18B0E91CDCBC8D7C1F6",
+  "ExchangeServices": [ "IMAP", "POP", "IIS", "SMTP" ],
+  "ExchangeServers": [
+    "srv010010037050.generationsgaither.com",
+    "srv010010050050.generationsgaither.com"
+  ],
+  "TaskPath": "\\Exchange\\LetsEncrypt\\",
+  "TaskName": "RenewExchangeCertificate",
+  "RunTime": "03:47",
+  "Notes": {
+    "InternalTransportThumbprint": "Stable (non Let's Encrypt) certificate kept as the default SMTP certificate between Exchange servers, usually the Exchange Auth certificate. Empty = leave internal transport alone.",
+    "ExchangeServers": "All Exchange servers of the organisation (FQDN); the others get the WinRM tests."
+  }
+}

@@ -1,0 +1,4 @@
+Timestamp | Script | Type | Message
+2026-10-22 13:19:54 | Script: Write-DeviceRecord.ps1 | ERROR: Device record failed: Argument types do not match
+2026-10-22 13:19:41 | Script: Write-DeviceRecord.ps1 | ERROR: Device record failed: Argument types do not match
+2026-10-22 13:19:28 | Script: Write-DeviceRecord.ps1 | ERROR: Device record failed: Argument types do not match

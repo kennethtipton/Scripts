@@ -1,0 +1,78 @@
+Timestamp | Script | Type | Message
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: Sync from C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\FakeDfs : 34 files checked, 34 updated, 0 failed. Applications: PSMFrontendScriptsSync.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Applications\PSM\FrontendScriptsSync\Install-FrontendScriptsSync.ps1.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Applications\PSM\FrontendScriptsSync\Sync-ScriptsFromDfs.ps1.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Applications\PSM\FrontendScriptsSync\Data\PSMFrontendScriptsSync.json.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\timezone.json.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\Scripts.SRV010010200051.json.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\Scripts.json.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\MasterSettings.json.
+2026-10-15 09:56:09 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\MasterPowershellScriptHeaderExample.txt.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\AIRules.json.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data\Settings\AGENTS.md.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Write-AdvancedLog.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Update-ApplicationInventory.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Update-3CXServerStatus.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Test-MultiplePaths.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Test-CNameRecord.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Set-ServiceStatus.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Set-CNameRecord.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Set-AdministratorMode.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Set-3CXServerStatus.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\New-ZipFromFolder.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Invoke-WindowsServiceManagement.ps1.
+2026-10-15 09:56:08 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Install-SecretManagementModule.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Install-KeePass.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Initialize-FileAndFoldersExist.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-ServiceStatus.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-ScriptsTransport.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-FileModifiedDate.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-FileFolderInformation.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-FileDates.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-DaylightSavingTime.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Get-ApplicationSettings.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Find-GPOSettings.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Copy-FileWithOverwrite.ps1.
+2026-10-15 09:56:07 | Script: Sync-ScriptsFromDfs.ps1 | INFO: copied C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions\Compare-Files.ps1.
+2026-10-15 09:56:05 | Script: Sync-ScriptsFromDfs.ps1 | INFO: Created C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Functions.
+2026-10-15 09:56:05 | Script: Sync-ScriptsFromDfs.ps1 | INFO: Created C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Data.
+2026-10-15 09:56:05 | Script: Sync-ScriptsFromDfs.ps1 | INFO: Created C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Applications\PSM\FrontendScriptsSync\Data.
+2026-10-15 09:56:05 | Script: Sync-ScriptsFromDfs.ps1 | INFO: Created C:\Users\KennethTipton\AppData\Local\Temp\claude\c--SCRIPTS\ec7c4f72-a349-48cd-ac59-2116f5ae7c9b\scratchpad\SyncTest\Applications\PSM\FrontendScriptsSync.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

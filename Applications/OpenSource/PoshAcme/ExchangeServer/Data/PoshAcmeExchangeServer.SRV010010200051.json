@@ -1,0 +1,7 @@
+{
+  "RunAs": "TNC\\Administrator",
+  "InternalTransportThumbprint": "53D7D1538A0CEBA22C39D02C9058DC607BC01A8C",
+  "ExchangeServers": [
+    "srv010010200051.tnandc.net"
+  ]
+}

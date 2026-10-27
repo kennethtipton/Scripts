@@ -1,0 +1,19 @@
+{
+  "Name": "ActiveDirectoryCommon",
+  "Version": "1.0.0",
+  "Description": "Shared Active Directory functions (library application): Move-AdUserToOu, Remove-AdUserAccount. Other applications list it in DependsOn. Needs the ActiveDirectory module (RSAT-AD-PowerShell). Bump Version whenever a file of this application changes.",
+  "LogFileName": "ActiveDirectory",
+  "DeletedUsersFolder": "C:\\SCRIPTS\\Logs\\ActiveDirectory\\DeletedUsers",
+  "Delete": {
+    "AllowedOUs": [ "OU=To.Delete,OU=AA.FormerEmployees,OU=GGI,DC=generationsgaither,DC=com" ],
+    "RequireDisabled": true,
+    "RefuseWithMailbox": true
+  },
+  "Notes": {
+    "DeletedUsersFolder": "Remove-AdUserAccount writes a JSON record of every account before deleting it (attributes, group memberships, SID, GUID). The AD Recycle Bin is OFF in this forest (2026-10-27), so a deleted user can only be reanimated as a tombstone without its groups and most attributes; the record is what is left. Keep this folder backed up.",
+    "Delete.AllowedOUs": "A user is only deleted when it is directly in one of these OUs (the former-employee workflow moves it to To.Delete first). [ \"*\" ] allows any OU. -AllowedOu on the call overrides.",
+    "Delete.RequireDisabled": "Enabled accounts are refused (disable them first); -AllowEnabled on the call overrides.",
+    "Delete.RefuseWithMailbox": "Accounts with an Exchange mailbox are refused (export or convert the mailbox first - To.MAKE_PST); -AllowMailbox on the call overrides.",
+    "Always refused": "Built-in accounts (RID below 1000: Administrator, Guest, krbtgt ...) and privileged accounts (adminCount = 1: members, now or before, of Domain/Enterprise/Schema Admins, Administrators, Account/Server/Backup/Print Operators ...)."
+  }
+}

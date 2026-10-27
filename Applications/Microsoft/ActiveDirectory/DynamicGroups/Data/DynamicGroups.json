@@ -1,0 +1,22 @@
+{
+  "Name": "DynamicGroups",
+  "Version": "1.1.1",
+  "Description": "Rule-based Active Directory groups: Update-DynamicGroups.ps1 adds and removes users so each managed group matches its rule. This file is copied with the application (bump Version whenever a file of the application changes); the rules themselves stay on the server in Data\\Rules\\DynamicGroupRules.json and are never overwritten by a copy or sync. A server that needs other values gets DynamicGroups.<COMPUTERNAME>.json next to this file.",
+  "RunAs": "SYSTEM on a domain controller; elsewhere a gMSA or domain account with delegated rights on the group OUs",
+  "DefaultSearchBase": "OU=GGI,DC=generationsgaither,DC=com",
+  "DefaultGroupPath": "OU=DepartmentalGroups,OU=AA.Common.Groups,OU=GGI,DC=generationsgaither,DC=com",
+  "Server": "",
+  "LogFileName": "DynamicGroups",
+  "RulesFile": "Data\\Rules\\DynamicGroupRules.json",
+  "RulesTemplate": "Data\\DynamicGroupRules.Template.json",
+  "IntervalHours": 2,
+  "TranscriptRetentionDays": 30,
+  "KeepRuleBackups": 30,
+  "Notes": {
+    "DefaultSearchBase": "Users are searched here (and below) when a rule has no SearchBase.",
+    "DefaultGroupPath": "OU offered for new rules in the editor.",
+    "Server": "Domain controller to use. Empty = a writable DC is discovered at each run.",
+    "RulesFile": "Relative to the application folder. Server-local: edited with Show-DynamicGroupEditor.ps1, previous versions kept in Data\\Rules\\Backups.",
+    "RulesTemplate": "Copied to RulesFile by Install-DynamicGroups.ps1 when the server has no rules yet."
+  }
+}

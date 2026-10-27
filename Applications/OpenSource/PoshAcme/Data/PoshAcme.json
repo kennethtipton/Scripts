@@ -1,0 +1,36 @@
+{
+  "Name": "PoshAcme",
+  "Version": "2.4.1",
+  "Description": "Posh-ACME core settings, read by Install-PoshAcme.ps1, Test-PoshAcmePrerequisites.ps1 and the role scripts from this folder (with Get-ApplicationSettings). A server that needs other values gets PoshAcme.<COMPUTERNAME>.json next to this file, listing only what differs. Bump Version whenever any file of the core changes; SetupApplications.ps1 compares it with the copy on each server.",
+  "RunAs": "GENERATIONSGAIT\\Administrator",
+  "Domain": "",
+  "Modules": [
+    {
+      "Name": "Posh-ACME",
+      "DataVariable": "POSHACME_HOME",
+      "DataFolder": "C:\\SCRIPTS\\Applications\\OpenSource\\PoshAcme\\Certs"
+    },
+    {
+      "Name": "Posh-ACME.Deploy"
+    }
+  ],
+  "Manager": {
+    "DefaultPlugin": "HurricaneElectric",
+    "DnsSleep": 120,
+    "CertKeyLength": "2048",
+    "AccountKeyLength": "ec-256"
+  },
+  "Migrate": {
+    "From": "C:\\POSHACME\\certs",
+    "OldTaskPattern": "C:\\POSHACME\\",
+    "Archive": "C:\\POSHACME",
+    "RenameTo": "C:\\POSHACME.migrated",
+    "CleanupDays": 30,
+    "BackupKeepDays": 90
+  },
+  "Notes": {
+    "RunAs": "Account the tasks run as; it owns the saved (encrypted) DNS plugin credentials.",
+    "Manager": "Defaults of Show-PoshAcmeCertificateManagement.ps1: DNS plugin preselected for new certificates, seconds to wait for DNS, certificate key (2048 = RSA, needed by Exchange), account key.",
+    "Domain": "Main domain of this server's Posh-ACME order. Empty = this computer's FQDN."
+  }
+}

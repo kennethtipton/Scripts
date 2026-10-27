@@ -1,0 +1,12 @@
+{
+  "PrimaryServer": {
+    "Name": "srv010010037051.generationsgaither.com",
+    "Status": "Unknown",
+    "LastChecked": null
+  },
+  "FailoverServer": {
+    "Name": "srv010010050051.generationsgaither.com",
+    "Status": "Unknown",
+    "LastChecked": null
+  }
+}
