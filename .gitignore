@@ -17,7 +17,7 @@ Applications/Microsoft/ActiveDirectory/DynamicGroups/Logs/
 Data/GenerationsGaitherServers.csv
 
 # Runtime logs and reports are kept locally and are not source files.
-Logs/
+**/Logs/
 
 # PoshAcmeIisServer: server-local certificate mapping (with backups) and run transcripts
 Applications/OpenSource/PoshAcme/IisServer/Data/Deployments/
