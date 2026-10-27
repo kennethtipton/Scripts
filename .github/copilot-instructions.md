@@ -272,3 +272,65 @@ Scope audited: `c:\Scripts\Applications` (recursive)
 - Updated RestoreTemplates app/function flow to pass application log context while preserving function script identity:
 	- `Applications/3CX/RestoreTemplates/Restore3CxTemplate.ps1`
 	- `Applications/3CX/RestoreTemplates/Functions/Get-TemplateTypes.ps1`
+
+## Repository Knowledge
+
+This repository is the complete rework of the PowerShell Scripts Management (PSM)
+folders and application scripts. The local workstation copy is the source of truth.
+Do not treat a server copy or DFS copy as authoritative.
+
+### PSM distribution model
+
+- `Applications/PSM/FrontendScriptsSync` runs on managed devices as the Frontend.
+  It synchronizes signed `Functions`, `Data`, `Modules`, and selected applications
+  from the configured DFS transport into `C:\SCRIPTS`.
+- `Applications/PSM/BackendScriptsSync` runs on the inventory server. It merges
+  device inventory records and supports centralized deployment reporting.
+- `Installs/SetupApplications.ps1` is run from the administration workstation.
+  Application manifests are stored in `Installs/Data`, and dependencies are
+  resolved through each manifest's `DependsOn` property.
+- `Installs/Data/Base.json` is installed first and provides the common folder
+  structure and shared functions. The PSM Frontend is a required base dependency.
+- `Functions/Get-ApplicationSettings.ps1` loads application settings from the
+  application data folder, published settings, and device-specific overrides.
+  Device overrides use `Data/Settings/Scripts.<COMPUTERNAME>.json`.
+- Files are compared by SHA256. A differing workstation file replaces the server
+  copy; identical files are left unchanged. Unsigned scripts must not be copied.
+- `Installs/` remains on the administration workstation. Server-side install
+  scripts remain inside their application folder.
+- Runtime log directories are local only and are excluded by `.gitignore`.
+
+### Active Directory applications
+
+- `Applications/Microsoft/ActiveDirectory/Common` is a shared library. Its
+  settings are in `Data/ActiveDirectoryCommon.json`, and applications that use it
+  declare `ActiveDirectoryCommon` in `DependsOn`.
+- `Move-AdUserToOu.ps1` resolves users by common AD identity formats and moves
+  them to a target OU with logging and `-WhatIf` support.
+- `Remove-AdUserAccount.ps1` is a high-impact operation. It must preserve safety
+  checks for built-in/protected accounts, record account data before deletion,
+  honor `-WhatIf`, and return a result for each requested user.
+- `Applications/Microsoft/ActiveDirectory/DynamicGroups` is configuration-driven.
+  Rules define a search base, LDAP matching criteria, disabled-user handling,
+  exclusions, and target group. Preview changes before applying membership updates.
+
+### Network permissions application
+
+- `Applications/Microsoft/FileSystems/NetworkDataPermissionsSet` manages folder
+  rules, `FLD-` groups, group nesting, and NTFS permissions from
+  `Data/NetworkDataPermissionsSet.json`.
+- `Set-NetworkDataPermissions.ps1` reports by default. Use `-Apply` to change AD
+  groups or folder ACLs and use `-WhatIf` for safe validation.
+- Preserve the permanent shared-folder model: administrators manage the folder,
+  editors work with its contents, and unrelated or legacy permissions are not
+  silently changed outside configured areas.
+
+### Documentation and entry points
+
+- Start with `README.md` for repository structure and deployment flow.
+- Use the application-specific Markdown files next to each application for its
+  settings, dependencies, and operational behavior.
+- `Docs/PSM_Process.html` documents the development-to-DFS-to-server lifecycle.
+- `manage.ps1` is the interactive management entry point.
+- `Write-AdvancedLog` is the repository logging standard; do not replace it with
+  ad hoc output when adding operational behavior.
