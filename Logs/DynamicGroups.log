@@ -1,6 +1,0 @@
-Timestamp | Script | Type | Message
-2026-10-19 12:40:39 | Script: Update-DynamicGroups.ps1 | INFO: Run finished. Groups: 1 processed, 0 created, 0 failed. Members: +8 / -0.
-2026-10-19 12:40:39 | Script: Update-DynamicGroups.ps1 | INFO: DEPT-ExecutiveDirectors: 8 matching user(s); added 8, removed 0. Added: awanamaker, ddavis, lhoch, mbrown, nalexander, panderson, sjenkins, sseiber.
-2026-10-19 12:40:38 | Script: Update-DynamicGroups.ps1 | INFO: Run started on DT-13GFDV2 by GENERATIONSGAIT\kennethtipton. DC srv010010037041.generationsgaither.com. 1 rule(s).
-
-
